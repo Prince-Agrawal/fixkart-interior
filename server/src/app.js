@@ -13,3 +13,4 @@ app.use('/api/auth', authRoutes);  // Auth routes (e.g., /api/auth/register, /ap
 app.use('/api/users', userRoutes); // User routes (e.g., /api/users/profile)
 
 module.exports = app;
+
