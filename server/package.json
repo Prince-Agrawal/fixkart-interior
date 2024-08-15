@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server/\r │\r ├── node_modules/           # Installed npm packages\r │\r ├── src/                    # Source code directory\r │   ├── config/             # Configuration files (e.g., database, environment)\r │   │   └── db.js           # Database configuration\r │   │\r │   ├── controllers/        # Route controllers\r │   │   └── userController.js\r │   │\r │   ├── models/             # Database models (e.g., Mongoose models)\r │   │   └── userModel.js\r │   │\r │   ├── routes/             # Express route definitions\r │   │   └── userRoutes.js\r │   │\r │   ├── middlewares/        # Custom middleware functions\r │   │   └── authMiddleware.js\r │   │\r │   ├── services/           # Business logic and services\r │   │   └── userService.js\r │   │\r │   ├── utils/              # Utility functions\r │   │   └── helpers.js\r │   │\r │   ├── app.js              # Main Express application setup\r │   └── server.js           # Server start script\r │\r ├── .env                    # Environment variables\r ├── .gitignore              # Git ignore file\r ├── package.json            # Project metadata and dependencies\r └── README.md               # Project documentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.3"
+  }
+}
