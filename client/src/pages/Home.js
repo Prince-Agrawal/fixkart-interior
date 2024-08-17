@@ -1,6 +1,6 @@
 // src/pages/Home.js
 import React from "react";
-import { ReelParthner } from "./ReelParthner";
+import { ReelParthner } from "../components/ReelParthner";
 const Home = () => {
   return (
     <>
