@@ -5,6 +5,7 @@ import { Header } from '../pages/Header';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
+import AdminLogin from '../pages/admin/AdminLogin';
 
 const AppRoutes = () => {
     return (
@@ -14,6 +15,9 @@ const AppRoutes = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+
+                {/* Admin Routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
             </Routes>
         </Router>
     );
