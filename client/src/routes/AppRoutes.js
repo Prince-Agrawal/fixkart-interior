@@ -1,6 +1,7 @@
 // src/routes/AppRoutes.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Header } from '../pages/Header';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
@@ -9,6 +10,7 @@ import AdminLogin from '../pages/admin/AdminLogin';
 const AppRoutes = () => {
     return (
         <Router>
+         <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
