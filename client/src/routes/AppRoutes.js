@@ -1,6 +1,6 @@
 // src/routes/AppRoutes.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from '../pages/Header';
 import Home from '../pages/Home';
 import About from '../pages/About';
@@ -10,16 +10,30 @@ import AdminLogin from '../pages/admin/AdminLogin';
 const AppRoutes = () => {
     return (
         <Router>
-         <Header />
+            <RouteWrapper />
+        </Router>
+    );
+};
+
+const RouteWrapper = () => {
+    const location = useLocation();
+
+    // Check if the path starts with '/admin'
+    const isAdminRoute = location.pathname.startsWith('/admin');
+
+    return (
+        <>
+            {/* Render Header only if it's not an admin route */}
+            {!isAdminRoute && <Header />}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
 
-                {/* Admin Routes */}
-                <Route path="/admin/login" element={<AdminLogin />} />
+                {/* Admin login route */}
+                <Route path="/admin/login" element={<AdminLogin />} /> 
             </Routes>
-        </Router>
+        </>
     );
 };
 
