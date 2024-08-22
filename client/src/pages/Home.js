@@ -1,7 +1,14 @@
 // src/pages/Home.js
-import React from "react";
+import React, { useEffect } from 'react'; // Add useEffect here
 import { ReelParthner } from "../components/ReelParthner";
+import DesignIdeas from "../components/DesignIdeas";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import CompanyNumbers from '../components/CompanyNumber';
 const Home = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   return (
     <>
       <div className="Home-banner">
@@ -10,7 +17,7 @@ const Home = () => {
           alt="Home Banner"
           className="banner-img"
         />
-        <div className="container">
+        <div className="container" data-aos="fade-up">
           <h1>
             Let’s design your
             <p>
@@ -71,6 +78,7 @@ const Home = () => {
 
       <section className="designIdeasSection">
            <div className="container">
+         
               <div className="heading-main mb-5">
                     <span className="badge rounded-pill text-bg-warning">
                     Design Ideas
@@ -80,27 +88,142 @@ const Home = () => {
                     <button className="btn btn-primary ms-auto">More Designs</button>
                     </h2>                    
               </div>
-
-              <ul className="d-flex justify-content-between">
-                  <li>
-                      <a href="#" className="w-25">
-                         <img src="images/kids-room.png" alt="kids room image" className="img-fluid"/>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="#" className="w-25">
-                         <img src="images/kids-room.png" alt="kids room image" className="img-fluid"/>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="#" className="w-25">
-                         <img src="images/living-room.png" alt="living-room" className="img-fluid"/>
-                      </a>
-                  </li>
-              </ul>
+              <DesignIdeas/>
            </div>
       </section>
 
+      <section className="services-section">
+          <div className="container">
+            <div className="heading-main mb-5 text-center">
+            <span className="badge rounded-pill text-bg-warning">
+            Services
+              </span>
+              <h2>6 Steps Of Completion Interior</h2>
+            </div>
+             <div className="row">
+                <div className="col-md-4 mb-4">
+                   <div className="card-steps">
+                       <img src="images/step-1.png" alt="Book a Free Appointment"/>
+                       <h3>Book a Free Appointment</h3>
+                       <p>All you need to do is fill out the inquiry form and send it to us. Our design specialist will meet with you for a free consultation so that he or she can guide you and find out more about you.  </p>
+                   </div>
+                </div>
+                <div className="col-md-4 mb-4">
+                   <div className="card-steps">
+                       <img src="images/step-1.png" alt="Book a Free Appointment"/>
+                       <h3>Seal The Deal</h3>
+                       <p>Book our services and just pay 5% of the total amount or Rs. 25000 as a booking fee. (whichever is higher).</p>
+                   </div>
+                </div>
+                <div className="col-md-4 mb-4">
+                   <div className="card-steps">
+                       <img src="images/step-1.png" alt="Book a Free Appointment"/>
+                       <h3>Place your order</h3>
+                       <p>To kickstart the order process, you just need to pay 50% of the finalized quote, and then we
+                       are ready to start work on site or factory.</p>
+                   </div>
+                </div>
+                <div className="col-md-4 mb-4">
+                   <div className="card-steps">
+                       <img src="images/step-1.png" alt="Book a Free Appointment"/>
+                       <h3>Get ready for installation</h3>
+                       <p>We send our team to the location for the installation. They place and fit all the objects perfectly. Be prepared to wait for the magic to unfold as you will be surprised to see the results.</p>
+                   </div>
+                </div>
+                <div className="col-md-4 mb-4">
+                   <div className="card-steps">
+                       <img src="images/step-1.png" alt="Book a Free Appointment"/>
+                       <h3>The Final Payment</h3>
+                       <p>Pay the remaining 50% to complete the payment process and help us with your feedback. The greatest reward for us will be your smiling face.</p>
+                   </div>
+                </div>
+                <div className="col-md-4 mb-4">
+                   <div className="card-steps">
+                       <img src="images/step-1.png" alt="Book a Free Appointment"/>
+                       <h3>All Set To Move In</h3>
+                       <p>Your move-in is ready, and finally, you get to see your Fixkart home. It’s time to make some beautiful memories and get going with your loved ones.</p>
+                   </div>
+                </div>
+             </div>
+          
+          </div>
+      </section>
+
+      <section className="OurprojectSection">
+           <div className="container">
+         
+              <div className="heading-main mb-5">
+                    <span className="badge rounded-pill text-bg-warning">
+                    Our Projects
+                    </span>
+                    <h2 className="d-flex align-items-end"> Fastest Growing Interior <br/>
+                    Designer In India
+                    
+                    <button className="btn btn-primary ms-auto">More Gallery</button>
+                    </h2>                    
+              </div>
+
+              <div className="row outer-gallery">
+                  <div className="col-md-6 col-lg-4 mb-4">
+                       <div className='gallary-box'>
+                           <img src="images/gallery-1.png" alt="Gallery 1" />
+                       </div>
+                  </div>
+                  <div className="col-md-6 col-lg-4 mb-4">
+                       <div className='gallary-box'>
+                           <img src="images/gallery-2.png" alt="Gallery 1" />
+                       </div>
+                  </div>
+
+                   <div className="col-md-6 col-lg-4 mb-4">
+                       <div className='gallary-box'>
+                           <img src="images/gallery-3.png" alt="Gallery 1" />
+                       </div>
+                  </div>
+                  <div className="col-md-6 col-lg-4 mb-4">
+                       <div className='gallary-box'>
+                           <img src="images/gallery-4.png" alt="Gallery 1" />
+                       </div>
+                  </div>
+                  <div className="col-md-6 col-lg-4 mb-4">
+                       <div className='gallary-box'>
+                           <img src="images/gallery-5.png" alt="Gallery 1" />
+                       </div>
+                  </div>
+
+                   <div className="col-md-6 col-lg-4 mb-4">
+                       <div className='gallary-box'>
+                           <img src="images/gallery-6.png" alt="Gallery 1" />
+                       </div>
+                  </div>
+              </div>
+
+           </div>
+      </section>
+
+<CompanyNumbers/>
+      {/* <section className='companyNumbers'>
+           <div className="container">
+               <div className="row">
+                  <div className="col-md-3">
+                      <h2>1128+</h2>
+                      <h4>Successful Work</h4>
+                  </div>
+                  <div className="col-md-3">
+                      <h2>908+</h2>
+                      <h4>Team member</h4>
+                  </div>
+                  <div className="col-md-3">
+                      <h2>258+</h2>
+                      <h4>Happy Customers</h4>
+                  </div>
+                  <div className="col-md-3">
+                      <h2>564+</h2>
+                      <h4>Creative Idea</h4>
+                  </div>
+               </div>
+           </div>
+      </section> */}
 
     </>
   );
