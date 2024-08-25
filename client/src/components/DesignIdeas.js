@@ -19,7 +19,7 @@ export default function DesignIdeas() {
   };
 
   return (
-    <div className="design-idea-slider">
+    <div className="design-idea-slider slider-dots">
       <Slider {...settings}>
         <div>
           <a href="#">
