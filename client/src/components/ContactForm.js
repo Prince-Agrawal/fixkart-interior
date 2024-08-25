@@ -35,7 +35,7 @@ export const ContactForm = () => {
     if (Object.keys(errors).length === 0) {
       setLoading(true);
       try {
-        const response = await fetch('https://api.restful-api.dev/objects', { // Replace with your backend URL
+        const response = await fetch('http://localhost:3254/api/contact', { // Replace with your backend URL
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

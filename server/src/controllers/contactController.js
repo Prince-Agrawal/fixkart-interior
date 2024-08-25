@@ -2,8 +2,8 @@ const ContactDetails = require('../models/contactDetail');
 
 // Controller function to save contact details
 exports.saveContactDetails = async (req, res) => {
-    const { fullName, email, phone, propertyName, message } = req.body;
-
+    const { fullName, email, phone, message } = req.body;
+    const propertyName = req.body.company;
     try {
         // Create a new contact detail document
         const newContact = new ContactDetails({
