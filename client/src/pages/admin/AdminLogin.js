@@ -1,11 +1,13 @@
 // src/pages/Login.js
 import React, { useState } from 'react';
 import { login } from '../../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); // Initialize the useNavigate hook
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,7 +16,9 @@ const AdminLogin = () => {
         try {
             const data = await login(email, password);
             console.log('Login successful:', data);
-            // Optionally, redirect or store tokens here
+
+            // Redirect to the admin dashboard
+            navigate('/admin/dashboard');
         } catch (error) {
             console.error('Error during login:', error.message);
             setError(error.message);
@@ -23,7 +27,7 @@ const AdminLogin = () => {
 
     return (
         <div className="login-container">
-            <h2>Login</h2>
+            <h2>Admin Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Email:</label>

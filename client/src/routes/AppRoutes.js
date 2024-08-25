@@ -6,6 +6,8 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import AdminLogin from '../pages/admin/AdminLogin';
+import AdminDashboard from '../pages/admin/Dashboard';
+import ContactList from '../pages/admin/ContactList';
 
 const AppRoutes = () => {
     return (
@@ -31,7 +33,9 @@ const RouteWrapper = () => {
                 <Route path="/contact" element={<Contact />} />
 
                 {/* Admin login route */}
-                <Route path="/admin/login" element={<AdminLogin />} /> 
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin/dashboard" element={<AdminDashboard />} /> 
+                <Route path="/admin/contacts" element={<ContactList />} /> 
             </Routes>
         </>
     );
