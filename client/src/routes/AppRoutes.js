@@ -8,6 +8,7 @@ import Contact from '../pages/Contact';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminDashboard from '../pages/admin/Dashboard';
 import ContactList from '../pages/admin/ContactList';
+import { CreateBlog } from '../pages/admin/CreateBlog';
 
 const AppRoutes = () => {
     return (
@@ -36,6 +37,7 @@ const RouteWrapper = () => {
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={<AdminDashboard />} /> 
                 <Route path="/admin/contacts" element={<ContactList />} /> 
+                <Route path="/admin/blog" element={<CreateBlog />} /> 
             </Routes>
         </>
     );

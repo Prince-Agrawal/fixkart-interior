@@ -1,16 +1,32 @@
+const Blog = require("../models/Blog");
 
 
-// User registration
+// Blog creation
 exports.createBlog = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { title, description, addedBy } = req.body;
 
   try {
-    console.log('req.file', req.file)
+    // Check if a file is uploaded
     if (!req.file) {
       return res.status(400).send('No file uploaded.');
     }
-    res.send(`File uploaded successfully: ${req.file.filename}`);
 
+    // Get the uploaded file's path
+    const imagePath = req.file.path;
+
+    // Create a new blog document
+    const newBlog = new Blog({
+      title,
+      description,
+      addedBy,
+      imagePath,
+    });
+
+    // Save the blog to the database
+    await newBlog.save();
+
+    // Send a success response
+    res.status(201).send(`Blog created successfully with ID: ${newBlog._id}`);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

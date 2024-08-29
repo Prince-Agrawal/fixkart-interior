@@ -6,7 +6,7 @@ const blogController = require('../controllers/blogController');
 const { createMulterStorage } = require('../utils/fileUpload');
 
 // Route for user registration
-router.post('/blog', createMulterStorage('public').single('file') , blogController.createBlog);
+router.post('/blog', createMulterStorage('public/upload/blogs').single('file') , blogController.createBlog);
 
 
 module.exports = router;

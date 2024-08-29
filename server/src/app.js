@@ -9,7 +9,7 @@ app.use(cors());
 // Middleware to parse JSON
 app.use(express.json());
 
-app.use(express.static('public'))
+app.use('/public', express.static('public'))
 
 // Import Routes
 const authRoutes = require('./routes/authRoutes');
