@@ -8,8 +8,11 @@ import Contact from '../pages/Contact';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminDashboard from '../pages/admin/Dashboard';
 import ContactList from '../pages/admin/ContactList';
-import { CreateBlog } from '../pages/admin/CreateBlog';
+import { CreateBlog } from '../pages/admin/blog/CreateBlog';
 import { CreateReview } from '../pages/admin/CreateReview';
+import { BlogList } from '../pages/admin/blog/BlogList';
+import { ViewBlog } from '../pages/admin/blog/ViewBlog';
+import { EditBlog } from '../pages/admin/blog/EditBlog';
 
 const AppRoutes = () => {
     return (
@@ -38,7 +41,10 @@ const RouteWrapper = () => {
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={<AdminDashboard />} /> 
                 <Route path="/admin/contacts" element={<ContactList />} /> 
-                <Route path="/admin/createBlog" element={<CreateBlog />} /> 
+                <Route path="/admin/blogs" element={<BlogList />} />
+                <Route path="/admin/blogs/create" element={<CreateBlog />} />  
+                <Route path="/admin/blogs/view/:id" element={<ViewBlog />} />
+                <Route path="/admin/blogs/edit/:id" element={<EditBlog />} />
                 <Route path="/admin/createReview" element={<CreateReview />} /> 
             </Routes>
         </>
