@@ -1,4 +1,6 @@
 const Blog = require("../models/Blog");
+const path = require('path')
+const fs = require('fs')
 
 
 // Blog creation
@@ -92,11 +94,12 @@ exports.updateBlog = async (req, res) => {
 
     // Handle file upload
     let imagePath = existingBlog.imagePath; // Default to existing image path
-
+    console.log("req.filereq.file", req.file)
     if (req.file) {
       // Delete the old image file if it exists
       if (imagePath) {
         const oldImagePath = path.join(__dirname, '..', imagePath);
+        console.log("oldImagePatholdImagePath", oldImagePath)
         if (fs.existsSync(oldImagePath)) {
           fs.unlinkSync(oldImagePath);
         }
