@@ -64,14 +64,19 @@ export const CreateBlog = () => {
         }
 
         try {
+            // Get the token from localStorage
+            const token = localStorage.getItem('authToken');
+
             const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/blog`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}` // Include the token in the headers
                 },
             });
 
             console.log('Blog created successfully:', response.data);
 
+            // Clear the form after successful submission
             setFormData({
                 title: '',
                 description: '',

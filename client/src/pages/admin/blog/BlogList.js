@@ -4,13 +4,20 @@ import { useNavigate } from 'react-router-dom';
 
 export const BlogList = () => {
     const navigate = useNavigate();
-
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs`);
+                // Get the token from localStorage
+                const token = localStorage.getItem('authToken');
+                
+                // Include the token in the headers
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 setBlogs(response.data);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
@@ -36,7 +43,15 @@ export const BlogList = () => {
         }
 
         try {
-            await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`);
+            const token = localStorage.getItem('authToken');
+            
+            // Include the token in the headers
+            await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
             setBlogs(blogs.filter((blog) => blog._id !== id));
             console.log('Blog deleted successfully');
         } catch (error) {

@@ -1,6 +1,5 @@
-// src/routes/AppRoutes.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import Home from '../pages/Home';
 import About from '../pages/About';
@@ -25,6 +24,12 @@ const AppRoutes = () => {
 const RouteWrapper = () => {
     const location = useLocation();
 
+    // Function to check if the user is authenticated
+    const isAuthenticated = () => {
+        // Example check, replace with your actual authentication check
+        return !!localStorage.getItem('authToken');
+    };
+
     // Check if the path starts with '/admin'
     const isAdminRoute = location.pathname.startsWith('/admin');
 
@@ -37,15 +42,41 @@ const RouteWrapper = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
 
-                {/* Admin login route */}
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin/dashboard" element={<AdminDashboard />} /> 
-                <Route path="/admin/contacts" element={<ContactList />} /> 
-                <Route path="/admin/blogs" element={<BlogList />} />
-                <Route path="/admin/blogs/create" element={<CreateBlog />} />  
-                <Route path="/admin/blogs/view/:id" element={<ViewBlog />} />
-                <Route path="/admin/blogs/edit/:id" element={<EditBlog />} />
-                <Route path="/admin/createReview" element={<CreateReview />} /> 
+                {/* Admin routes */}
+                <Route
+                    path="/admin/login"
+                    element={isAdminRoute && !isAuthenticated() ? <AdminLogin /> : <Navigate to="/admin/dashboard" />}
+                />
+                <Route
+                    path="/admin/dashboard"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <AdminDashboard />}
+                />
+                <Route
+                    path="/admin/contacts"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ContactList />}
+                />
+                <Route
+                    path="/admin/blogs"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <BlogList />}
+                />
+                <Route
+                    path="/admin/blogs/create"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateBlog />}
+                />
+                <Route
+                    path="/admin/blogs/view/:id"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ViewBlog />}
+                />
+                <Route
+                    path="/admin/blogs/edit/:id"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditBlog />}
+                />
+                <Route
+                    path="/admin/createReview"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateReview />}
+                />
+                {/* Catch-all route for unmatched paths */}
+                <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </>
     );

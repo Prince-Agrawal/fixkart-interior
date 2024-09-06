@@ -20,7 +20,14 @@ export const EditBlog = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`);
+                // Get the token from localStorage
+                const token = localStorage.getItem('authToken');
+
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Include the token in the headers
+                    },
+                });
                 setFormData({
                     title: response.data.title,
                     description: response.data.description,
@@ -88,11 +95,11 @@ export const EditBlog = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("formDatasssss", formData)
+
         if (!validateForm()) {
             return;
         }
-        console.log("Sfsdfsdfsdf")
+
         const data = new FormData();
         data.append('title', formData.title);
         data.append('description', formData.description);
@@ -102,11 +109,16 @@ export const EditBlog = () => {
         }
 
         try {
+            // Get the token from localStorage
+            const token = localStorage.getItem('authToken');
+
             await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}` // Include the token in the headers
                 },
             });
+
             console.log('Blog updated successfully');
             navigate('/admin/blogs'); // Redirect to the blog list after successful update
         } catch (error) {

@@ -12,7 +12,14 @@ export const ViewBlog = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`);
+                // Get the token from localStorage
+                const token = localStorage.getItem('authToken');
+
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Include the token in the headers
+                    },
+                });
                 setBlog(response.data);
                 setLoading(false);
             } catch (error) {
