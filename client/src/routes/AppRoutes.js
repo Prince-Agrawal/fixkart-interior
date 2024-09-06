@@ -8,10 +8,13 @@ import AdminLogin from '../pages/admin/AdminLogin';
 import AdminDashboard from '../pages/admin/Dashboard';
 import ContactList from '../pages/admin/ContactList';
 import { CreateBlog } from '../pages/admin/blog/CreateBlog';
-import { CreateReview } from '../pages/admin/CreateReview';
 import { BlogList } from '../pages/admin/blog/BlogList';
 import { ViewBlog } from '../pages/admin/blog/ViewBlog';
 import { EditBlog } from '../pages/admin/blog/EditBlog';
+import { CreateReview } from '../pages/admin/review/CreateReview';
+import { ReviewList } from '../pages/admin/review/ReviewList';
+import { ViewReview } from '../pages/admin/review/ViewReview';
+import { EditReview } from '../pages/admin/review/EditReview';
 
 const AppRoutes = () => {
     return (
@@ -71,10 +74,25 @@ const RouteWrapper = () => {
                     path="/admin/blogs/edit/:id"
                     element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditBlog />}
                 />
+                
+                {/* Review Routes */}
                 <Route
-                    path="/admin/createReview"
+                    path="/admin/reviews"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ReviewList />}
+                />
+                <Route
+                    path="/admin/reviews/create"
                     element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateReview />}
                 />
+                <Route
+                    path="/admin/reviews/view/:id"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ViewReview />}
+                />
+                <Route
+                    path="/admin/reviews/edit/:id"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditReview />}
+                />
+
                 {/* Catch-all route for unmatched paths */}
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
