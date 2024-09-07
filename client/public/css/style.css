@@ -651,11 +651,11 @@ main.is-sticky {
   color: #fff;
 }
 
-.BlogSlider {
+.BlogSection {
   margin: 0 -20px;
 }
 
-.BlogSlider .blog-user {
+.BlogSection .blog-user {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -666,26 +666,26 @@ main.is-sticky {
   padding: 10px 0;
 }
 
-.BlogSlider .slick-slide {
+.BlogSection .slick-slide {
   padding: 0 20px;
 }
 
-.BlogSlider .blog-image {
+.BlogSection .blog-image {
   width: 100%;
   height: 350px;
   object-fit: cover;
   border-radius: 10px;
 }
 
-.BlogSlider h3 {
+.BlogSection h3 {
   margin: 15px 0;
 }
 
-.BlogSlider .btn-outline-primary {
+.BlogSection .btn-outline-primary {
   padding: 8px 25px;
 }
 
-.BlogSlider .user {
+.BlogSection .user {
   width: 40px;
   height: 40px;
   object-fit: contain;
@@ -809,6 +809,10 @@ footer {
   color: #fff;
 }
 
+.footer-box ul.address a:hover {
+  text-decoration: underline;
+}
+
 .footer-box.border-start {
   padding-left: 80px;
   margin-left: 50px;
@@ -857,5 +861,126 @@ footer {
   position: relative;
   /* Required for 'top' and 'bottom' to work */
   animation: pulse 2s infinite;
+}
+
+.banner-section {
+  position: relative;
+  height: 500px;
+}
+
+.banner-section .banner-img {
+  height: 500px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.banner-section .container {
+  position: absolute;
+  top: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.banner-section .banner-contant {
+  background: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
+  padding: 40px;
+  border-radius: 30px;
+}
+
+.banner-section .banner-contant h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #181818;
+}
+
+.banner-section .banner-contant p {
+  font-size: 16px;
+  color: #595566;
+  margin-top: 15px;
+}
+
+.banner-section.Small_banner {
+  height: 550px;
+}
+
+.banner-section.Small_banner .banner-img {
+  height: 550px;
+}
+
+.banner-section.Small_banner .container {
+  top: 130px;
+}
+
+.banner-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.content-area h2 {
+  font-size: 24px;
+  margin-top: 30px;
+}
+
+.ourTeams {
+  padding: 60px 0 100px;
+  margin-bottom: 80px;
+  background-color: #efefef;
+}
+
+.team-box {
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.team-box figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.team-box figure img {
+  width: 100%;
+  object-fit: cover;
+  height: 350px;
+  transition: transform 0.5s ease;
+}
+
+.team-box figure span {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-color: var(--secondary);
+  border-radius: 30px;
+  font-size: 18px;
+  color: #000;
+  font-weight: 500;
+}
+
+.team-box:hover img {
+  transform: scale(1.2);
+  /* Scales the image to 120% on hover */
+}
+
+.BlogDetail h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.BlogDetail h3 {
+  font-size: 28px;
+}
+
+.BlogDetail .BlogDetailImg {
+  height: 500px;
+  object-fit: cover;
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */
