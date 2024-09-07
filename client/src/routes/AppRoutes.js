@@ -10,6 +10,11 @@ import AdminDashboard from '../pages/admin/Dashboard';
 import ContactList from '../pages/admin/ContactList';
 import { CreateBlog } from '../pages/admin/CreateBlog';
 import { CreateReview } from '../pages/admin/CreateReview';
+import DesignGallery from '../pages/DesignGallery';
+import Footer from '../components/Footer';
+import Blog from '../pages/Blog';
+import BlogDetail from '../pages/BlogDetail';
+
 
 const AppRoutes = () => {
     return (
@@ -31,8 +36,11 @@ const RouteWrapper = () => {
             {!isAdminRoute && <Header />}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/About" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/DesignGallery" element={<DesignGallery />} />
+                <Route path="/Blog" element={<Blog />} />
+                <Route path="/BlogDetail" element={<BlogDetail />} />
 
                 {/* Admin login route */}
                 <Route path="/admin/login" element={<AdminLogin />} />
@@ -41,6 +49,8 @@ const RouteWrapper = () => {
                 <Route path="/admin/createBlog" element={<CreateBlog />} /> 
                 <Route path="/admin/createReview" element={<CreateReview />} /> 
             </Routes>
+
+            <Footer />
         </>
     );
 };

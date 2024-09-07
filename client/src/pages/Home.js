@@ -9,7 +9,6 @@ import ClientFeedback from "../components/ClientFeedback";
 import BookNow from "../components/BookNow";
 import Blogs from "../components/Blogs";
 import { ContactForm } from "../components/ContactForm";
-import Footer from "../components/Footer";
 import HomeBannerSlider from "../components/HomeBannerSlider";
 const Home = () => {
   useEffect(() => {
@@ -241,9 +240,7 @@ const Home = () => {
               </span>
               <h2>Contact Us. It’s Easy.</h2>
               <p>
-                Leverage agile frameworks to provide a robust synopsis for high
-                level overviews. Iterative approaches to corporate strategy
-                foster collaborative.
+              You don’t get trapped in such an annoyance thus we have been briskly working as interior decorators in Jaipur.
               </p>
 
               <ul className="Contact_process mt-4 pt-2">
@@ -259,7 +256,7 @@ const Home = () => {
 
                 <li>
                   <div className="pro-flex">
-                    <img src="images/pro-time.png" />
+                    <img src="images/pro-email.png" />
                     <p>
                       <span>Official Email ID</span>
                       <strong>fixinterio@gmail.com</strong>
@@ -289,7 +286,7 @@ const Home = () => {
         </div>
       </section>
 
-      <Footer />
+      
     </>
   );
 };
