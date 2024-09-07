@@ -665,7 +665,7 @@ main.is-sticky {
   }
 }
 
-.BlogSlider {
+.BlogSection  {
   margin: 0 -20px;
 
   .blog-user {
@@ -808,6 +808,7 @@ footer {
         border: 1px solid #515151;
         margin-right: 12px;
       }
+      
     }
   }
 
@@ -821,6 +822,7 @@ footer {
 
     a {
       color: #fff;
+      &:hover { text-decoration: underline; }
     }
   }
 }
@@ -878,3 +880,69 @@ footer {
   position: relative; /* Required for 'top' and 'bottom' to work */
   animation: pulse 2s infinite;
 }
+
+
+.banner-section { position: relative; height: 500px;
+  .banner-img { height: 500px; object-fit: cover; width: 100%; }
+.container {
+  position: absolute;
+  top: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+.banner-contant { 
+  background: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
+  padding: 40px;
+  border-radius: 30px;
+  h1 { font-size: 40px;
+      font-weight: 700;
+      color: #181818;
+  }
+  p { font-size: 16px;
+       color: #595566;
+       margin-top: 15px;
+  }
+}
+&.Small_banner { height: 550px;
+      .banner-img {
+          height: 550px;
+       }
+       .container { top: 130px; }
+  }
+}
+.banner-btns { 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.content-area {
+  h2 { font-size: 24px; margin-top: 30px; }
+}
+
+.ourTeams {  padding: 60px 0 100px; margin-bottom: 80px;
+  background-color: #efefef; }
+.team-box { text-align: center; padding: 0 20px; margin-bottom: 20px;
+  figure { position: relative; overflow: hidden; border-radius: 10px; 
+    img { width: 100%; object-fit: cover; height: 350px;transition: transform 0.5s ease;  }
+    span { position: absolute; right: 20px; bottom: 20px; background-color: var(--secondary); border-radius: 30px; font-size: 18px; color: #000; font-weight: 500; }
+  }
+  &:hover img {
+    transform: scale(1.2);
+    /* Scales the image to 120% on hover */
+  }
+}
+
+.BlogDetail {
+  h2 { font-size: 40px; font-weight: 700;}
+  h3 { font-size: 28px; }
+  .BlogDetailImg { height: 500px; object-fit: cover; width: 100%; }
+}
+
+.team-box figure span.bg-team-badge { background-color: #181818; color: #fff; font-weight: 400; font-size: 15px; }

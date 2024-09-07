@@ -14,7 +14,7 @@ export const Header = () => {
         // Determine the active menu based on the path
         if (path === '/') {
             setActiveMenu('home');
-        } else if (path === '/Abouts') {
+        } else if (path === '/About') {
             setActiveMenu('about');
         } else if (path === '/DesignGallery') {
             setActiveMenu('DesignGallery');
@@ -70,7 +70,7 @@ export const Header = () => {
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'about' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/Abouts" onClick={() => setActiveMenu('about')}>
+                                    <Link className="nav-link" to="/About" onClick={() => setActiveMenu('about')}>
                                         About
                                     </Link>
                                 </li>
