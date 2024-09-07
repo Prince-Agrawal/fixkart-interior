@@ -87,7 +87,7 @@ const About = () => {
                 <div class="team-box">
                     <figure>
                         <img src="images/team.png" alt="team" />
-                        <span class="badge">CEO at Company</span>
+                        <span class="badge">Founder at Company</span>
                     </figure>
                     <h3>Sarah Jasmine</h3>
                 </div>
@@ -96,7 +96,7 @@ const About = () => {
                 <div class="team-box">
                     <figure>
                         <img src="images/team.png" alt="team" />
-                        <span class="badge">CEO at Company</span>
+                        <span class="badge bg-team-badge">Design Head & Project Head</span>
                     </figure>
                     <h3>Sarah Jasmine</h3>
                 </div>
@@ -105,7 +105,7 @@ const About = () => {
                 <div class="team-box">
                     <figure>
                         <img src="images/team.png" alt="team" />
-                        <span class="badge">CEO at Company</span>
+                        <span class="badge bg-team-badge">Interior Designer</span>
                     </figure>
                     <h3>Sarah Jasmine</h3>
                 </div>
@@ -114,7 +114,7 @@ const About = () => {
                 <div class="team-box">
                     <figure>
                         <img src="images/team.png" alt="team" />
-                        <span class="badge">CEO at Company</span>
+                        <span class="badge bg-team-badge">Project Manager</span>
                     </figure>
                     <h3>Sarah Jasmine</h3>
                 </div>
@@ -123,7 +123,7 @@ const About = () => {
                 <div class="team-box">
                     <figure>
                         <img src="images/team.png" alt="team" />
-                        <span class="badge">CEO at Company</span>
+                        <span class="badge bg-team-badge">Factory Supervisor</span>
                     </figure>
                     <h3>Sarah Jasmine</h3>
                 </div>

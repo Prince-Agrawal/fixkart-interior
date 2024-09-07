@@ -50,7 +50,7 @@ const RouteWrapper = () => {
                 <Route path="/admin/createReview" element={<CreateReview />} /> 
             </Routes>
 
-            <Footer />
+            {!isAdminRoute && <Footer />}
         </>
     );
 };
