@@ -105,7 +105,7 @@ const RouteWrapper = () => {
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
 
-            <Footer />
+            {!isAdminRoute && <Footer />}
         </>
     );
 };

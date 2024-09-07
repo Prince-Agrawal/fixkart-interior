@@ -983,4 +983,11 @@ footer {
   object-fit: cover;
   width: 100%;
 }
+
+.team-box figure span.bg-team-badge {
+  background-color: #181818;
+  color: #fff;
+  font-weight: 400;
+  font-size: 15px;
+}
 /*# sourceMappingURL=style.css.map */
