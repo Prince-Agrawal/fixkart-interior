@@ -15,6 +15,11 @@ import { CreateReview } from '../pages/admin/review/CreateReview';
 import { ReviewList } from '../pages/admin/review/ReviewList';
 import { ViewReview } from '../pages/admin/review/ViewReview';
 import { EditReview } from '../pages/admin/review/EditReview';
+import DesignGallery from '../pages/DesignGallery';
+import Footer from '../components/Footer';
+import Blog from '../pages/Blog';
+import BlogDetail from '../pages/BlogDetail';
+
 
 const AppRoutes = () => {
     return (
@@ -42,8 +47,11 @@ const RouteWrapper = () => {
             {!isAdminRoute && <Header />}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/About" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/DesignGallery" element={<DesignGallery />} />
+                <Route path="/Blog" element={<Blog />} />
+                <Route path="/BlogDetail" element={<BlogDetail />} />
 
                 {/* Admin routes */}
                 <Route
@@ -96,6 +104,8 @@ const RouteWrapper = () => {
                 {/* Catch-all route for unmatched paths */}
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
+
+            <Footer />
         </>
     );
 };
