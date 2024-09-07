@@ -11,7 +11,7 @@ export const BlogList = () => {
             try {
                 // Get the token from localStorage
                 const token = localStorage.getItem('authToken');
-                
+
                 // Include the token in the headers
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs`, {
                     headers: {
@@ -44,7 +44,7 @@ export const BlogList = () => {
 
         try {
             const token = localStorage.getItem('authToken');
-            
+
             // Include the token in the headers
             await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`, {
                 headers: {
@@ -64,58 +64,63 @@ export const BlogList = () => {
     };
 
     return (
-        <div className="container mt-4">
-            <div className="card">
-                <div className="card-header d-flex justify-content-between align-items-center">
-                    <h3 className="card-title">Blog List</h3>
-                    <button className="btn btn-success" onClick={handleCreate}>
-                        Create Blog
-                    </button>
-                </div>
-                <div className="card-body">
-                    <table className="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Added By</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {blogs.map((blog, index) => (
-                                <tr key={blog._id}>
-                                    <td>{index + 1}</td>
-                                    <td>{blog.title}</td>
-                                    <td>{blog.description}</td>
-                                    <td>{blog.addedBy}</td>
-                                    <td>
-                                        <button
-                                            className="btn btn-primary btn-sm mr-2"
-                                            onClick={() => handleView(blog._id)}
-                                        >
-                                            View
-                                        </button>
-                                        <button
-                                            className="btn btn-warning btn-sm mr-2"
-                                            onClick={() => handleEdit(blog._id)}
-                                        >
-                                            Edit
-                                        </button>
-                                        <button
-                                            className="btn btn-danger btn-sm"
-                                            onClick={() => handleDelete(blog._id)}
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+        <body class="inner">
+            <div className="admin-dashboard">
+                <div className="container mt-4">
+                    <div className="card">
+                        <div className="card-header d-flex justify-content-between align-items-center">
+                            <h3 className="card-title">Blog List</h3>
+                            <button className="btn btn-success" onClick={handleCreate}>
+                                Create Blog
+                            </button>
+                        </div>
+                        <div className="card-body">
+                            <table className="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Added By</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {blogs.map((blog, index) => (
+                                        <tr key={blog._id}>
+                                            <td>{index + 1}</td>
+                                            <td>{blog.title}</td>
+                                            <td>{blog.description}</td>
+                                            <td>{blog.addedBy}</td>
+                                            <td>
+                                                <button
+                                                    className="btn btn-primary btn-sm mr-2"
+                                                    onClick={() => handleView(blog._id)}
+                                                >
+                                                    View
+                                                </button>
+                                                <button
+                                                    className="btn btn-warning btn-sm mr-2"
+                                                    onClick={() => handleEdit(blog._id)}
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    className="btn btn-danger btn-sm"
+                                                    onClick={() => handleDelete(blog._id)}
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </body>
+
     );
 };

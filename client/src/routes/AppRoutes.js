@@ -19,6 +19,8 @@ import DesignGallery from '../pages/DesignGallery';
 import Footer from '../components/Footer';
 import Blog from '../pages/Blog';
 import BlogDetail from '../pages/BlogDetail';
+import AdminHeader from '../components/admin/AdminHeader';
+import AdminSidebar from '../components/admin/AdminSidebar';
 
 
 const AppRoutes = () => {
@@ -45,6 +47,13 @@ const RouteWrapper = () => {
         <>
             {/* Render Header only if it's not an admin route */}
             {!isAdminRoute && <Header />}
+            {/* Render AdminHeader and AdminSidebar only for admin routes */}
+            {isAdminRoute && isAuthenticated() && (
+                <>
+                    <AdminHeader />
+                    <AdminSidebar />
+                </>
+            )}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/About" element={<About />} />
@@ -52,6 +61,9 @@ const RouteWrapper = () => {
                 <Route path="/DesignGallery" element={<DesignGallery />} />
                 <Route path="/Blog" element={<Blog />} />
                 <Route path="/BlogDetail" element={<BlogDetail />} />
+
+
+
 
                 {/* Admin routes */}
                 <Route
@@ -82,7 +94,7 @@ const RouteWrapper = () => {
                     path="/admin/blogs/edit/:id"
                     element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditBlog />}
                 />
-                
+
                 {/* Review Routes */}
                 <Route
                     path="/admin/reviews"

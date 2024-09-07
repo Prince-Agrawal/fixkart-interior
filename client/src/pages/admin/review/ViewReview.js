@@ -36,32 +36,38 @@ export const ViewReview = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="container mt-4">
-            <div className="card">
-                <div className="card-header d-flex justify-content-between align-items-center">
-                    <h2>View Review</h2>
-                    <button className="btn btn-secondary mb-3" onClick={() => navigate(-1)}>Back</button> {/* Back button */}
-                </div>
-                <div className="card-body">
-                    {review ? (
-                        <div>
-                            <h4 className="card-title">{review.reviewerName}</h4>
-                            <p className="card-text">{review.reviewData}</p>
-                            <p><strong>Location:</strong> {review.reviewerLocation}</p>
-                            {review.imagePath && (
-                                <img
-                                    src={`${process.env.REACT_APP_API_BASE_URL}/${review.imagePath}`}
-                                    alt={review.reviewerName}
-                                    className="img-fluid"
-                                    style={{ maxWidth: '100%', height: 'auto' }}
-                                />
+        <body class="inner">
+            <div className="admin-dashboard">
+                <div className="container mt-4">
+                    <div className="card">
+                        <div className="card-header d-flex justify-content-between align-items-center">
+                            <h2>View Review</h2>
+                            <button className="btn btn-secondary mb-3" onClick={() => navigate(-1)}>Back</button> {/* Back button */}
+                        </div>
+                        <div className="card-body">
+                            {review ? (
+                                <div>
+                                    <h4 className="card-title">{review.reviewerName}</h4>
+                                    <p className="card-text">{review.reviewData}</p>
+                                    <p><strong>Location:</strong> {review.reviewerLocation}</p>
+                                    {review.imagePath && (
+                                        <img
+                                            src={`${process.env.REACT_APP_API_BASE_URL}/${review.imagePath}`}
+                                            alt={review.reviewerName}
+                                            className="img-fluid"
+                                            style={{ maxWidth: '100%', height: 'auto' }}
+                                        />
+                                    )}
+                                </div>
+                            ) : (
+                                <p>Review not found.</p>
                             )}
                         </div>
-                    ) : (
-                        <p>Review not found.</p>
-                    )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </body>
+
+
     );
 };

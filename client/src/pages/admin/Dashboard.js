@@ -7,12 +7,6 @@ const AdminDashboard = () => {
     return (
         <body class="inner">
             <div className="admin-dashboard">
-                {/* header */}
-                <AdminHeader/>
-
-                {/* sidebar */}
-                <AdminSidebar/>
-
                 {/* main body */}
                 <main className="main-body">
                     <div className="content">

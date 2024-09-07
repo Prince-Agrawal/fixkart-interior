@@ -94,68 +94,74 @@ export const CreateReview = () => {
     };
 
     return (
-        <div className="container mt-4">
-            <div className="card">
-                <div className="card-header">
-                    <h2>Create New Review</h2>
+        <body class="inner">
+            <div className="admin-dashboard">
+                <div className="container mt-4">
+                    <div className="card">
+                        <div className="card-header">
+                            <h2>Create New Review</h2>
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="card-body">
+                                <div className="form-group">
+                                    <label htmlFor="reviewerName">Reviewer Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="reviewerName"
+                                        name="reviewerName"
+                                        placeholder="Enter reviewer name"
+                                        value={formData.reviewerName}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.reviewerName && <div className="text-danger">{errors.reviewerName}</div>}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="reviewerLocation">Reviewer Location</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="reviewerLocation"
+                                        name="reviewerLocation"
+                                        placeholder="Enter reviewer location"
+                                        value={formData.reviewerLocation}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.reviewerLocation && <div className="text-danger">{errors.reviewerLocation}</div>}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="reviewData">Review Data</label>
+                                    <textarea
+                                        className="form-control"
+                                        id="reviewData"
+                                        name="reviewData"
+                                        placeholder="Enter review content"
+                                        value={formData.reviewData}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.reviewData && <div className="text-danger">{errors.reviewData}</div>}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="file">Image</label>
+                                    <input
+                                        type="file"
+                                        className="form-control-file"
+                                        id="file"
+                                        onChange={handleFileChange}
+                                        ref={fileInputRef}
+                                    />
+                                    {errors.file && <div className="text-danger">{errors.file}</div>}
+                                </div>
+                            </div>
+                            <div className="card-footer">
+                                <button type="submit" className="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <div className="card-body">
-                        <div className="form-group">
-                            <label htmlFor="reviewerName">Reviewer Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="reviewerName"
-                                name="reviewerName"
-                                placeholder="Enter reviewer name"
-                                value={formData.reviewerName}
-                                onChange={handleInputChange}
-                            />
-                            {errors.reviewerName && <div className="text-danger">{errors.reviewerName}</div>}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="reviewerLocation">Reviewer Location</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="reviewerLocation"
-                                name="reviewerLocation"
-                                placeholder="Enter reviewer location"
-                                value={formData.reviewerLocation}
-                                onChange={handleInputChange}
-                            />
-                            {errors.reviewerLocation && <div className="text-danger">{errors.reviewerLocation}</div>}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="reviewData">Review Data</label>
-                            <textarea
-                                className="form-control"
-                                id="reviewData"
-                                name="reviewData"
-                                placeholder="Enter review content"
-                                value={formData.reviewData}
-                                onChange={handleInputChange}
-                            />
-                            {errors.reviewData && <div className="text-danger">{errors.reviewData}</div>}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="file">Image</label>
-                            <input
-                                type="file"
-                                className="form-control-file"
-                                id="file"
-                                onChange={handleFileChange}
-                                ref={fileInputRef}
-                            />
-                            {errors.file && <div className="text-danger">{errors.file}</div>}
-                        </div>
-                    </div>
-                    <div className="card-footer">
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </div>
-                </form>
             </div>
-        </div>
+        </body>
+
+
     );
 };

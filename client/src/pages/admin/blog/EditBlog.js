@@ -130,93 +130,98 @@ export const EditBlog = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="container mt-4">
-            <div className="card">
-                <div className="card-header">
-                    <h2>Edit Blog</h2>
-                </div>
-                <div className="card-body">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="title">Title</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="title"
-                                name="title"
-                                placeholder="Enter title"
-                                value={formData.title}
-                                onChange={handleInputChange}
-                            />
-                            {errors.title && <div className="text-danger">{errors.title}</div>}
+        <body class="inner">
+            <div className="admin-dashboard">
+                <div className="container mt-4">
+                    <div className="card">
+                        <div className="card-header">
+                            <h2>Edit Blog</h2>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="description">Description</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="description"
-                                name="description"
-                                placeholder="Enter description"
-                                value={formData.description}
-                                onChange={handleInputChange}
-                            />
-                            {errors.description && <div className="text-danger">{errors.description}</div>}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="addedBy">Added By</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="addedBy"
-                                name="addedBy"
-                                placeholder="Enter added by name"
-                                value={formData.addedBy}
-                                onChange={handleInputChange}
-                            />
-                            {errors.addedBy && <div className="text-danger">{errors.addedBy}</div>}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="file">File input (optional)</label>
-                            <div className="input-group">
-                                <div className="custom-file">
+                        <div className="card-body">
+                            <form onSubmit={handleSubmit}>
+                                <div className="form-group">
+                                    <label htmlFor="title">Title</label>
                                     <input
-                                        type="file"
-                                        className="custom-file-input"
-                                        id="file"
-                                        onChange={handleFileChange}
-                                        ref={fileInputRef}
+                                        type="text"
+                                        className="form-control"
+                                        id="title"
+                                        name="title"
+                                        placeholder="Enter title"
+                                        value={formData.title}
+                                        onChange={handleInputChange}
                                     />
-                                    <label className="custom-file-label" htmlFor="file">
-                                        {formData.file ? formData.file.name : 'Choose file'}
-                                    </label>
+                                    {errors.title && <div className="text-danger">{errors.title}</div>}
                                 </div>
-                            </div>
-                            {imagePreview && (
-                                <div className="mt-3">
-                                    <img
-                                        src={imagePreview}
-                                        alt="Preview"
-                                        className="img-fluid"
-                                        style={{ maxWidth: '100%', height: 'auto' }}
+                                <div className="form-group">
+                                    <label htmlFor="description">Description</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="description"
+                                        name="description"
+                                        placeholder="Enter description"
+                                        value={formData.description}
+                                        onChange={handleInputChange}
                                     />
+                                    {errors.description && <div className="text-danger">{errors.description}</div>}
                                 </div>
-                            )}
-                            {errors.file && <div className="text-danger">{errors.file}</div>}
+                                <div className="form-group">
+                                    <label htmlFor="addedBy">Added By</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="addedBy"
+                                        name="addedBy"
+                                        placeholder="Enter added by name"
+                                        value={formData.addedBy}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.addedBy && <div className="text-danger">{errors.addedBy}</div>}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="file">File input (optional)</label>
+                                    <div className="input-group">
+                                        <div className="custom-file">
+                                            <input
+                                                type="file"
+                                                className="custom-file-input"
+                                                id="file"
+                                                onChange={handleFileChange}
+                                                ref={fileInputRef}
+                                            />
+                                            <label className="custom-file-label" htmlFor="file">
+                                                {formData.file ? formData.file.name : 'Choose file'}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {imagePreview && (
+                                        <div className="mt-3">
+                                            <img
+                                                src={imagePreview}
+                                                alt="Preview"
+                                                className="img-fluid"
+                                                style={{ maxWidth: '100%', height: 'auto' }}
+                                            />
+                                        </div>
+                                    )}
+                                    {errors.file && <div className="text-danger">{errors.file}</div>}
+                                </div>
+                                <div className="card-footer">
+                                    <button type="submit" className="btn btn-primary">Update</button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary ml-2"
+                                        onClick={() => navigate('/admin/blogs')}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary">Update</button>
-                            <button
-                                type="button"
-                                className="btn btn-secondary ml-2"
-                                onClick={() => navigate('/admin/blogs')}
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </body>
+
     );
 };

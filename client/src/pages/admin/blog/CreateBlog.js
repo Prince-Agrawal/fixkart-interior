@@ -94,68 +94,73 @@ export const CreateBlog = () => {
     };
 
     return (
-        <div className="container mt-4">
-            <div className="card">
-                <div className="card-header">
-                    <h2>Create New Blog</h2>
+        <body class="inner">
+            <div className="admin-dashboard">
+                <div className="container mt-4">
+                    <div className="card">
+                        <div className="card-header">
+                            <h2>Create New Blog</h2>
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="card-body">
+                                <div className="form-group">
+                                    <label htmlFor="title">Title</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="title"
+                                        name="title"
+                                        placeholder="Enter title"
+                                        value={formData.title}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.title && <div className="text-danger">{errors.title}</div>}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="description">Description</label>
+                                    <textarea
+                                        className="form-control"
+                                        id="description"
+                                        name="description"
+                                        placeholder="Enter description"
+                                        value={formData.description}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.description && <div className="text-danger">{errors.description}</div>}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="addedBy">Added By</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="addedBy"
+                                        name="addedBy"
+                                        placeholder="Enter added by name"
+                                        value={formData.addedBy}
+                                        onChange={handleInputChange}
+                                    />
+                                    {errors.addedBy && <div className="text-danger">{errors.addedBy}</div>}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="file">File input</label>
+                                    <input
+                                        type="file"
+                                        className="form-control-file"
+                                        id="file"
+                                        onChange={handleFileChange}
+                                        ref={fileInputRef}
+                                    />
+                                    {errors.file && <div className="text-danger">{errors.file}</div>}
+                                </div>
+                            </div>
+                            <div className="card-footer">
+                                <button type="submit" className="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <div className="card-body">
-                        <div className="form-group">
-                            <label htmlFor="title">Title</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="title"
-                                name="title"
-                                placeholder="Enter title"
-                                value={formData.title}
-                                onChange={handleInputChange}
-                            />
-                            {errors.title && <div className="text-danger">{errors.title}</div>}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="description">Description</label>
-                            <textarea
-                                className="form-control"
-                                id="description"
-                                name="description"
-                                placeholder="Enter description"
-                                value={formData.description}
-                                onChange={handleInputChange}
-                            />
-                            {errors.description && <div className="text-danger">{errors.description}</div>}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="addedBy">Added By</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="addedBy"
-                                name="addedBy"
-                                placeholder="Enter added by name"
-                                value={formData.addedBy}
-                                onChange={handleInputChange}
-                            />
-                            {errors.addedBy && <div className="text-danger">{errors.addedBy}</div>}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="file">File input</label>
-                            <input
-                                type="file"
-                                className="form-control-file"
-                                id="file"
-                                onChange={handleFileChange}
-                                ref={fileInputRef}
-                            />
-                            {errors.file && <div className="text-danger">{errors.file}</div>}
-                        </div>
-                    </div>
-                    <div className="card-footer">
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </div>
-                </form>
             </div>
-        </div>
+        </body>
+
     );
 };
