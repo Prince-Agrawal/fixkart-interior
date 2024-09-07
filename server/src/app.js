@@ -17,10 +17,12 @@ const userRoutes = require('./routes/userRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const sampleRoutes = require('./routes/sampleRoutes');
 
 
 
 // Use routes
+app.use('/', sampleRoutes); // Your review route will be accessible at /api/review
 app.use('/api/auth', authRoutes);  // Auth routes (e.g., /api/auth/register, /api/auth/login)
 app.use('/api/users', userRoutes); // User routes (e.g., /api/users/profile)
 app.use('/api', contactRoutes); // Your contact route will be accessible at /api/contact
