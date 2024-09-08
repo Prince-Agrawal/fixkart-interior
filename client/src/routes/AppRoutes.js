@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import axios from 'axios';
 import { Header } from '../components/Header';
 import Home from '../pages/Home';
 import About from '../pages/About';
@@ -26,123 +27,144 @@ import { CreateCategory } from '../pages/admin/category/CreateCategory';
 import { EditCategory } from '../pages/admin/category/EditCategory';
 import { ViewCategory } from '../pages/admin/category/ViewCategory';
 
-
 const AppRoutes = () => {
-    return (
-        <Router>
-            <RouteWrapper />
-        </Router>
-    );
+  return (
+    <Router>
+      <RouteWrapper />
+    </Router>
+  );
 };
 
 const RouteWrapper = () => {
-    const location = useLocation();
+  const location = useLocation();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true); // State to handle loading
 
+  useEffect(() => {
     // Function to check if the user is authenticated
-    const isAuthenticated = () => {
-        // Example check, replace with your actual authentication check
-        return !!localStorage.getItem('authToken');
+    const checkAuthentication = async () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+          setIsAuthenticated(false);
+          setLoading(false);
+          return;
+        }
+
+        // Include the token in the headers
+        await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setIsAuthenticated(true);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        setIsAuthenticated(false);
+      } finally {
+        setLoading(false); // Set loading to false once check is complete
+      }
     };
 
-    // Check if the path starts with '/admin'
-    const isAdminRoute = location.pathname.startsWith('/admin');
+    checkAuthentication();
+  }, [location]); // Re-run the check when the location changes
 
-    return (
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  if (loading) return <div>Loading...</div>; // Show loading while checking authentication
+
+  return (
+    <>
+      {/* Render Header only if it's not an admin route */}
+      {!isAdminRoute && <Header />}
+      {/* Render AdminHeader and AdminSidebar only for admin routes */}
+      {isAdminRoute && isAuthenticated && (
         <>
-            {/* Render Header only if it's not an admin route */}
-            {!isAdminRoute && <Header />}
-            {/* Render AdminHeader and AdminSidebar only for admin routes */}
-            {isAdminRoute && isAuthenticated() && (
-                <>
-                    <AdminHeader />
-                    <AdminSidebar />
-                </>
-            )}
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/About" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/DesignGallery" element={<DesignGallery />} />
-                <Route path="/Blog" element={<Blog />} />
-                <Route path="/BlogDetail" element={<BlogDetail />} />
-
-
-
-
-                {/* Admin routes */}
-                <Route
-                    path="/admin/login"
-                    element={isAdminRoute && !isAuthenticated() ? <AdminLogin /> : <Navigate to="/admin/dashboard" />}
-                />
-                <Route
-                    path="/admin/dashboard"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <AdminDashboard />}
-                />
-                <Route
-                    path="/admin/contacts"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ContactList />}
-                />
-                <Route
-                    path="/admin/blogs"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <BlogList />}
-                />
-                <Route
-                    path="/admin/blogs/create"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateBlog />}
-                />
-                <Route
-                    path="/admin/blogs/view/:id"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ViewBlog />}
-                />
-                <Route
-                    path="/admin/blogs/edit/:id"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditBlog />}
-                />
-
-                {/* Review Routes */}
-                <Route
-                    path="/admin/reviews"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ReviewList />}
-                />
-                <Route
-                    path="/admin/reviews/create"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateReview />}
-                />
-                <Route
-                    path="/admin/reviews/view/:id"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ViewReview />}
-                />
-                <Route
-                    path="/admin/reviews/edit/:id"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditReview />}
-                />
-
-
-                {/* Review Routes */}
-                <Route
-                    path="/admin/categories"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/categories" /> : <CategoryList />}
-                />
-                <Route
-                    path="/admin/categories/create"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateCategory />}
-                />
-                <Route
-                    path="/admin/categories/view/:id"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ViewCategory />}
-                />
-                <Route
-                    path="/admin/categories/edit/:id"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditCategory />}
-                />
-
-                {/* Catch-all route for unmatched paths */}
-                <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-
-            {!isAdminRoute && <Footer />}
+          <AdminHeader />
+          <AdminSidebar />
         </>
-    );
+      )}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/DesignGallery" element={<DesignGallery />} />
+        <Route path="/Blog" element={<Blog />} />
+        <Route path="/BlogDetail" element={<BlogDetail />} />
+
+        {/* Admin routes */}
+        <Route
+          path="/admin/login"
+          element={isAuthenticated ? <Navigate to="/admin/dashboard" /> : <AdminLogin />}
+        />
+        <Route
+          path="/admin/dashboard"
+          element={isAuthenticated ? <AdminDashboard /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/contacts"
+          element={isAuthenticated ? <ContactList /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/blogs"
+          element={isAuthenticated ? <BlogList /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/blogs/create"
+          element={isAuthenticated ? <CreateBlog /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/blogs/view/:id"
+          element={isAuthenticated ? <ViewBlog /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/blogs/edit/:id"
+          element={isAuthenticated ? <EditBlog /> : <Navigate to="/admin/login" />}
+        />
+        {/* Review Routes */}
+        <Route
+          path="/admin/reviews"
+          element={isAuthenticated ? <ReviewList /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/reviews/create"
+          element={isAuthenticated ? <CreateReview /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/reviews/view/:id"
+          element={isAuthenticated ? <ViewReview /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/reviews/edit/:id"
+          element={isAuthenticated ? <EditReview /> : <Navigate to="/admin/login" />}
+        />
+
+        {/* Category Routes */}
+        <Route
+          path="/admin/categories"
+          element={isAuthenticated ? <CategoryList /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/categories/create"
+          element={isAuthenticated ? <CreateCategory /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/categories/view/:id"
+          element={isAuthenticated ? <ViewCategory /> : <Navigate to="/admin/login" />}
+        />
+        <Route
+          path="/admin/categories/edit/:id"
+          element={isAuthenticated ? <EditCategory /> : <Navigate to="/admin/login" />}
+        />
+
+        {/* Catch-all route for unmatched paths */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+
+      {!isAdminRoute && <Footer />}
+    </>
+  );
 };
 
 export default AppRoutes;
