@@ -16,7 +16,7 @@ export const Header = () => {
             setActiveMenu('home');
         } else if (path === '/About') {
             setActiveMenu('about');
-        } else if (path === '/category/design-gallery') {
+        } else if (path === '/design-gallery') {
             setActiveMenu('DesignGallery');
         } else if (path === '/ModularKitchen') {
             setActiveMenu('ModularKitchen');
@@ -75,7 +75,7 @@ export const Header = () => {
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'DesignGallery' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/category/design-gallery" onClick={() => setActiveMenu('DesignGallery')}>
+                                    <Link className="nav-link" to="/design-gallery" onClick={() => setActiveMenu('DesignGallery')}>
                                     Design Gallery
                                     </Link>
                                 </li>

@@ -73,7 +73,7 @@ const RouteWrapper = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories`);
-        setCategories(response.data.categories || []); // Set categories to the fetched data or an empty array
+        setCategories(response.data || []); // Set categories to the fetched data or an empty array
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
@@ -102,18 +102,21 @@ const RouteWrapper = () => {
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/category/design-gallery" element={<DesignGallery />} />
+        <Route path="/design-gallery" element={<DesignGallery />} />
         <Route path="/Blog" element={<Blog />} />
         <Route path="/BlogDetail" element={<BlogDetail />} />
 
-         {/* Dynamic Category Routes */}
-         {Array.isArray(categories) && categories.map((category) => (
-          <Route
-            key={category.categorySlug}
-            path={`/category/ ${category.categorySlug}`}
-            element={<CategoryDetail category={category} />}
-          />
-        ))}
+        {/* Dynamic Category Routes */}
+        {/* {Array.isArray(categories) && categories.map((category) => {
+
+          return (
+            <Route
+              key={category.categorySlug}
+              path={`/${category.categorySlug}`}
+              element={<CategoryDetail category={category} />}
+            />
+          );
+        })} */}
 
         {/* Admin routes */}
         <Route
