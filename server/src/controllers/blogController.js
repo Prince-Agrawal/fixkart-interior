@@ -38,7 +38,6 @@ exports.createBlog = async (req, res) => {
 // Get all blogs
 exports.getAllBlogs = async (req, res) => {
   try {
-    console.log("Get All Blogs")
     const blogs = await Blog.find(); // Fetch all blogs from the database
     res.json(blogs);
   } catch (err) {

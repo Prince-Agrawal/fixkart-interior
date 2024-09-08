@@ -21,6 +21,7 @@ import Blog from '../pages/Blog';
 import BlogDetail from '../pages/BlogDetail';
 import AdminHeader from '../components/admin/AdminHeader';
 import AdminSidebar from '../components/admin/AdminSidebar';
+import { CategoryList } from '../pages/admin/category/CategoryList';
 
 
 const AppRoutes = () => {
@@ -112,6 +113,25 @@ const RouteWrapper = () => {
                     path="/admin/reviews/edit/:id"
                     element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditReview />}
                 />
+
+
+                {/* Review Routes */}
+                <Route
+                    path="/admin/categories"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/categories" /> : <CategoryList />}
+                />
+                {/* <Route
+                    path="/admin/reviews/create"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateReview />}
+                />
+                <Route
+                    path="/admin/reviews/view/:id"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ViewReview />}
+                />
+                <Route
+                    path="/admin/reviews/edit/:id"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <EditReview />}
+                /> */}
 
                 {/* Catch-all route for unmatched paths */}
                 <Route path="*" element={<Navigate to="/" />} />

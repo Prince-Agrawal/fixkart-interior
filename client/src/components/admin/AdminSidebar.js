@@ -36,9 +36,9 @@ const AdminSidebar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/admin/tags">
+                        <Link to="/admin/categories">
                             <img src="/images/admin/document-text.svg" alt="report-icon" />
-                            Tags
+                            Categories
                         </Link>
                     </li>
                 </ul>
