@@ -86,7 +86,7 @@ export const CategoryList = () => {
                                     {categories.map((category, index) => (
                                         <tr key={category._id}>
                                             <td>{index + 1}</td>
-                                            <td>{category.name}</td>
+                                            <td>{category.categoryName}</td>
                                             <td>
                                                 <button
                                                     className="btn btn-primary btn-sm mr-2"
