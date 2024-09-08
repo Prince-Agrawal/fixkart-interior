@@ -5,10 +5,10 @@ const { createMulterStorage } = require('../utils/fileUpload');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 // Route for creating a review (protected)
-router.post('/reviews', authMiddleware, createMulterStorage('public/upload/reviews').single('file'), reviewController.createReview);
+router.post('/review', authMiddleware, createMulterStorage('public/upload/reviews').single('file'), reviewController.createReview);
 
 // Route to get all reviews (protected)
-router.get('/reviews', authMiddleware, reviewController.getAllReviews);
+router.get('/reviews', reviewController.getAllReviews);
 
 // Route to delete a review by ID (protected)
 router.delete('/reviews/:id', authMiddleware, reviewController.deleteReview);
