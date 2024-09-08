@@ -22,6 +22,7 @@ import BlogDetail from '../pages/BlogDetail';
 import AdminHeader from '../components/admin/AdminHeader';
 import AdminSidebar from '../components/admin/AdminSidebar';
 import { CategoryList } from '../pages/admin/category/CategoryList';
+import { CreateCategory } from '../pages/admin/category/CreateCategory';
 
 
 const AppRoutes = () => {
@@ -120,11 +121,11 @@ const RouteWrapper = () => {
                     path="/admin/categories"
                     element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/categories" /> : <CategoryList />}
                 />
-                {/* <Route
-                    path="/admin/reviews/create"
-                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateReview />}
-                />
                 <Route
+                    path="/admin/categories/create"
+                    element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <CreateCategory />}
+                />
+                {/* <Route
                     path="/admin/reviews/view/:id"
                     element={isAdminRoute && !isAuthenticated() ? <Navigate to="/admin/login" /> : <ViewReview />}
                 />

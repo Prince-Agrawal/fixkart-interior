@@ -9,4 +9,8 @@ const authMiddleware = require('../middlewares/authMiddleware');
 router.get('/categories', authMiddleware, categoryController.getAllCategories)
 
 
+// Route for blog creation (protected)
+router.post('/category', authMiddleware, createMulterStorage('public/upload/categories').array('imageFiles'), categoryController.createCategory);
+
+
 module.exports = router;
