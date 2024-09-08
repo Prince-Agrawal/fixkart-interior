@@ -26,6 +26,8 @@ import { CategoryList } from '../pages/admin/category/CategoryList';
 import { CreateCategory } from '../pages/admin/category/CreateCategory';
 import { EditCategory } from '../pages/admin/category/EditCategory';
 import { ViewCategory } from '../pages/admin/category/ViewCategory';
+import CategoryDetail from '../pages/CategoryDetail';
+
 
 const AppRoutes = () => {
   return (
@@ -39,6 +41,7 @@ const RouteWrapper = () => {
   const location = useLocation();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true); // State to handle loading
+  const [categories, setCategories] = useState([]); // State to store categories
 
   useEffect(() => {
     // Function to check if the user is authenticated
@@ -67,7 +70,17 @@ const RouteWrapper = () => {
       }
     };
 
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories`);
+        setCategories(response.data.categories || []); // Set categories to the fetched data or an empty array
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
     checkAuthentication();
+    fetchCategories(); // Fetch categories on component mount
   }, [location]); // Re-run the check when the location changes
 
   const isAdminRoute = location.pathname.startsWith('/admin');
@@ -89,9 +102,18 @@ const RouteWrapper = () => {
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/DesignGallery" element={<DesignGallery />} />
+        <Route path="/category/design-gallery" element={<DesignGallery />} />
         <Route path="/Blog" element={<Blog />} />
         <Route path="/BlogDetail" element={<BlogDetail />} />
+
+         {/* Dynamic Category Routes */}
+         {Array.isArray(categories) && categories.map((category) => (
+          <Route
+            key={category.categorySlug}
+            path={`/category/ ${category.categorySlug}`}
+            element={<CategoryDetail category={category} />}
+          />
+        ))}
 
         {/* Admin routes */}
         <Route

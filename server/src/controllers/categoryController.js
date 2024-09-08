@@ -2,6 +2,7 @@
 const path = require('path')
 const fs = require('fs');
 const Category = require('../models/Category');
+const slugify = require('slugify');
 
 
 // Get all categories
@@ -20,8 +21,11 @@ exports.createCategory = async (req, res) => {
     try {
         const { categoryName, categoryDescription, categoryAdditionalData } = req.body;
 
+        // Generate a slug from categoryName (removes spaces, special characters, and converts to lowercase)
+        const categorySlug = slugify(categoryName, { lower: true, strict: true });
+
         // Ensure categoryAdditionalData is an array
-        const processedCategoryAdditionalData = Array.isArray(categoryAdditionalData) 
+        const processedCategoryAdditionalData = Array.isArray(categoryAdditionalData)
             ? categoryAdditionalData.map(item => ({
                 title: item.title || '',
                 description: item.description || ''
@@ -34,6 +38,7 @@ exports.createCategory = async (req, res) => {
         // Create a new category object
         const newCategory = new Category({
             categoryName,
+            categorySlug,
             categoryDescription,
             categoryAdditionalData: processedCategoryAdditionalData, // Use processed data
             imagePaths,
@@ -82,7 +87,7 @@ exports.updateCategory = async (req, res) => {
         }
 
         // Ensure categoryAdditionalData is an array
-        const processedCategoryAdditionalData = Array.isArray(categoryAdditionalData) 
+        const processedCategoryAdditionalData = Array.isArray(categoryAdditionalData)
             ? categoryAdditionalData.map(item => ({
                 title: item.title || '',
                 description: item.description || ''
