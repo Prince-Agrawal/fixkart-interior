@@ -8,7 +8,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 router.post('/blog', authMiddleware, createMulterStorage('public/upload/blogs').single('file'), blogController.createBlog);
 
 // Route to get all blogs (protected)
-router.get('/blogs', authMiddleware, blogController.getAllBlogs);
+router.get('/blogs', blogController.getAllBlogs);
 
 // Route to delete a blog by ID (protected)
 router.delete('/blogs/:id', authMiddleware, blogController.deleteBlog);

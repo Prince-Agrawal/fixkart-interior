@@ -55,7 +55,7 @@ export const ViewReview = () => {
                                             src={`${process.env.REACT_APP_API_BASE_URL}/${review.imagePath}`}
                                             alt={review.reviewerName}
                                             className="img-fluid"
-                                            style={{ maxWidth: '100%', height: 'auto' }}
+                                            style={{ maxWidth: '200px', height: '200px' }}
                                         />
                                     )}
                                 </div>

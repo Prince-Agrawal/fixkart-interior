@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
+import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ClientFeedback = () => {
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/reviews`);
+        setReviews(response.data);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
   var settings = {
     autoplay: true,
     autoplaySpeed: 3000, // Slow down the autoplay speed to 3 seconds
@@ -28,7 +44,7 @@ const ClientFeedback = () => {
 
         <div className="feedback-slider">
           <Slider {...settings}>
-            <div>
+            {/* <div>
               <h3>
                 I am very satisfied with the services of FIXKART INTERIO.{" "}
                 <span className="text-dark">
@@ -57,7 +73,20 @@ const ClientFeedback = () => {
               </figure>
               <h4>Priya Kanwar </h4>
               <h5>Jaipur</h5>
-            </div>
+            </div> */}
+
+            {reviews.map((review) => (
+              <div key={review._id}>
+                <h3>
+                  {review.reviewData}
+                </h3>
+                <figure>
+                  <img src={process.env.REACT_APP_API_BASE_URL + '/' + review.imagePath || "images/gallery-6.png"} alt="Gallery" />
+                </figure>
+                <h4>{review.reviewerName}</h4>
+                <h5>{review.reviewerLocation}</h5>
+              </div>
+            ))}
 
           </Slider>
         </div>

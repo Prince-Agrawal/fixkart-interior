@@ -199,7 +199,7 @@ export const EditReview = () => {
                                                 src={imagePreview}
                                                 alt="Preview"
                                                 className="img-fluid"
-                                                style={{ maxWidth: '100%', height: 'auto' }}
+                                                style={{ maxWidth: '200px', height: '200px' }}
                                             />
                                         </div>
                                     )}
