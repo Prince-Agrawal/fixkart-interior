@@ -221,7 +221,7 @@ export const EditCategory = () => {
                                                     src={preview}
                                                     alt="Preview"
                                                     className="img-fluid"
-                                                    style={{ maxWidth: '100%', height: 'auto', marginBottom: '10px' }}
+                                                    style={{ maxWidth: '200px', height: '200px', marginBottom: '10px' }}
                                                 />
                                             ))}
                                         </div>

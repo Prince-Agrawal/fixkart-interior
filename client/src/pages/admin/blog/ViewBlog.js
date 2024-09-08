@@ -55,7 +55,7 @@ export const ViewBlog = () => {
                                             src={`${process.env.REACT_APP_API_BASE_URL}/${blog.imagePath}`}
                                             alt={blog.title}
                                             className="img-fluid"
-                                            style={{ maxWidth: '100%', height: 'auto' }}
+                                            style={{ maxWidth: '200px', height: '200px' }}
                                         />
                                     )}
                                 </div>

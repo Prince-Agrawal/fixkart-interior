@@ -65,7 +65,7 @@ export const ViewCategory = () => {
                                                     src={`${process.env.REACT_APP_API_BASE_URL}/${imagePath}`}
                                                     alt={`Category Image ${index + 1}`}
                                                     className="img-fluid"
-                                                    style={{ maxWidth: '100%', height: 'auto', marginBottom: '10px' }}
+                                                    style={{ maxWidth: '200px', height: '200px', marginBottom: '10px' }}
                                                 />
                                             ))}
                                         </div>
