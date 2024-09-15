@@ -16,7 +16,34 @@ export default function DesignIdeas() {
     arrows: false,
     buttons: false,
     dots: true,
+    responsive: [
+      {
+        breakpoint: 1024, // For screens up to 1024px wide
+        settings: {
+          slidesToShow: 2, // Show 2 slides at a time
+          slidesToScroll: 2,
+          dots: true,
+        }
+      },
+      {
+        breakpoint: 768, // For screens up to 768px wide (tablets)
+        settings: {
+          slidesToShow: 1, // Show 1 slide at a time
+          slidesToScroll: 1,
+          dots: true,
+        }
+      },
+      {
+        breakpoint: 480, // For screens up to 480px wide (phones)
+        settings: {
+          slidesToShow: 1, // Show 1 slide at a time
+          slidesToScroll: 1,
+          dots: false, // Hide dots on smaller screens if necessary
+        }
+      }
+    ]
   };
+  
 
   return (
     <div className="design-idea-slider slider-dots">

@@ -86,28 +86,28 @@ const About = () => {
              <div class="col-md-4 mb-5">
                 <div class="team-box">
                     <figure>
-                        <img src="images/team.png" alt="team" />
+                        <img src="images/team-1.png" alt="team" />
                         <span class="badge">Founder at Company</span>
                     </figure>
-                    <h3>Sarah Jasmine</h3>
+                    <h3>Ravi Rathod</h3>
                 </div>
              </div>
              <div class="col-md-4 mb-5">
                 <div class="team-box">
                     <figure>
-                        <img src="images/team.png" alt="team" />
+                        <img src="images/team-2.png" alt="team" />
                         <span class="badge bg-team-badge">Design Head & Project Head</span>
                     </figure>
-                    <h3>Sarah Jasmine</h3>
+                    <h3>Muskan</h3>
                 </div>
              </div>
              <div class="col-md-4 mb-5">
                 <div class="team-box">
                     <figure>
-                        <img src="images/team.png" alt="team" />
+                        <img src="images/team-3.png" alt="team" />
                         <span class="badge bg-team-badge">Interior Designer</span>
                     </figure>
-                    <h3>Sarah Jasmine</h3>
+                    <h3>Manshi</h3>
                 </div>
              </div>
              <div class="col-md-4 mb-5">

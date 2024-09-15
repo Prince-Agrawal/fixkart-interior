@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { login } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,7 +7,15 @@ const AdminLogin = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const navigate = useNavigate(); // Initialize the useNavigate hook
+    useEffect(() => {
+        // Add the bg-light class to the body when the component mounts
+        document.body.classList.add('bg-light');
 
+        // Cleanup: remove the class when the component unmounts
+        return () => {
+            document.body.classList.remove('bg-light');
+        };
+    }, []);
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
@@ -31,7 +39,8 @@ const AdminLogin = () => {
     };
 
     return (
-        <div className="container mt-4">
+        <div className="container container-login">
+            <div className='login-box'>
             <h2>Admin Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="card-body">
@@ -65,6 +74,7 @@ const AdminLogin = () => {
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </div>
             </form>
+            </div>
         </div>
     );
 };
