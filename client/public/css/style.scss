@@ -211,6 +211,7 @@ main.is-sticky {
   justify-content: center;
   margin: 0;
   font-size: 14px;
+  align-items: center;
 }
 
 .header_call_btn {
@@ -930,7 +931,7 @@ footer {
   background-color: #efefef; }
 .team-box { text-align: center; padding: 0 20px; margin-bottom: 20px;
   figure { position: relative; overflow: hidden; border-radius: 10px; 
-    img { width: 100%; object-fit: cover; height: 350px;transition: transform 0.5s ease;  }
+    img { width: 100%; object-fit: cover; height: 400px;transition: transform 0.5s ease;  }
     span { position: absolute; right: 20px; bottom: 20px; background-color: var(--secondary); border-radius: 30px; font-size: 18px; color: #000; font-weight: 500; }
   }
   &:hover img {
@@ -946,3 +947,25 @@ footer {
 }
 
 .team-box figure span.bg-team-badge { background-color: #181818; color: #fff; font-weight: 400; font-size: 15px; }
+
+.container-login {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;      /* Vertically center */
+  min-height: 100vh;        /* Full viewport height */
+}
+
+.login-box {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  .form-group { margin-bottom: 20px; }
+  h2{
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+}
