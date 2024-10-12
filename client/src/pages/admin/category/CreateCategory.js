@@ -56,8 +56,7 @@ export const CreateCategory = () => {
             if (!data.description) newErrors[`description_${index}`] = 'Description is required.';
         });
 
-        if (!formData.imageFiles.length) newErrors.imageFiles = 'At least one image file is required.';
-
+        // Remove image file validation to make it optional
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -76,24 +75,24 @@ export const CreateCategory = () => {
             data.append(`categoryAdditionalData[${index}][title]`, item.title);
             data.append(`categoryAdditionalData[${index}][description]`, item.description);
         });
+
+        // Append images only if they are selected
         formData.imageFiles.forEach((file) => {
             data.append('imageFiles', file);
         });
 
         try {
-            // Get the token from localStorage
             const token = localStorage.getItem('authToken');
 
             const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/category`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}` // Include the token in the headers
+                    'Authorization': `Bearer ${token}`
                 },
             });
 
             console.log('Category created successfully:', response.data);
 
-            // Clear the form after successful submission
             setFormData({
                 categoryName: '',
                 categoryDescription: '',
@@ -187,7 +186,7 @@ export const CreateCategory = () => {
                                         onChange={handleFileChange}
                                         ref={fileInputRef}
                                     />
-                                    {errors.imageFiles && <div className="text-danger">{errors.imageFiles}</div>}
+                                    {/* No error message for optional image field */}
                                 </div>
                             </div>
                             <div className="card-footer">
