@@ -36,7 +36,7 @@ const Home = () => {
       <section className="about-section">
         <div className="container">
           <div className="row justify-content-between align-items-center">
-            <div className="col-lg-6 col-xl-5 heading-main">
+            <div className="col-lg-6 col-xl-5 heading-main mb-0 mb-md-4">
               <span className="badge rounded-pill text-bg-warning">
                 About Us
               </span>
@@ -234,7 +234,7 @@ const Home = () => {
       <section className="about-section">
         <div className="container">
           <div className="row justify-content-between align-items-start">
-            <div className="col-lg-5 heading-main">
+            <div className="col-lg-6 col-xl-5 heading-main">
               <span className="badge rounded-pill text-bg-warning">
                 Proccess
               </span>
