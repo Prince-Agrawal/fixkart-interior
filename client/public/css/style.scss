@@ -625,8 +625,8 @@ main.is-sticky {
   margin: auto;
 
   figure {
-    max-width: 270px;
-    max-height: 270px;
+    width: 270px;
+    height: 270px;
     border-radius: 100%;
     overflow: hidden;
     margin: auto;
@@ -769,6 +769,7 @@ textarea.form-control {
 
 footer {
   background: url(../images/footer-bg.png) no-repeat;
+  background-size: cover;
 }
 
 .footer-box {

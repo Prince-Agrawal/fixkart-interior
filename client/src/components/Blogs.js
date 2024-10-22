@@ -24,13 +24,22 @@ const Blogs = () => {
     autoplay: true,
     autoplaySpeed: 3000, // Slow down the autoplay speed to 3 seconds
     centerMode: false,
-    slidesToShow: 2, // Show 1 slide at a time
+    slidesToShow: 2, // Show 2 slides at a time on larger screens
     slidesToScroll: 2,
     variableWidth: false,
     infinite: true,
     initialSlide: 0, // Start from the first slide
     arrows: false,
     dots: true,
+    responsive: [
+      {
+        breakpoint: 768, // For screens smaller than 768px (tablets and mobile)
+        settings: {
+          slidesToShow: 1, // Show 1 slide at a time on mobile
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   // Function to format date as "Month Day, Year"

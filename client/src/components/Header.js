@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Header = () => {
@@ -34,8 +34,16 @@ export const Header = () => {
         }
     }, [location.pathname]);
 
-    const toggleOverlay = () => {
-        setShowOverlay(!showOverlay);
+    const toggleOverlay = useCallback(() => {
+        setShowOverlay(prev => !prev);
+        const navbarCollapse = document.getElementById('navbarSupportedContent');
+        if (navbarCollapse) {
+            navbarCollapse.classList.remove('show');
+        }
+    }, []);
+
+    const closeMenuOnOverlayClick = () => {
+        setShowOverlay(false);
         const navbarCollapse = document.getElementById('navbarSupportedContent');
         if (navbarCollapse) {
             navbarCollapse.classList.remove('show');
@@ -45,10 +53,11 @@ export const Header = () => {
     return (
         <>
             <header className={extraClass}>
+                <div className={`overlay ${showOverlay ? 'show' : ''}`} onClick={closeMenuOnOverlayClick}></div>
                 <section className='header_top_info'>
                     <div className='container'>
                         <p className='h-info-top'>
-                        Enjoy Flat 20% Off On Complete Fixkart Interio. Valid Till July 31st, 2024. <span className='badge badge-outline'>Get Offer</span>
+                            Enjoy Flat 20% Off On Complete Fixkart Interio. Valid Till July 31st, 2024. <span className='badge badge-outline'>Get Offer</span>
                         </p>
                     </div>
                 </section>
@@ -60,7 +69,7 @@ export const Header = () => {
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={toggleOverlay}>
                             <span className="navbar-toggler-icon"></span>
                         </button>
-                       
+
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <a href="#" className="d-block d-lg-none mb-2"></a>
                             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
@@ -76,20 +85,19 @@ export const Header = () => {
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'DesignGallery' ? 'active' : ''}`}>
                                     <Link className="nav-link" to="/design-gallery" onClick={() => setActiveMenu('DesignGallery')}>
-                                    Design Gallery
+                                        Design Gallery
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'ModularKitchen' ? 'active' : ''}`}>
                                     <Link className="nav-link" to="/ModularKitchen" onClick={() => setActiveMenu('ModularKitchen')}>
-                                    Modular Kitchen
+                                        Modular Kitchen
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'Blog' ? 'active' : ''}`}>
                                     <Link className="nav-link" to="/Blog" onClick={() => setActiveMenu('Blog')}>
-                                    Blog
+                                        Blog
                                     </Link>
                                 </li>
-                               
                             </ul>
                         </div>
                         <div className="header_call_btn">
