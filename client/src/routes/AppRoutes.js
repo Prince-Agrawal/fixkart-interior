@@ -102,12 +102,12 @@ const RouteWrapper = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/design-gallery" element={<DesignGallery />} />
+        {/* <Route path="/design-gallery" element={<DesignGallery />} /> */}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog-detail" element={<BlogDetail />} />
 
         {/* Dynamic Category Routes */}
-        {/* {Array.isArray(categories) && categories.map((category) => {
+        {Array.isArray(categories) && categories.map((category) => {
 
           return (
             <Route
@@ -116,7 +116,7 @@ const RouteWrapper = () => {
               element={<CategoryDetail category={category} />}
             />
           );
-        })} */}
+        })}
 
         {/* Admin routes */}
         <Route

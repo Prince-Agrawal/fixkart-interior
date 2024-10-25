@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -5,10 +6,24 @@ export const Header = () => {
     const [activeMenu, setActiveMenu] = useState('');
     const [extraClass, setExtraClass] = useState('');
     const [showOverlay, setShowOverlay] = useState(false);
+    const [categories, setCategories] = useState([]); // State to store fetched categories
 
     const location = useLocation();
 
     useEffect(() => {
+
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories`);
+                setCategories(response.data || []); // Set categories to the fetched data or an empty array
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        fetchCategories(); // Fetch categories on component mount
+
+
         const path = location.pathname;
 
         // Determine the active menu based on the path
@@ -16,14 +31,11 @@ export const Header = () => {
             setActiveMenu('home');
         } else if (path === '/about') {
             setActiveMenu('about');
-        } else if (path === '/design-gallery') {
-            setActiveMenu('DesignGallery');
-        } else if (path === '/modular-Kitchen') {
-            setActiveMenu('ModularKitchen');
-        } else if (path === '/blog') {
-            setActiveMenu('Blog');
+        }else if (path === '/blog') {
+            setActiveMenu('blog');
         } else {
-            setActiveMenu(''); // Set to empty if path does not match any of the above
+            const category = categories.find(cat => path === `/${cat.categorySlug}`);
+            setActiveMenu(category ? category.categorySlug : '');
         }
 
         // Check if the URL is /blog and set the extra class accordingly
@@ -32,7 +44,7 @@ export const Header = () => {
         } else {
             setExtraClass('');
         }
-    }, [location.pathname]);
+    }, [location.pathname, categories]);
 
     const toggleOverlay = useCallback(() => {
         setShowOverlay(prev => !prev);
@@ -83,18 +95,15 @@ export const Header = () => {
                                         About
                                     </Link>
                                 </li>
-                                <li className={`nav-item ${activeMenu === 'DesignGallery' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/design-gallery" onClick={() => setActiveMenu('DesignGallery')}>
-                                        Design Gallery
-                                    </Link>
-                                </li>
-                                <li className={`nav-item ${activeMenu === 'ModularKitchen' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/modular-kitchen" onClick={() => setActiveMenu('ModularKitchen')}>
-                                        Modular Kitchen
-                                    </Link>
-                                </li>
+                                {categories.map(category => (
+                                    <li key={category._id} className={`nav-item ${activeMenu === category.categorySlug ? 'active' : ''}`}>
+                                        <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => setActiveMenu(category.categorySlug)}>
+                                            {category.categoryName}
+                                        </Link>
+                                    </li>
+                                ))}
                                 <li className={`nav-item ${activeMenu === 'Blog' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/blog" onClick={() => setActiveMenu('Blog')}>
+                                    <Link className="nav-link" to="/blog" onClick={() => setActiveMenu('blog')}>
                                         Blog
                                     </Link>
                                 </li>
