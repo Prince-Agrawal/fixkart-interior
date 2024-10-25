@@ -14,13 +14,13 @@ export const Header = () => {
         // Determine the active menu based on the path
         if (path === '/') {
             setActiveMenu('home');
-        } else if (path === '/About') {
+        } else if (path === '/about') {
             setActiveMenu('about');
         } else if (path === '/design-gallery') {
             setActiveMenu('DesignGallery');
-        } else if (path === '/ModularKitchen') {
+        } else if (path === '/modular-Kitchen') {
             setActiveMenu('ModularKitchen');
-        } else if (path === '/Blog') {
+        } else if (path === '/blog') {
             setActiveMenu('Blog');
         } else {
             setActiveMenu(''); // Set to empty if path does not match any of the above
@@ -79,7 +79,7 @@ export const Header = () => {
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'about' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/About" onClick={() => setActiveMenu('about')}>
+                                    <Link className="nav-link" to="/about" onClick={() => setActiveMenu('about')}>
                                         About
                                     </Link>
                                 </li>
@@ -89,12 +89,12 @@ export const Header = () => {
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'ModularKitchen' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/ModularKitchen" onClick={() => setActiveMenu('ModularKitchen')}>
+                                    <Link className="nav-link" to="/modular-kitchen" onClick={() => setActiveMenu('ModularKitchen')}>
                                         Modular Kitchen
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'Blog' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/Blog" onClick={() => setActiveMenu('Blog')}>
+                                    <Link className="nav-link" to="/blog" onClick={() => setActiveMenu('Blog')}>
                                         Blog
                                     </Link>
                                 </li>
