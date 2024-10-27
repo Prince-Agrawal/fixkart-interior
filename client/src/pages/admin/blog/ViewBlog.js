@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import Loader from '../../../components/Loader';
 
 export const ViewBlog = () => {
     const { id } = useParams(); // Extract the blog ID from the URL parameters
@@ -12,27 +13,26 @@ export const ViewBlog = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                // Get the token from localStorage
                 const token = localStorage.getItem('authToken');
-
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`, {
                     headers: {
-                        'Authorization': `Bearer ${token}` // Include the token in the headers
+                        'Authorization': `Bearer ${token}`
                     },
                 });
                 setBlog(response.data);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching blog:', error);
                 setError('Failed to load blog details.');
+            } finally {
                 setLoading(false);
             }
         };
 
+
         fetchBlog();
     }, [id]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader/>;
     if (error) return <p>{error}</p>;
 
     return (

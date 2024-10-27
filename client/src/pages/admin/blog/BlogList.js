@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 export const BlogList = () => {
     const navigate = useNavigate();
     const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true); // State to handle loading state
 
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                // Get the token from localStorage
                 const token = localStorage.getItem('authToken');
-
-                // Include the token in the headers
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -21,6 +20,8 @@ export const BlogList = () => {
                 setBlogs(response.data);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
+            } finally {
+                setLoading(false); // Set loading to false after the request completes
             }
         };
 
@@ -37,21 +38,15 @@ export const BlogList = () => {
 
     const handleDelete = async (id) => {
         const confirmDelete = window.confirm('Are you sure you want to delete this blog?');
-
-        if (!confirmDelete) {
-            return;
-        }
+        if (!confirmDelete) return;
 
         try {
             const token = localStorage.getItem('authToken');
-
-            // Include the token in the headers
             await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-
             setBlogs(blogs.filter((blog) => blog._id !== id));
             console.log('Blog deleted successfully');
         } catch (error) {
@@ -62,6 +57,8 @@ export const BlogList = () => {
     const handleCreate = () => {
         navigate('/admin/blogs/create');
     };
+
+    if (loading) return <Loader />; // Show Loader component while loading
 
     return (
         <body class="inner">
