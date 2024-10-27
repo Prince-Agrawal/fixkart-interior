@@ -46,6 +46,10 @@ export const Header = () => {
         }
     }, [location.pathname, categories]);
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     const toggleOverlay = useCallback(() => {
         setShowOverlay(prev => !prev);
         const navbarCollapse = document.getElementById('navbarSupportedContent');
@@ -75,7 +79,7 @@ export const Header = () => {
                 </section>
                 <nav className="navbar navbar-expand-lg">
                     <div className="container">
-                        <Link className="navbar-brand" to="/">
+                        <Link className="navbar-brand" to="/" onClick={scrollToTop}>
                             <img src="/images/logo.svg" alt="logo"/>
                         </Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={toggleOverlay}>
@@ -86,24 +90,24 @@ export const Header = () => {
                             <a href="#" className="d-block d-lg-none mb-2"></a>
                             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                                 <li className={`nav-item ${activeMenu === 'home' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/" onClick={() => setActiveMenu('home')}>
+                                    <Link className="nav-link" to="/" onClick={() => { setActiveMenu('home'); scrollToTop(); }}>
                                         Home
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'about' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/about" onClick={() => setActiveMenu('about')}>
+                                    <Link className="nav-link" to="/about" onClick={() => { setActiveMenu('about'); scrollToTop(); }}>
                                         About
                                     </Link>
                                 </li>
                                 {categories.slice(0, 2).map(category => (
                                     <li key={category._id} className={`nav-item ${activeMenu === category.categorySlug ? 'active' : ''}`}>
-                                        <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => setActiveMenu(category.categorySlug)}>
+                                        <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => { setActiveMenu(category.categorySlug); scrollToTop(); }}>
                                             {category.categoryName}
                                         </Link>
                                     </li>
                                 ))}
-                                <li className={`nav-item ${activeMenu === 'Blog' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/blog" onClick={() => setActiveMenu('blog')}>
+                                <li className={`nav-item ${activeMenu === 'blog' ? 'active' : ''}`}>
+                                    <Link className="nav-link" to="/blog" onClick={() => { setActiveMenu('blog'); scrollToTop(); }}>
                                         Blog
                                     </Link>
                                 </li>
