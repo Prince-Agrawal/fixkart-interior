@@ -95,7 +95,7 @@ export const Header = () => {
                                         About
                                     </Link>
                                 </li>
-                                {categories.map(category => (
+                                {categories.slice(0, 2).map(category => (
                                     <li key={category._id} className={`nav-item ${activeMenu === category.categorySlug ? 'active' : ''}`}>
                                         <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => setActiveMenu(category.categorySlug)}>
                                             {category.categoryName}
