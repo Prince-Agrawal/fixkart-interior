@@ -51,77 +51,6 @@ const Blog = () => {
       <section class="BlogSection">
         <div class="container">
           <div class="row">
-            {/* <div class="col-md-6 mb-5">
-              <div className="BlogBox">
-                <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                <div className="blog-user">
-                  <img src="images/user.png" alt="Blog user" className="user" />
-                  <span>fixinterio</span> |
-                  <span>September 1, 2022</span>
-
-                  <button type="button" className="btn btn-outline-primary ms-auto" to="/BlogDetail">Read More</button>
-
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-5">
-              <div className="BlogBox">
-                <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                <div className="blog-user">
-                  <img src="images/user.png" alt="Blog user" className="user" />
-                  <span>fixinterio</span> |
-                  <span>September 1, 2022</span>
-
-                  <button type="button" className="btn btn-outline-primary ms-auto">Read More</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-5">
-              <div className="BlogBox">
-                <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                <div className="blog-user">
-                  <img src="images/user.png" alt="Blog user" className="user" />
-                  <span>fixinterio</span> |
-                  <span>September 1, 2022</span>
-
-                  <button type="button" className="btn btn-outline-primary ms-auto">Read More</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-5">
-              <div className="BlogBox">
-                <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                <div className="blog-user">
-                  <img src="images/user.png" alt="Blog user" className="user" />
-                  <span>fixinterio</span> |
-                  <span>September 1, 2022</span>
-
-                  <button type="button" className="btn btn-outline-primary ms-auto">Read More</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-5">
-              <div className="BlogBox">
-                <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                <div className="blog-user">
-                  <img src="images/user.png" alt="Blog user" className="user" />
-                  <span>fixinterio</span> |
-                  <span>September 1, 2022</span>
-
-                  <button type="button" className="btn btn-outline-primary ms-auto">Read More</button>
-                </div>
-              </div>
-            </div> */}
 
             {blogs.map((blog) => (
               <div className="col-md-6 mb-5" key={blog._id}>
@@ -141,7 +70,7 @@ const Blog = () => {
                     />
                     <span>{blog.addedBy}</span> |
                     <span>{formatDate(blog.createdAt)}</span>
-                    <Link to={`/BlogDetail/${blog._id}`} className="btn btn-outline-primary ms-auto">
+                    <Link to={`/blog/${blog._id}`} className="btn btn-outline-primary ms-auto">
                       Read More
                     </Link>
                   </div>

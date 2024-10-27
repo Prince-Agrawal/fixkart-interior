@@ -11,40 +11,40 @@ export const Header = () => {
     const location = useLocation();
 
     useEffect(() => {
-
         const fetchCategories = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories`);
-                setCategories(response.data || []); // Set categories to the fetched data or an empty array
+                setCategories(response.data || []); // Set categories to fetched data or an empty array
             } catch (error) {
                 console.error('Error fetching categories:', error);
             }
         };
-
+    
         fetchCategories(); // Fetch categories on component mount
-
-
+    }, []); // Empty dependency array ensures this only runs once
+    
+    useEffect(() => {
         const path = location.pathname;
-
+    
         // Determine the active menu based on the path
         if (path === '/') {
             setActiveMenu('home');
         } else if (path === '/about') {
             setActiveMenu('about');
-        }else if (path === '/blog') {
+        } else if (path === '/blog') {
             setActiveMenu('blog');
         } else {
             const category = categories.find(cat => path === `/${cat.categorySlug}`);
             setActiveMenu(category ? category.categorySlug : '');
         }
-
+    
         // Check if the URL is /blog and set the extra class accordingly
         if (path === '/blog') {
             setExtraClass('extra-class');
         } else {
             setExtraClass('');
         }
-    }, [location.pathname, categories]);
+    }, [location.pathname, categories]); // Only rerun this effect when location or categories change
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
