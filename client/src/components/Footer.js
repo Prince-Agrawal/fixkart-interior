@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       <footer>
@@ -40,19 +44,19 @@ const Footer = () => {
 
                 <ul className="Companylinks">
                   <li>
-                    <Link to="/about">About us</Link>
+                    <Link to="/about" onClick={scrollToTop}>About us</Link>
                   </li>
                   <li>
-                    <Link to="/contact">Privacy policy</Link>
+                    <Link to="/contact" onClick={scrollToTop}>Privacy policy</Link>
                   </li>
                   <li>
-                    <Link to="/contact">Contacts</Link>
+                    <Link to="/contact" onClick={scrollToTop}>Contacts</Link>
                   </li>
                   <li>
-                    <Link to="/contact">Payment</Link>
+                    <Link to="/contact" onClick={scrollToTop}>Payment</Link>
                   </li>
                   <li>
-                    <Link to="/blog">Our Blog</Link>
+                    <Link to="/blog" onClick={scrollToTop}>Our Blog</Link>
                   </li>
                 </ul>
               </div>

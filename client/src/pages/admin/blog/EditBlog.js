@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 export const EditBlog = () => {
     const { id } = useParams(); // Extract the blog ID from the URL parameters
@@ -11,6 +12,7 @@ export const EditBlog = () => {
         addedBy: '',
         file: null,
     });
+    const [updating, setUpdating] = useState(false); // State for update loader
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -95,38 +97,32 @@ export const EditBlog = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!validateForm()) {
-            return;
-        }
+        if (!validateForm()) return;
 
         const data = new FormData();
         data.append('title', formData.title);
         data.append('description', formData.description);
         data.append('addedBy', formData.addedBy);
-        if (formData.file) {
-            data.append('file', formData.file);
-        }
+        if (formData.file) data.append('file', formData.file);
 
         try {
-            // Get the token from localStorage
+            setUpdating(true); // Start loader
             const token = localStorage.getItem('authToken');
-
             await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/blogs/${id}`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}` // Include the token in the headers
+                    'Authorization': `Bearer ${token}`,
                 },
             });
-
-            console.log('Blog updated successfully');
-            navigate('/admin/blogs'); // Redirect to the blog list after successful update
+            navigate('/admin/blogs'); // Redirect after success
         } catch (error) {
             console.error('Error updating blog:', error);
+        } finally {
+            setUpdating(false); // Stop loader
         }
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader/>;
     if (error) return <p>{error}</p>;
 
     return (
@@ -138,6 +134,7 @@ export const EditBlog = () => {
                             <h2>Edit Blog</h2>
                         </div>
                         <div className="card-body">
+                            {updating && <Loader />}
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="title">Title</label>

@@ -14,7 +14,7 @@ router.get('/blogs', blogController.getAllBlogs);
 router.delete('/blogs/:id', authMiddleware, blogController.deleteBlog);
 
 // Route to get a single blog by ID (protected)
-router.get('/blogs/:id', authMiddleware, blogController.getBlogById);
+router.get('/blogs/:id', blogController.getBlogById);
 
 // Route to update a blog by ID (protected)
 router.put('/blogs/:id', authMiddleware, createMulterStorage('public/upload/blogs').single('file'), blogController.updateBlog);

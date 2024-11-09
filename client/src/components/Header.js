@@ -11,40 +11,44 @@ export const Header = () => {
     const location = useLocation();
 
     useEffect(() => {
-
         const fetchCategories = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories`);
-                setCategories(response.data || []); // Set categories to the fetched data or an empty array
+                setCategories(response.data || []); // Set categories to fetched data or an empty array
             } catch (error) {
                 console.error('Error fetching categories:', error);
             }
         };
-
+    
         fetchCategories(); // Fetch categories on component mount
-
-
+    }, []); // Empty dependency array ensures this only runs once
+    
+    useEffect(() => {
         const path = location.pathname;
-
+    
         // Determine the active menu based on the path
         if (path === '/') {
             setActiveMenu('home');
         } else if (path === '/about') {
             setActiveMenu('about');
-        }else if (path === '/blog') {
+        } else if (path === '/blog') {
             setActiveMenu('blog');
         } else {
             const category = categories.find(cat => path === `/${cat.categorySlug}`);
             setActiveMenu(category ? category.categorySlug : '');
         }
-
+    
         // Check if the URL is /blog and set the extra class accordingly
         if (path === '/blog') {
             setExtraClass('extra-class');
         } else {
             setExtraClass('');
         }
-    }, [location.pathname, categories]);
+    }, [location.pathname, categories]); // Only rerun this effect when location or categories change
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const toggleOverlay = useCallback(() => {
         setShowOverlay(prev => !prev);
@@ -75,7 +79,7 @@ export const Header = () => {
                 </section>
                 <nav className="navbar navbar-expand-lg">
                     <div className="container">
-                        <Link className="navbar-brand" to="/">
+                        <Link className="navbar-brand" to="/" onClick={scrollToTop}>
                             <img src="/images/logo.svg" alt="logo"/>
                         </Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={toggleOverlay}>
@@ -86,24 +90,24 @@ export const Header = () => {
                             <a href="#" className="d-block d-lg-none mb-2"></a>
                             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                                 <li className={`nav-item ${activeMenu === 'home' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/" onClick={() => setActiveMenu('home')}>
+                                    <Link className="nav-link" to="/" onClick={() => { setActiveMenu('home'); scrollToTop(); }}>
                                         Home
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'about' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/about" onClick={() => setActiveMenu('about')}>
+                                    <Link className="nav-link" to="/about" onClick={() => { setActiveMenu('about'); scrollToTop(); }}>
                                         About
                                     </Link>
                                 </li>
-                                {categories.map(category => (
+                                {categories.slice(0, 2).map(category => (
                                     <li key={category._id} className={`nav-item ${activeMenu === category.categorySlug ? 'active' : ''}`}>
-                                        <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => setActiveMenu(category.categorySlug)}>
+                                        <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => { setActiveMenu(category.categorySlug); scrollToTop(); }}>
                                             {category.categoryName}
                                         </Link>
                                     </li>
                                 ))}
-                                <li className={`nav-item ${activeMenu === 'Blog' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/blog" onClick={() => setActiveMenu('blog')}>
+                                <li className={`nav-item ${activeMenu === 'blog' ? 'active' : ''}`}>
+                                    <Link className="nav-link" to="/blog" onClick={() => { setActiveMenu('blog'); scrollToTop(); }}>
                                         Blog
                                     </Link>
                                 </li>
