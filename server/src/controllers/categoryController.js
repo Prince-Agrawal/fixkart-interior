@@ -66,8 +66,9 @@ exports.updateCategory = async (req, res) => {
             return res.status(404).send('Category not found.');
         }
 
+        let oldImagePaths = existingCategory.imagePaths;
         // Handle old image removal
-        if (existingCategory.imagePaths && existingCategory.imagePaths.length > 0) {
+        if (req.files && req.files.length > 0 && existingCategory.imagePaths && existingCategory.imagePaths.length > 0) {
             // Remove each file from the filesystem
             existingCategory.imagePaths.forEach(imagePath => {
                 fs.unlink(path.join(__dirname, '..', imagePath), (err) => {
@@ -84,6 +85,8 @@ exports.updateCategory = async (req, res) => {
         // Append new images to the image paths if there are any uploaded files
         if (req.files && req.files.length > 0) {
             imagePaths = req.files.map(file => file.path); // Only use the new image paths
+        }else{
+            imagePaths = oldImagePaths;
         }
 
         // Ensure categoryAdditionalData is an array
