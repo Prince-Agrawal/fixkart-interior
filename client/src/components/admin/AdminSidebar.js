@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const AdminSidebar = () => {
+    const location = useLocation();
+
+    const isActive = (path) => location.pathname === path;
+
     return (
         <div className="admin-dashboard">
             <aside className="sidebar">
@@ -11,31 +15,31 @@ const AdminSidebar = () => {
                     </Link>
                 </div>
                 <ul>
-                    <li className="active">
+                    <li className={isActive('/admin/dashboard') ? 'active' : ''}>
                         <Link to="/admin/dashboard">
                             <img src="/images/admin/dashboardIcon.svg" alt="dashboard-icon" />
                             Dashboard
                         </Link>
                     </li>
-                    <li>
+                    <li className={isActive('/admin/blogs') ? 'active' : ''}>
                         <Link to="/admin/blogs">
                             <img src="/images/admin/personalcard.svg" alt="business-icon" />
                             Blogs
                         </Link>
                     </li>
-                    <li>
+                    <li className={isActive('/admin/reviews') ? 'active' : ''}>
                         <Link to="/admin/reviews">
                             <img src="/images/admin/mobile.svg" alt="app-view-icon" />
                             Reviews
                         </Link>
                     </li>
-                    <li>
+                    <li className={isActive('/admin/contacts') ? 'active' : ''}>
                         <Link to="/admin/contacts">
                             <img src="/images/admin/user.svg" alt="user-icon" />
                             Contacts
                         </Link>
                     </li>
-                    <li>
+                    <li className={isActive('/admin/categories') ? 'active' : ''}>
                         <Link to="/admin/categories">
                             <img src="/images/admin/document-text.svg" alt="report-icon" />
                             Categories
@@ -48,4 +52,3 @@ const AdminSidebar = () => {
 };
 
 export default AdminSidebar;
-    
