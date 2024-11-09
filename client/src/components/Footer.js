@@ -12,20 +12,26 @@ const Footer = () => {
                 <img src="images/logo.svg" alt="logo" className="mb-4" />
                 <h3 className="mb-3">Social Media</h3>
                 <div className="social-icons d-flex gap-3">
-                  <a href="#">
+                  <a href="https://www.instagram.com/fixkart_interio/" target="blank">
                     <img src="images/instagram.svg" alt="instagram" />
                   </a>
-                  <a href="#">
+                  <a href="https://www.facebook.com/Fixkartinterio" target="blank">
                     <img src="images/facebook.svg" alt="facebook" />
                   </a>
-                  <a href="#">
+                  <a href="https://x.com/Fixkart_interio" target="blank">
                     <img src="images/Twetter.svg" alt="Twetter" />
                   </a>
-                  <a href="#">
+                  <a href="https://www.linkedin.com/company/fixkartinterio/" target="blank">
                     <img src="images/linkdien.svg" alt="linkdien" />
                   </a>
+                  <a href="https://pin.it/7i8X0zFwA" target="blank">
+                    <img src="images/pinterest.svg" alt="Twetter" />
+                  </a>
+                  <a href="https://youtube.com/@fixkartinteriointeriordesigner" target="blank">
+                    <img src="images/youtube.svg" alt="Twetter" />
+                  </a>
                 </div>
-                <button className="btn btn-white">Book an Appoinment</button>
+                <button className="btn btn-white" callto="+91 78782 41849">Book an Appoinment</button>
               </div>
             </div>
             <div className="col-md-3">
@@ -58,7 +64,7 @@ const Footer = () => {
                 <ul className="address">
                   <li>
                     <img src="images/address.svg" alt="Address" />
-                    <a href="#">
+                    <a href="#">Branch 1 :  
                       Shop.No.1, Plot no B-114,Bhura Patel Marg, Gandhi Path W,
                       near Prince Palace, Vaishali Nagar, Jaipur, Rajasthan
                       302021
@@ -67,6 +73,7 @@ const Footer = () => {
                   <li>
                     <img src="images/address.svg" alt="Address" />
                     <a href="#">
+                    Branch 2 : 
                       Plot no. 222, Vinayak Enclave, Rawan Gate Rd, Shree Shyam
                       Vihar, Roop Nagar, Gokulpura, Kalwar, Jaipur, Rajasthan
                       302012{" "}
@@ -75,6 +82,7 @@ const Footer = () => {
                   <li>
                     <img src="images/address.svg" alt="Address" />
                     <a href="#">
+                    Branch 3 : 
                       G-22, Taxtile market, Bahu Bali Impex, Jagatpura Flyover,
                       Jaipur, Rajasthan 303806
                     </a>
