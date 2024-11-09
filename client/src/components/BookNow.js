@@ -6,7 +6,7 @@ const BookNow = () => {
       <div className="container">
         <div className="bookNow my-5">
           <div className="row align-items-center">
-            <div className="col-md-6 ps-5">
+            <div className="col-md-6 ps-md-5">
               <div className="heading-main">
                 <span className="badge rounded-pill text-bg-warning">
                     Book Now

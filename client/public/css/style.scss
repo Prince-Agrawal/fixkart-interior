@@ -25,7 +25,9 @@ body {
   color: #333537;
   overflow-x: hidden;
   box-sizing: border-box;
-  font-size: 16px
+  font-size: 16px;
+  overflow-x: hidden;
+  
 }
 
 
@@ -555,7 +557,9 @@ main.is-sticky {
   }
 }
 
-
+.awards { margin-bottom: -10px;
+  img { width: 100%; }
+}
 .OurprojectSection {
   padding: 80px 0;
   position: relative;
@@ -565,7 +569,7 @@ main.is-sticky {
     height: 700px;
     content: '';
     left: 0;
-    top: 0;
+    top: -2px;
     background: url(../images/dark-bg.png);
     width: 100%;
     background-size: cover;

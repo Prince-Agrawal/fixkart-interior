@@ -10,6 +10,8 @@ import BookNow from "../components/BookNow";
 import Blogs from "../components/Blogs";
 import { ContactForm } from "../components/ContactForm";
 import HomeBannerSlider from "../components/HomeBannerSlider";
+import Awards from "../components/Awards";
+
 import Loader from "../components/Loader";
 const Home = () => {
 
@@ -180,7 +182,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      <Awards />
       <section className="OurprojectSection">
         <div className="container">
           <div className="heading-main mb-5">
@@ -235,7 +237,7 @@ const Home = () => {
       <CompanyNumbers />
 
       <ClientFeedback />
-
+     
       <BookNow />
 
       <Blogs />
