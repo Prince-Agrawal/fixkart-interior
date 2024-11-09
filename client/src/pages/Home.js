@@ -1,5 +1,5 @@
 // src/pages/Home.js
-import React, { useEffect } from "react"; // Add useEffect here
+import React, { useEffect, useState } from "react"; // Add useEffect here
 import { ReelParthner } from "../components/ReelParthner";
 import DesignIdeas from "../components/DesignIdeas";
 import AOS from "aos";
@@ -10,10 +10,21 @@ import BookNow from "../components/BookNow";
 import Blogs from "../components/Blogs";
 import { ContactForm } from "../components/ContactForm";
 import HomeBannerSlider from "../components/HomeBannerSlider";
+import Awards from "../components/Awards";
+
+import Loader from "../components/Loader";
 const Home = () => {
+
+  const [loading, setLoading] = useState(true); // Add loading state
+
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
+    // Simulate a short loading time (e.g., 1 second) before hiding the loader
+    setTimeout(() => setLoading(false), 1000);
   }, []);
+
+  if (loading) return <Loader />; // Display loader until loading is false
   return (
     <>
       <div className="Home-banner">
@@ -171,7 +182,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      <Awards />
       <section className="OurprojectSection">
         <div className="container">
           <div className="heading-main mb-5">
@@ -226,7 +237,7 @@ const Home = () => {
       <CompanyNumbers />
 
       <ClientFeedback />
-
+     
       <BookNow />
 
       <Blogs />

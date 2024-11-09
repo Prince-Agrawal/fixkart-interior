@@ -85,6 +85,9 @@
 }
 
 @media screen and (max-width: 767px) {
+  .bookNow .heading-main {
+    padding: 50px 20px;
+  }
   .header_call_btn {
     display: none;
   }
