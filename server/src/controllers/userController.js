@@ -5,4 +5,3 @@ exports.getUserProfile = (req, res) => {
     user: req.user, // This will have the user's id as set in the JWT payload
   });
 };
-

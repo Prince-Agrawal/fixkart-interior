@@ -30,3 +30,14 @@ exports.saveContactDetails = async (req, res) => {
         });
     }
 };
+
+// Controller function to save contact details
+exports.getContactDetails = async (req, res) => {
+    try {
+        const contacts = await ContactDetails.find();
+        res.status(200).json(contacts);
+    } catch (error) {
+        console.error('Error fetching contact details:', error);
+        res.status(500).send('Server error');
+    }
+};

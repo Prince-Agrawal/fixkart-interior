@@ -86,46 +86,55 @@ const About = () => {
              <div class="col-md-4 mb-5">
                 <div class="team-box">
                     <figure>
-                        <img src="images/team.png" alt="team" />
+                        <img src="images/team-1.png" alt="team" />
                         <span class="badge">Founder at Company</span>
                     </figure>
-                    <h3>Sarah Jasmine</h3>
+                    <h3>Rs Rathore</h3>
                 </div>
              </div>
              <div class="col-md-4 mb-5">
                 <div class="team-box">
                     <figure>
-                        <img src="images/team.png" alt="team" />
+                        <img src="images/team-2.png" alt="team" />
                         <span class="badge bg-team-badge">Design Head & Project Head</span>
                     </figure>
-                    <h3>Sarah Jasmine</h3>
+                    <h3>Muskan</h3>
                 </div>
              </div>
              <div class="col-md-4 mb-5">
                 <div class="team-box">
                     <figure>
-                        <img src="images/team.png" alt="team" />
+                        <img src="images/team-3.png" alt="team" />
                         <span class="badge bg-team-badge">Interior Designer</span>
                     </figure>
-                    <h3>Sarah Jasmine</h3>
+                    <h3>Manshi</h3>
                 </div>
              </div>
              <div class="col-md-4 mb-5">
                 <div class="team-box">
                     <figure>
-                        <img src="images/team.png" alt="team" />
-                        <span class="badge bg-team-badge">Project Manager</span>
+                        <img src="images/sher-singh.png" alt="team" />
+                        <span class="badge bg-team-badge">Site Manager</span>
                     </figure>
-                    <h3>Sarah Jasmine</h3>
+                    <h3>Sher Singh</h3>
                 </div>
              </div>
              <div class="col-md-4 mb-5">
                 <div class="team-box">
                     <figure>
-                        <img src="images/team.png" alt="team" />
-                        <span class="badge bg-team-badge">Factory Supervisor</span>
+                        <img src="images/team-5.png" alt="team" />
+                        <span class="badge bg-team-badge">Site Manager</span>
                     </figure>
-                    <h3>Sarah Jasmine</h3>
+                    <h3>Neerwardhan Singh</h3>
+                </div>
+             </div>
+             <div class="col-md-4 mb-5">
+                <div class="team-box">
+                    <figure>
+                        <img src="images/team-6.png" alt="team" />
+                        <span class="badge bg-team-badge">Head of Department (Carpentry)</span>
+                    </figure>
+                    <h3>Sahid Tyagi</h3>
                 </div>
              </div>
           </div>
@@ -135,8 +144,16 @@ const About = () => {
 
       <BookNow />
 
-      <section className="about-section">
+      <section className="about-section pt-4">
         <div className="container">
+        <div className="row mb-5">
+              <div className="col-12 mb-4">
+                <img src="images/news.png" alt="team" />
+              </div>
+              <div className="col-12">
+                <img src="images/news-2.png" alt="team" />
+              </div>
+          </div>
           <div className="row justify-content-between align-items-start">
             <div className="col-lg-5 heading-main">
               <span className="badge rounded-pill text-bg-warning">Process</span>
@@ -186,6 +203,7 @@ const About = () => {
               <ContactForm />
             </div>
           </div>
+      
         </div>
       </section>
 

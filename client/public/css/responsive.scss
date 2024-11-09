@@ -1,7 +1,12 @@
-@media only screen and (min-width: 1024px) {
-    .container-fluid {
-        padding: 0 100px;
+@media only screen and (max-width: 1024px) {
+    header .nav-link::before { display: none; }
+    header .nav-link {
+        color: #fff;
+        font-size: 14px;
+        margin: 0 5px;
     }
+    .navbar-brand img { max-width: 200px; }
+    .footer-box.border-start { padding-left: 30px; }
 }
 @media screen and (max-width: 991px) {
     .navbar .navbar-collapse.menu-clicked {
@@ -51,55 +56,58 @@
     .user-name {
         display: none;
     }
-    .overlay { display: block; opacity: 0.5; }
+  /* Basic styles for the overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    z-index: 99; /* Ensure it's above other elements */
+    opacity: 0; /* Start with invisible */
+    visibility: hidden; /* Hidden by default */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+}
+
+/* Class to show the overlay */
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
 }
 
 @media screen and (max-width: 767px) {
-    .login-form {
-        min-height: auto;
-    }
-    .center-logo {
-        padding: 20px;
-    }
-    .login-form form {
-        padding: 20px;
-        min-width: 100%;
-    }
 
-    .table-searchbar {
-        padding-bottom: 10px;
-        flex-wrap: wrap;
-    }
-    .table-searchbar .serachbar {
-        flex: 100%;
-        max-width: 100%;
-        margin-top: 10px;
-        width: 100%;
-    }
-    .table-searchbar .dateFilter {
-        width: 100%;
-        margin-right: 0px !important;
-    }
-
-    .table-searchbar .show-item {
-        display: none !important;
-    }
-    .center-logo img {
-        max-width: 200px;
-    }
-    .content-inner {
-        padding: 20px 15px;
-    }
+    .bookNow .heading-main { padding: 50px 20px; }
     .header_call_btn { display: none; }
-    header { top: -77px; }
-    .banner-section .container, .banner-section.Small_banner .container {
-        top: 50px;
+    .Home-banner h1 { font-size: 45px; }
+    .Home-banner .container { bottom: 60px; }
+    .about-section {
+        padding: 40px 0;
     }
-    .banner-section .banner-img, .banner-section.Small_banner .banner-img {
-        height: 100%;
+    .heading-main h2 { font-size: 30px; flex-wrap: wrap; 
+        .ms-auto {
+            margin-left: 0 !important;
+            margin-top: 10px;
+        }
     }
-    .banner-section.Small_banner {
-        height: 450px;
+    .about-section h3 { margin: 10px 0; }
+    p { font-size: 14px; }
+    .ulservices li .uiInnner { padding: 15px; }
+    .ulservices { margin: 20px 0; }
+    .footer-box.border-start {
+        padding-left: 0;
+        border: 0 !important;
+        margin: 20px 10px;
     }
-    .banner-section { height: 600px; }
+    footer {      background-size: cover; }
+    .footer-box { padding-left: 10px; }
+    .BlogSection {
+        margin: 0 0;
+    }
+    .h-info-top { padding: 6px 0; }
+    .reelSlider .slick-slide { height: 60px; }
+    .reelsection { padding: 5px 0 !important; }
+    .reelSlider .slick-slide img {height: 25px;}
 }

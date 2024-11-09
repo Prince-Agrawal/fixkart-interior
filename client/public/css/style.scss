@@ -25,7 +25,9 @@ body {
   color: #333537;
   overflow-x: hidden;
   box-sizing: border-box;
-  font-size: 16px
+  font-size: 16px;
+  overflow-x: hidden;
+  
 }
 
 
@@ -211,6 +213,7 @@ main.is-sticky {
   justify-content: center;
   margin: 0;
   font-size: 14px;
+  align-items: center;
 }
 
 .header_call_btn {
@@ -554,7 +557,9 @@ main.is-sticky {
   }
 }
 
-
+.awards { margin-bottom: -10px;
+  img { width: 100%; }
+}
 .OurprojectSection {
   padding: 80px 0;
   position: relative;
@@ -564,7 +569,7 @@ main.is-sticky {
     height: 700px;
     content: '';
     left: 0;
-    top: 0;
+    top: -2px;
     background: url(../images/dark-bg.png);
     width: 100%;
     background-size: cover;
@@ -624,8 +629,8 @@ main.is-sticky {
   margin: auto;
 
   figure {
-    max-width: 270px;
-    max-height: 270px;
+    width: 270px;
+    height: 270px;
     border-radius: 100%;
     overflow: hidden;
     margin: auto;
@@ -768,6 +773,7 @@ textarea.form-control {
 
 footer {
   background: url(../images/footer-bg.png) no-repeat;
+  background-size: cover;
 }
 
 .footer-box {
@@ -930,7 +936,7 @@ footer {
   background-color: #efefef; }
 .team-box { text-align: center; padding: 0 20px; margin-bottom: 20px;
   figure { position: relative; overflow: hidden; border-radius: 10px; 
-    img { width: 100%; object-fit: cover; height: 350px;transition: transform 0.5s ease;  }
+    img { width: 100%; object-fit: cover; height: 400px;transition: transform 0.5s ease;  }
     span { position: absolute; right: 20px; bottom: 20px; background-color: var(--secondary); border-radius: 30px; font-size: 18px; color: #000; font-weight: 500; }
   }
   &:hover img {
@@ -946,3 +952,25 @@ footer {
 }
 
 .team-box figure span.bg-team-badge { background-color: #181818; color: #fff; font-weight: 400; font-size: 15px; }
+
+.container-login {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;      /* Vertically center */
+  min-height: 100vh;        /* Full viewport height */
+}
+
+.login-box {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  .form-group { margin-bottom: 20px; }
+  h2{
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+}

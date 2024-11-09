@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+
+        // Include the token in the headers
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/blogs`);
+        setBlogs(response.data);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  // Function to format date as "Month Day, Year"
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <>
       <section className="banner-section">
@@ -24,81 +49,36 @@ const Blog = () => {
       </section>
 
       <section class="BlogSection">
-         <div class="container">
-            <div class="row">
-                <div class="col-md-6 mb-5">
-                  <div className="BlogBox">
-                      <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                      <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                      <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                      <div className="blog-user">
-                      <img src="images/user.png" alt="Blog user" className="user"/>
-                      <span>fixinterio</span> | 
-                      <span>September 1, 2022</span>
-  
-                      <button type="button" className="btn btn-outline-primary ms-auto" to="/BlogDetail">Read More</button>
-                      
-                      </div>
+        <div class="container">
+          <div class="row">
+
+            {blogs.map((blog) => (
+              <div className="col-md-6 mb-5" key={blog._id}>
+                <div className="BlogBox">
+                  <img
+                    src={process.env.REACT_APP_API_BASE_URL + '/' + blog.imagePath || "/images/living-room.png"}
+                    alt="Blog"
+                    className="blog-image"
+                  />
+                  <h3>{blog.title}</h3>
+                  <p>{blog.description}</p>
+                  <div className="blog-user">
+                    <img
+                      src="/images/user.png"
+                      alt="Blog user"
+                      className="user"
+                    />
+                    <span>{blog.addedBy}</span> |
+                    <span>{formatDate(blog.createdAt)}</span>
+                    <Link to={`/blog/${blog._id}`} className="btn btn-outline-primary ms-auto">
+                      Read More
+                    </Link>
                   </div>
                 </div>
-                <div class="col-md-6 mb-5">
-                    <div className="BlogBox">
-                        <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                        <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                        <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                        <div className="blog-user">
-                        <img src="images/user.png" alt="Blog user" className="user"/>
-                        <span>fixinterio</span> | 
-                        <span>September 1, 2022</span>
-    
-                        <button type="button" className="btn btn-outline-primary ms-auto">Read More</button>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-5">
-                    <div className="BlogBox">
-                        <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                        <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                        <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                        <div className="blog-user">
-                        <img src="images/user.png" alt="Blog user" className="user"/>
-                        <span>fixinterio</span> | 
-                        <span>September 1, 2022</span>
-    
-                        <button type="button" className="btn btn-outline-primary ms-auto">Read More</button>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-5">
-                    <div className="BlogBox">
-                        <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                        <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                        <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                        <div className="blog-user">
-                        <img src="images/user.png" alt="Blog user" className="user"/>
-                        <span>fixinterio</span> | 
-                        <span>September 1, 2022</span>
-    
-                        <button type="button" className="btn btn-outline-primary ms-auto">Read More</button>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-5">
-                    <div className="BlogBox">
-                        <img src="images/living-room.png" alt="Blog" className="blog-image" />
-                        <h3>Trendy and Chic: Unveiling the New Elite Laminate Collection</h3>
-                        <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                        <div className="blog-user">
-                        <img src="images/user.png" alt="Blog user" className="user"/>
-                        <span>fixinterio</span> | 
-                        <span>September 1, 2022</span>
-    
-                        <button type="button" className="btn btn-outline-primary ms-auto">Read More</button>
-                        </div>
-                    </div>
-                  </div>
-             </div>
-         </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
     </>
   );
