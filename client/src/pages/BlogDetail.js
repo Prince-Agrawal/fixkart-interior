@@ -37,13 +37,10 @@ const BlogDetail = () => {
         <div className="container">
           <div className="banner-contant">
             <h1>
-              Trendy and Chic: Unveiling the New Elite Laminate Collection
+              {blog.title}
             </h1>
             <p className="mb-0">
-              Leverage agile frameworks to provide a robust synopsis for high
-              level overviews. Iterative approaches to corporate strategy
-              foster
-              collaborative thinking to further the overall value proposition.
+              {blog.description}
             </p>
           </div>
         </div>
@@ -51,49 +48,21 @@ const BlogDetail = () => {
 
       <section className="content-area py-4 BlogDetail">
         <div className="container">
-          <h2 class="mb-4">
-            Interior Designer in Pratap Nagar Jaipur: Transforming Spaces with
-            Style
-          </h2>
-          <h3>Introduction to Interior Designers</h3>
-          <p>
-            In the realm of home and office aesthetics, interior designers play
-            a pivotal role in crafting spaces that are not only visually
-            appealing but also functional and comfortable. Pratap Nagar, a
-            burgeoning locality in Jaipur, is witnessing a surge in the demand
-            for skilled interior designers who can elevate the ambiance of
-            residences and commercial establishments alike.
-          </p>
-          <h3>Importance of Interior Designers
-          </h3>
-          <p>Interior designers possess the expertise to harmonize various elements such as color schemes, furniture layouts, lighting, and décor accessories to create cohesive and inviting interiors. Their keen eye for detail and creative flair can breathe life into any space, transforming it into a reflection of the occupants' personality and style preferences.
-          </p>
-          <h3>Overview of Pratap Nagar, Jaipur
-          </h3>
-          <p>Pratap Nagar, located in the southern part of Jaipur, is a rapidly developing area known for its residential colonies, educational institutions, and commercial hubs. With a blend of modern infrastructure and traditional Rajasthani charm, Pratap Nagar offers a vibrant setting for individuals and businesses alike. </p>
-          <p>Interior designers possess the expertise to harmonize various elements such as color schemes, furniture layouts, lighting, and décor accessories to create cohesive and inviting interiors. Their keen eye for detail and creative flair can breathe life into any space, transforming it into a reflection of the occupants' personality and style preferences.
-          </p>
-          <h3>Demand for Interior Designers in Pratap Nagar
-          </h3>
-          <p>Interior designers possess the expertise to harmonize various elements such as color schemes, furniture layouts, lighting, and décor accessories to create cohesive and inviting interiors. Their keen eye for detail and creative flair can breathe life into any space, transforming it into a reflection of the occupants' personality and style preferences.
-          </p>
-          <h3>Qualities of a Good Interior Designer
-          </h3>
-          <p>Pratap Nagar, located in the southern part of Jaipur, is a rapidly developing area known for its residential colonies, educational institutions, and commercial hubs. With a blend of modern infrastructure and traditional Rajasthani charm, Pratap Nagar offers a vibrant setting for individuals and businesses alike. </p>
-          <img
-            src="/images/design-gallary.jpg"
-            className="BlogDetailImg rounded mb-4"
-            alt="Banner Image" />
-          <h3>Services Offered by Interior Designers in Pratap Nagar
-          </h3>
-          <p>Interior designers in Pratap Nagar offer a wide range of services tailored to meet the diverse needs of their clients. These services may include space planning, furniture selection, color consultations, lighting design, renovation planning, and project management.
-          </p>
-          <p>Interior designers possess the expertise to harmonize various elements such as color schemes, furniture layouts, lighting, and décor accessories to create cohesive and inviting interiors. Their keen eye for detail and creative flair can breathe life into any space, transforming it into a reflection of the occupants' personality and style preferences.
-          </p>
-          <h3>Demand for Interior Designers in Pratap Nagar
-          </h3>
-          <p>Interior designers possess the expertise to harmonize various elements such as color schemes, furniture layouts, lighting, and décor accessories to create cohesive and inviting interiors. Their keen eye for detail and creative flair can breathe life into any space, transforming it into a reflection of the occupants' personality and style preferences.
-          </p>
+          {blog.sections.map((section, index) => (
+            <div key={section._id} className="mb-4">
+              {section.h2 && <h2 class="mb-4">{section.h2}</h2>}
+              {section.h3 && <h3>{section.h3}</h3>}
+              {section.paragraph && <p>{section.paragraph}</p>}
+              {section.image && (
+                <img
+                  src={`${process.env.REACT_APP_API_BASE_URL}/${section.image}`}
+                  alt={`Section ${index + 1}`}
+                  className="BlogDetailImg rounded mb-4"
+                  style={{ maxWidth: "100%", height: "auto" }}
+                />
+              )}
+            </div>
+          ))}
         </div>
       </section>
       <BookNow />
