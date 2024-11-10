@@ -58,7 +58,7 @@ export const ViewBlog = () => {
                                             style={{ maxWidth: '200px', height: '200px' }}
                                         />
                                     )}
-                                    <h5 className="mt-4">Sections</h5>
+                                    {/* <h5 className="mt-4">Sections</h5> */}
                                     {blog.sections && blog.sections.length > 0 ? (
                                         blog.sections.map((section, index) => (
                                             <div key={section._id} className="mb-4">
