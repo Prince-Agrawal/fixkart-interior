@@ -32,7 +32,7 @@ export const ViewBlog = () => {
         fetchBlog();
     }, [id]);
 
-    if (loading) return <Loader/>;
+    if (loading) return <Loader />;
     if (error) return <p>{error}</p>;
 
     return (
@@ -57,6 +57,28 @@ export const ViewBlog = () => {
                                             className="img-fluid"
                                             style={{ maxWidth: '200px', height: '200px' }}
                                         />
+                                    )}
+                                    {/* <h5 className="mt-4">Sections</h5> */}
+                                    {blog.sections && blog.sections.length > 0 ? (
+                                        blog.sections.map((section, index) => (
+                                            <div key={section._id} className="mb-4">
+                                                {/* <h6>Section {index + 1}</h6> */}
+                                                {section.h2 && <h2>{section.h2}</h2>}
+                                                {section.h3 && <h3>{section.h3}</h3>}
+                                                {section.paragraph && <p>{section.paragraph}</p>}
+                                                {section.image && (
+                                                    <img
+                                                        src={`${process.env.REACT_APP_API_BASE_URL}/${section.image}`}
+                                                        alt={`Section ${index + 1}`}
+                                                        className="img-fluid"
+                                                        style={{ maxWidth: '150px', height: '150px' }}
+                                                    />
+                                                )}
+                                            </div>
+                                        ))
+                                    ) : (
+                                        // <p>No sections available.</p>
+                                        <p></p>
                                     )}
                                 </div>
                             ) : (

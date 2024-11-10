@@ -1,5 +1,5 @@
 // src/pages/Home.js
-import React, { useEffect, useState } from "react"; // Add useEffect here
+import React, { useEffect, useRef, useState } from "react"; // Add useEffect here
 import { ReelParthner } from "../components/ReelParthner";
 import DesignIdeas from "../components/DesignIdeas";
 import AOS from "aos";
@@ -16,7 +16,12 @@ import Loader from "../components/Loader";
 const Home = () => {
 
   const [loading, setLoading] = useState(true); // Add loading state
+  const contactFormRef = useRef(null); // Create a ref for ContactForm
 
+
+  const handleScrollToContact = () => {
+    contactFormRef.current?.scrollIntoView({ behavior: "smooth" }); // Scroll to ContactForm
+  };
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -36,7 +41,7 @@ const Home = () => {
               Dream home with <span>Fixkart interio.</span>
             </p>
           </h1>
-          <button className="btn btn-primary">Get Free Estimate</button>
+          <button className="btn btn-primary" onClick={handleScrollToContact}>Get Free Estimate</button>
         </div>
       </div>
 
@@ -242,7 +247,7 @@ const Home = () => {
 
       <Blogs />
 
-      <section className="about-section">
+      <section className="about-section" ref={contactFormRef}>
         <div className="container">
           <div className="row justify-content-between align-items-start">
             <div className="col-lg-6 col-xl-5 heading-main">

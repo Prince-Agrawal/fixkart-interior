@@ -5,16 +5,32 @@ const fs = require('fs')
 
 // Blog creation
 exports.createBlog = async (req, res) => {
-  const { title, description, addedBy } = req.body;
+  const { title, description, addedBy, sections } = req.body;
 
   try {
     // Check if a file is uploaded
     if (!req.file) {
-      return res.status(400).send('No file uploaded.');
+      return res.status(400).send('No main file uploaded.');
     }
 
-    // Get the uploaded file's path
+    // Get the uploaded main blog image's path
     const imagePath = req.file.path;
+
+    // Parse the sections if provided as a JSON string
+    let parsedSections = [];
+    if (sections) {
+      parsedSections = JSON.parse(sections).map((section, index) => {
+        // Handle base64 images in sections
+        if (section.image && section.image.startsWith('data:image')) {
+          const imageData = section.image.split(';base64,').pop();
+          const imageName = `section-${Date.now()}-${index}.png`;
+          const sectionImagePath = path.join('public/upload/blogs', imageName);
+          fs.writeFileSync(sectionImagePath, Buffer.from(imageData, 'base64'));
+          section.image = sectionImagePath; // Replace base64 with file path
+        }
+        return section;
+      });
+    }
 
     // Create a new blog document
     const newBlog = new Blog({
@@ -22,6 +38,7 @@ exports.createBlog = async (req, res) => {
       description,
       addedBy,
       imagePath,
+      sections: parsedSections, // Add sections to the blog
     });
 
     // Save the blog to the database
@@ -30,7 +47,7 @@ exports.createBlog = async (req, res) => {
     // Send a success response
     res.status(201).send(`Blog created successfully with ID: ${newBlog._id}`);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send('Server error');
   }
 };
@@ -79,10 +96,11 @@ exports.getBlogById = async (req, res) => {
   }
 };
 
+
 // Blog update
 exports.updateBlog = async (req, res) => {
   const { id } = req.params;
-  const { title, description, addedBy } = req.body;
+  const { title, description, addedBy, sections } = req.body;
 
   try {
     // Find the existing blog by ID
@@ -91,7 +109,7 @@ exports.updateBlog = async (req, res) => {
       return res.status(404).send('Blog not found.');
     }
 
-    // Handle file upload
+    // Handle file upload for the main blog image
     let imagePath = existingBlog.imagePath; // Default to existing image path
     if (req.file) {
       // Delete the old image file if it exists
@@ -106,11 +124,29 @@ exports.updateBlog = async (req, res) => {
       imagePath = req.file.path;
     }
 
+    // Parse the sections if provided as a JSON string
+    let parsedSections = [];
+    if (sections) {
+      parsedSections = JSON.parse(sections).map((section, index) => {
+        // If any section contains a base64 image, handle it here
+
+        if (section.image && section.image.startsWith('data:image')) {
+          const imageData = section.image.split(';base64,').pop();
+          const imageName = `section-${id}-${index}.png`;
+          const imagePath = path.join('public/upload/blogs', imageName);
+          fs.writeFileSync(imagePath, Buffer.from(imageData, 'base64'));
+          section.image = imagePath; // Replace base64 with path
+        }
+        return section;
+      });
+    }
+
     // Update the blog document
     existingBlog.title = title;
     existingBlog.description = description;
     existingBlog.addedBy = addedBy;
     existingBlog.imagePath = imagePath;
+    existingBlog.sections = parsedSections;
 
     // Save the updated blog to the database
     await existingBlog.save();

@@ -8,35 +8,69 @@ export const CreateBlog = () => {
         description: '',
         addedBy: '',
         file: null,
+        filePreview: null, // Add filePreview for main file input
+        sections: [],
     });
 
-    const [loading, setLoading] = useState(false); // State for loader
+    const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const fileInputRef = useRef();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData((prev) => ({
+            ...prev,
             [name]: value,
-        });
+        }));
 
-        setErrors({
-            ...errors,
+        setErrors((prev) => ({
+            ...prev,
             [name]: '',
-        });
+        }));
     };
 
     const handleFileChange = (e) => {
-        setFormData({
-            ...formData,
-            file: e.target.files[0],
-        });
+        const file = e.target.files[0];
+        setFormData((prev) => ({
+            ...prev,
+            file,
+            filePreview: file ? URL.createObjectURL(file) : null,
+        }));
 
-        setErrors({
-            ...errors,
+        setErrors((prev) => ({
+            ...prev,
             file: '',
-        });
+        }));
+    };
+
+    const handleSectionChange = (index, field, value) => {
+        const updatedSections = [...formData.sections];
+        updatedSections[index] = {
+            ...updatedSections[index],
+            [field]: value,
+        };
+        setFormData((prev) => ({ ...prev, sections: updatedSections }));
+    };
+
+
+    const handleSectionImageChange = (index, file) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const updatedSections = [...formData.sections];
+            updatedSections[index].image = reader.result;
+            setFormData({ ...formData, sections: updatedSections });
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const addSection = () => {
+        setFormData((prev) => ({
+            ...prev,
+            sections: [
+                ...prev.sections,
+                { h2: '', h3: '', paragraph: '', image: null, imagePreview: null },
+            ],
+        }));
     };
 
     const validateForm = () => {
@@ -53,26 +87,23 @@ export const CreateBlog = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!validateForm()) {
-            return;
-        }
+        if (!validateForm()) return;
 
         const data = new FormData();
         data.append('title', formData.title);
         data.append('description', formData.description);
         data.append('addedBy', formData.addedBy);
-        if (formData.file) {
-            data.append('file', formData.file);
-        }
+        data.append('sections', JSON.stringify(formData.sections));
+        if (formData.file) data.append('file', formData.file);
 
-        setLoading(true); // Set loading to true when starting the API call
+        setLoading(true);
 
         try {
             const token = localStorage.getItem('authToken');
             const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/blog`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
                 },
             });
 
@@ -83,22 +114,20 @@ export const CreateBlog = () => {
                 description: '',
                 addedBy: '',
                 file: null,
+                filePreview: null,
+                sections: [],
             });
             setErrors({});
-
-            if (fileInputRef.current) {
-                fileInputRef.current.value = '';
-            }
+            if (fileInputRef.current) fileInputRef.current.value = '';
         } catch (error) {
             console.error('Error creating blog:', error);
         } finally {
-            setLoading(false); // Set loading to false when the API call is complete
+            setLoading(false);
         }
     };
 
-
     return (
-        <body class="inner">
+        <body className="inner">
             <div className="admin-dashboard">
                 <div className="container mt-4">
                     <div className="card">
@@ -106,7 +135,7 @@ export const CreateBlog = () => {
                             <h2>Create New Blog</h2>
                         </div>
                         {loading ? (
-                            <Loader /> // Display the loader while loading is true
+                            <Loader />
                         ) : (
                             <form onSubmit={handleSubmit}>
                                 <div className="card-body">
@@ -157,8 +186,59 @@ export const CreateBlog = () => {
                                             onChange={handleFileChange}
                                             ref={fileInputRef}
                                         />
+                                        {formData.filePreview && (
+                                            <img
+                                                src={formData.filePreview}
+                                                alt="Main Preview"
+                                                className="img-fluid mt-2"
+                                                style={{ maxWidth: '200px' }}
+                                            />
+                                        )}
                                         {errors.file && <div className="text-danger">{errors.file}</div>}
                                     </div>
+
+                                    {/* Dynamic Sections */}
+                                    {formData.sections.map((section, index) => (
+                                        <div key={index} className="form-group mt-4">
+                                            <label>Section {index + 1}</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="H2 Heading"
+                                                value={section.h2}
+                                                onChange={(e) => handleSectionChange(index, 'h2', e.target.value)}
+                                            />
+                                            <input
+                                                type="text"
+                                                className="form-control mt-2"
+                                                placeholder="H3 Subheading"
+                                                value={section.h3}
+                                                onChange={(e) => handleSectionChange(index, 'h3', e.target.value)}
+                                            />
+                                            <textarea
+                                                className="form-control mt-2"
+                                                placeholder="Paragraph"
+                                                value={section.paragraph}
+                                                onChange={(e) => handleSectionChange(index, 'paragraph', e.target.value)}
+                                            />
+                                            <input
+                                                type="file"
+                                                className="form-control mt-2"
+                                                onChange={(e) => handleSectionImageChange(index, e.target.files[0])}
+                                            />
+                                            {section.image && (
+                                                <img
+                                                    src={section.image}
+                                                    alt={`Preview ${index}`}
+                                                    className="img-fluid mt-2"
+                                                    style={{ maxWidth: '200px' }}
+                                                />
+                                            )}
+                                        </div>
+                                    ))}
+                                    <button type="button" className="btn btn-secondary mt-3" onClick={addSection}>
+                                        Add Section
+                                    </button>
                                 </div>
                                 <div className="card-footer">
                                     <button type="submit" className="btn btn-primary">Submit</button>
@@ -169,6 +249,5 @@ export const CreateBlog = () => {
                 </div>
             </div>
         </body>
-
     );
 };

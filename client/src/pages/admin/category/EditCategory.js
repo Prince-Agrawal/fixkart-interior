@@ -71,16 +71,17 @@ export const EditCategory = () => {
 
     const handleFileChange = (e) => {
         const newFiles = Array.from(e.target.files);
-        const updatedFiles = [...newFiles, ...formData.files]; // Prepend new files to existing ones
+        // const updatedFiles = [...newFiles, ...formData.files]; // Prepend new files to existing ones
 
         setFormData({
             ...formData,
-            files: updatedFiles,
+            files: newFiles,
         });
 
         // Prepend new image previews
         const newPreviews = newFiles.map(file => URL.createObjectURL(file));
-        setImagePreviews([...newPreviews, ...imagePreviews]);
+        setImagePreviews([...newPreviews]);
+        // setImagePreviews([...newPreviews, ...imagePreviews]);
 
         setErrors({
             ...errors,
