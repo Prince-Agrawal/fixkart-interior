@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 export const EditCategory = () => {
     const { id } = useParams();
@@ -13,6 +14,7 @@ export const EditCategory = () => {
     });
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(true);
+    const [submitting, setSubmitting] = useState(false); // New state for submission
     const [error, setError] = useState(null);
     const [imagePreviews, setImagePreviews] = useState([]);
     const fileInputRef = useRef();
@@ -71,17 +73,13 @@ export const EditCategory = () => {
 
     const handleFileChange = (e) => {
         const newFiles = Array.from(e.target.files);
-        // const updatedFiles = [...newFiles, ...formData.files]; // Prepend new files to existing ones
-
         setFormData({
             ...formData,
             files: newFiles,
         });
 
-        // Prepend new image previews
         const newPreviews = newFiles.map(file => URL.createObjectURL(file));
         setImagePreviews([...newPreviews]);
-        // setImagePreviews([...newPreviews, ...imagePreviews]);
 
         setErrors({
             ...errors,
@@ -112,6 +110,8 @@ export const EditCategory = () => {
             return;
         }
 
+        setSubmitting(true); // Start submission loading
+
         const data = new FormData();
         data.append('categoryName', formData.categoryName);
         data.append('categoryDescription', formData.categoryDescription);
@@ -136,10 +136,12 @@ export const EditCategory = () => {
             navigate('/admin/categories');
         } catch (error) {
             console.error('Error updating category:', error);
+        } finally {
+            setSubmitting(false); // End submission loading
         }
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />; // Show loader when fetching data
     if (error) return <p>{error}</p>;
 
     return (
@@ -230,7 +232,9 @@ export const EditCategory = () => {
                                     {errors.files && <div className="text-danger">{errors.files}</div>}
                                 </div>
                                 <div className="card-footer">
-                                    <button type="submit" className="btn btn-primary">Update</button>
+                                    <button type="submit" className="btn btn-primary" disabled={submitting}>
+                                        {submitting ? 'Updating...' : 'Update'}
+                                    </button>
                                     <button
                                         type="button"
                                         className="btn btn-secondary ml-2"
