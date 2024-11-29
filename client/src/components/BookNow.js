@@ -12,7 +12,7 @@ const BookNow = () => {
                     Book Now
                 </span>
                 <h2 className="mb-3">Better Consult, Better Results</h2>
-                <p>Our software development agency has a growth up to 30% per each year. If you are result-oriented, not afraid to take initiative – drop us a note and join our team!</p>
+                <p>Our journey at Fixkart Interio has been one of growth, creativity, and excellence. With a 30% year-on-year growth, we are redefining interior solutions in Jaipur and beyond. If you are a result-driven professional, brimming with ideas and the initiative to make them happen – drop us a message and become a part of our dynamic team!"</p>
                 <button className="btn btn-primary p-2 pe-3 d-flex align-items-center mt-4"><img src="images/call.svg" alt="Call Booking" /> +91 7737966778</button>
               </div>
             </div>

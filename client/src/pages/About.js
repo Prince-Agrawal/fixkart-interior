@@ -74,89 +74,92 @@ const About = () => {
       <section className="ourTeams mt-5 pb-4">
         <div className="container">
           <div className="heading-main mb-5">
-            <span className="badge rounded-pill text-bg-warning">
-            Our team
-            </span>
+            <span className="badge rounded-pill text-bg-warning">Our team</span>
             <h2 className="d-flex align-items-end">
               Inspiration for home <br />
               interior designs
             </h2>
           </div>
           <div class="row justify-content-center">
-             <div class="col-md-4 mb-5">
-                <div class="team-box">
-                    <figure>
-                        <img src="images/team-1.png" alt="team" />
-                        <span class="badge">Founder at Company</span>
-                    </figure>
-                    <h3>Rs Rathore</h3>
-                </div>
-             </div>
-             <div class="col-md-4 mb-5">
-                <div class="team-box">
-                    <figure>
-                        <img src="images/team-2.png" alt="team" />
-                        <span class="badge bg-team-badge">Design Head & Project Head</span>
-                    </figure>
-                    <h3>Muskan</h3>
-                </div>
-             </div>
-             <div class="col-md-4 mb-5">
-                <div class="team-box">
-                    <figure>
-                        <img src="images/team-3.png" alt="team" />
-                        <span class="badge bg-team-badge">Interior Designer</span>
-                    </figure>
-                    <h3>Manshi</h3>
-                </div>
-             </div>
-             <div class="col-md-4 mb-5">
-                <div class="team-box">
-                    <figure>
-                        <img src="images/sher-singh.png" alt="team" />
-                        <span class="badge bg-team-badge">Site Manager</span>
-                    </figure>
-                    <h3>Sher Singh</h3>
-                </div>
-             </div>
-             <div class="col-md-4 mb-5">
-                <div class="team-box">
-                    <figure>
-                        <img src="images/team-5.png" alt="team" />
-                        <span class="badge bg-team-badge">Site Manager</span>
-                    </figure>
-                    <h3>Neerwardhan Singh</h3>
-                </div>
-             </div>
-             <div class="col-md-4 mb-5">
-                <div class="team-box">
-                    <figure>
-                        <img src="images/team-6.png" alt="team" />
-                        <span class="badge bg-team-badge">Head of Department (Carpentry)</span>
-                    </figure>
-                    <h3>Sahid Tyagi</h3>
-                </div>
-             </div>
+            <div class="col-md-4 mb-5">
+              <div class="team-box">
+                <figure>
+                  <img src="images/team-1.png" alt="team" />
+                  <span class="badge">Founder at Company</span>
+                </figure>
+                <h3>Rs Rathore</h3>
+              </div>
+            </div>
+            <div class="col-md-4 mb-5">
+              <div class="team-box">
+                <figure>
+                  <img src="images/team-2.png" alt="team" />
+                  <span class="badge bg-team-badge">
+                    Design Head & Project Head
+                  </span>
+                </figure>
+                <h3>Muskan</h3>
+              </div>
+            </div>
+            <div class="col-md-4 mb-5">
+              <div class="team-box">
+                <figure>
+                  <img src="images/team-3.png" alt="team" />
+                  <span class="badge bg-team-badge">Interior Designer</span>
+                </figure>
+                <h3>Manshi</h3>
+              </div>
+            </div>
+            <div class="col-md-4 mb-5">
+              <div class="team-box">
+                <figure>
+                  <img src="images/sher-singh.png" alt="team" />
+                  <span class="badge bg-team-badge">Site Manager</span>
+                </figure>
+                <h3>Sher Singh</h3>
+              </div>
+            </div>
+            <div class="col-md-4 mb-5">
+              <div class="team-box">
+                <figure>
+                  <img src="images/team-5.png" alt="team" />
+                  <span class="badge bg-team-badge">Site Manager</span>
+                </figure>
+                <h3>Neerwardhan Singh</h3>
+              </div>
+            </div>
+            <div class="col-md-4 mb-5">
+              <div class="team-box">
+                <figure>
+                  <img src="images/team-6.png" alt="team" />
+                  <span class="badge bg-team-badge">
+                    Head of Department (Carpentry)
+                  </span>
+                </figure>
+                <h3>Sahid Tyagi</h3>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
 
       <BookNow />
 
       <section className="about-section pt-4">
         <div className="container">
-        <div className="row mb-5">
-              <div className="col-12 mb-4">
-                <img src="images/news.png" alt="team" />
-              </div>
-              <div className="col-12">
-                <img src="images/news-2.png" alt="team" />
-              </div>
+          <div className="row mb-5">
+            <div className="col-12 mb-4">
+              <img src="images/news.png" alt="team" />
+            </div>
+            <div className="col-12">
+              <img src="images/news-2.png" alt="team" />
+            </div>
           </div>
           <div className="row justify-content-between align-items-start">
             <div className="col-lg-5 heading-main">
-              <span className="badge rounded-pill text-bg-warning">Process</span>
+              <span className="badge rounded-pill text-bg-warning">
+                Process
+              </span>
               <h2>Contact Us. It’s Easy.</h2>
               <p>
                 You don’t get trapped in such an annoyance thus we have been
@@ -203,11 +206,38 @@ const About = () => {
               <ContactForm />
             </div>
           </div>
-      
         </div>
       </section>
 
-
+      <section className="seoText">
+        <div className="container">
+          <h2>About Us</h2>
+          <p>
+            Welcome to Fixkart Interio, where your dream spaces come to life!
+            Founded by Ravi Rathore, a visionary with a passion for design and
+            functionality, Fixkart Interio is dedicated to transforming
+            interiors into works of art. With years of experience in the
+            industry, Ravi's journey began with a simple mission: to create
+            environments that combine aesthetic beauty with practical living
+            solutions.
+          </p>
+          <p>
+            At Fixkart Interio, we believe that every space has the potential to
+            inspire and elevate. Our team of skilled designers and craftsmen
+            work closely with clients to understand their unique style, needs,
+            and aspirations. We specialize in providing tailored interior
+            solutions, whether for homes, offices, or commercial spaces, always
+            with a commitment to quality, innovation, and client satisfaction.
+          </p>
+          <p>
+            Our designs are driven by creativity and functionality, ensuring
+            that each project not only looks stunning but also fits seamlessly
+            into your lifestyle. At Fixkart Interio, we’re not just about
+            interiors; we’re about creating spaces that tell a story – your
+            story. Let us help you shape your dream space today!
+          </p>
+        </div>
+      </section>
     </>
   );
 };
