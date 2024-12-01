@@ -1,5 +1,5 @@
 // src/pages/Home.js
-import React, { useEffect, useRef, useState } from "react"; // Add useEffect here
+import React, { useEffect, useState } from "react"; // Add useEffect here
 import { ReelParthner } from "../components/ReelParthner";
 import DesignIdeas from "../components/DesignIdeas";
 import AOS from "aos";
@@ -14,14 +14,7 @@ import Awards from "../components/Awards";
 
 import Loader from "../components/Loader";
 const Home = () => {
-
   const [loading, setLoading] = useState(true); // Add loading state
-  const contactFormRef = useRef(null); // Create a ref for ContactForm
-
-
-  const handleScrollToContact = () => {
-    contactFormRef.current?.scrollIntoView({ behavior: "smooth" }); // Scroll to ContactForm
-  };
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -33,7 +26,7 @@ const Home = () => {
   return (
     <>
       <div className="Home-banner">
-         <HomeBannerSlider/>
+        <HomeBannerSlider />
         <div className="container" data-aos="fade-up">
           <h1 className="pulse-animation">
             Let’s design your
@@ -41,7 +34,7 @@ const Home = () => {
               Dream home with <span>Fixkart interio.</span>
             </p>
           </h1>
-          <button className="btn btn-primary" onClick={handleScrollToContact}>Get Free Estimate</button>
+          <button className="btn btn-primary">Get Free Estimate</button>
         </div>
       </div>
 
@@ -56,13 +49,20 @@ const Home = () => {
               <span className="badge rounded-pill text-bg-warning">
                 About Us
               </span>
-              <h2>We Are Perfect Team For Home Interior Decoration</h2>
+              <h2>
+                Welcome to Fixkart Interio – Jaipur's Premier Interior Design
+                Destination
+              </h2>
               <h3>
-                We create experiences and build products that make business grow
+                Are you looking to transform your home, office, or commercial
+                space in Jaipur?
               </h3>
               <p>
-                Get help from Alex Moore, a professional business coach with
-                advanced experience on growth and business scaling.
+                Fixkart Interio is a leading interior design company
+                specializing in modern, luxury, and affordable designs tailored
+                to your needs. Our experienced interior designers and decorators
+                are dedicated to creating spaces that reflect your unique style,
+                blending functionality and aesthetics seamlessly.
               </p>
 
               <ul className="ulservices">
@@ -101,9 +101,9 @@ const Home = () => {
               Design Ideas
             </span>
             <h2 className="d-flex align-items-end">
-              Inspiration for home <br />
-              interior designs
-              <button className="btn btn-primary ms-auto">More Designs</button>
+              Our Interior Design <br />
+              Services in Jaipur
+              {/* <button className="btn btn-primary ms-auto">More Designs</button> */}
             </h2>
           </div>
           <DesignIdeas />
@@ -242,12 +242,12 @@ const Home = () => {
       <CompanyNumbers />
 
       <ClientFeedback />
-     
+
       <BookNow />
 
       <Blogs />
 
-      <section className="about-section" ref={contactFormRef}>
+      <section className="about-section">
         <div className="container">
           <div className="row justify-content-between align-items-start">
             <div className="col-lg-6 col-xl-5 heading-main">
@@ -256,7 +256,8 @@ const Home = () => {
               </span>
               <h2>Contact Us. It’s Easy.</h2>
               <p>
-              You don’t get trapped in such an annoyance thus we have been briskly working as interior decorators in Jaipur.
+                You don’t get trapped in such an annoyance thus we have been
+                briskly working as interior decorators in Jaipur.
               </p>
 
               <ul className="Contact_process mt-4 pt-2">
@@ -302,7 +303,122 @@ const Home = () => {
         </div>
       </section>
 
-      
+      <section className="seoText">
+        <div className="container">
+          <h2>
+            Welcome to Fixkart Interio – Jaipur's Premier Interior Design
+            Destination
+          </h2>
+          <p>
+            Are you looking to transform your home, office, or commercial space
+            in Jaipur? Fixkart Interio is a leading interior design company
+            specializing in modern, luxury, and affordable designs tailored to
+            your needs. Our experienced interior designers and decorators are
+            dedicated to creating spaces that reflect your unique style,
+            blending functionality and aesthetics seamlessly.
+          </p>
+          <h3>Our Interior Design Services in Jaipur</h3>
+          <h4>1. Residential Interior Designers in Jaipur</h4>
+          <p>
+            At Fixkart Interio, we specialize in home interior design, making
+            your vision a reality. From living rooms to bedrooms, modular
+            kitchens to bathrooms, we create personalized interiors that make
+            your home feel truly yours. Whether you're interested in modern
+            minimalism or traditional Jaipur-inspired designs, we craft
+            interiors that blend beauty with comfort.
+          </p>
+          <h4>2. Commercial Interior Design</h4>
+          <p>
+            Our expertise in commercial interior design has earned us a
+            reputation as Jaipur’s top choice for offices, retail spaces,
+            restaurants, and more. Our commercial interior designers focus on
+            enhancing your brand identity and customer experience through
+            creative, functional spaces that inspire productivity and appeal to
+            your clientele.
+          </p>
+          <h4>3. Luxury Interior Designers in Jaipur</h4>
+          <p>
+            For those seeking opulence, our luxury interior design services add
+            a touch of elegance to every corner. Using the finest materials and
+            exclusive designs, we transform spaces into sophisticated settings
+            that exude style and exclusivity.
+          </p>
+          <h4>4. Affordable Interior Design Solutions</h4>
+          <p>
+            Fixkart Interio is committed to making quality design accessible to
+            everyone. Our affordable interior design packages provide
+            high-quality solutions that fit within your budget, without
+            compromising on style or functionality.
+          </p>
+          <h4>Turnkey Interior Projects in Jaipur</h4>
+          <p>
+            We handle every aspect of your interior design project from concept
+            to completion with our turnkey interior solutions. Our skilled team
+            manages all the details, including planning, sourcing, installation,
+            and finishing touches, ensuring a smooth and stress-free process for
+            you.
+          </p>
+
+          <h3>Specialized Interior Design Services</h3>
+          <h4>Modular Kitchen Design in Jaipur</h4>
+          <p>
+            Transform your kitchen with Fixkart Interio's modular kitchen
+            designs, combining efficient layouts with aesthetic appeal. We
+            provide fully customizable kitchen setups to maximize space and
+            function, tailored to match your cooking habits and personal taste.
+          </p>
+          <h4>Living Room Interior Design</h4>
+          <p>
+            Create a living room that serves as the heart of your home. Our
+            designers incorporate stylish furnishings, custom layouts, and
+            mood-enhancing lighting to craft a living room that’s both welcoming
+            and functional.
+          </p>
+          <h4>Custom Furniture Design</h4>
+          <p>
+            From bespoke couches to custom dining tables, Fixkart Interio offers
+            custom furniture design that complements your interior and adds
+            unique character to each room.
+          </p>
+          <h4>3D Interior Design & Visualization</h4>
+          <p>
+            Experience a virtual tour of your space before we even start. Our 3D
+            interior design services provide a realistic preview, allowing you
+            to see and make adjustments to every detail in your design.
+          </p>
+
+          <h3>Why Choose Fixkart Interio?</h3>
+          <ul>
+            <li>
+              <b>● Expert Team: </b> Our interior designers in Jaipur bring
+              years of experience and innovative solutions to each project.
+            </li>
+            <li>
+              <b>● Tailored Solutions: </b> From modern interiors to traditional
+              Jaipur designs, we customize every element to fit your style and
+              requirements.
+            </li>
+            <li>
+              <b>● Eco-Friendly Practices: </b> As eco-friendly interior
+              designers in Jaipur, we incorporate sustainable materials and
+              energy-efficient solutions to create green interiors.
+            </li>
+            <li>
+              <b>● End-to-End Service: </b> Our comprehensive services handle
+              every detail, from concept to installation, ensuring a smooth and
+              seamless experience.
+            </li>
+          </ul>
+          <h3>Transform Your Space with Fixkart Interio</h3>
+          <p>
+            Whether you’re renovating, building from scratch, or simply
+            refreshing your interiors, Fixkart Interio is here to help. Our team
+            combines creativity and technical expertise to bring your ideas to
+            life. Contact us today for a consultation and let’s start designing
+            the space you’ve always dreamed of.
+          </p>
+        </div>
+      </section>
     </>
   );
 };

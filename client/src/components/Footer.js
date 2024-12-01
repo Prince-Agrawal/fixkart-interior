@@ -35,7 +35,7 @@ const Footer = () => {
                     <img src="images/youtube.svg" alt="Twetter" />
                   </a>
                 </div>
-                <button className="btn btn-white" callto="+91 78782 41849">Book an Appoinment</button>
+                <div className="header_call_btn d-inline-flex"><img src="/images/call.svg" alt="Call Icon" /> +91 78782 41849</div>
               </div>
             </div>
             <div className="col-md-3">
@@ -47,13 +47,13 @@ const Footer = () => {
                     <Link to="/about" onClick={scrollToTop}>About us</Link>
                   </li>
                   <li>
-                    <Link to="/contact" onClick={scrollToTop}>Privacy policy</Link>
+                    <Link to="/privacy-policy" onClick={scrollToTop}>Privacy policy</Link>
                   </li>
                   <li>
                     <Link to="/contact" onClick={scrollToTop}>Contacts</Link>
                   </li>
                   <li>
-                    <Link to="/contact" onClick={scrollToTop}>Payment</Link>
+                    <Link to="/terms-and-conditions" onClick={scrollToTop}>Terms & Conditions</Link>
                   </li>
                   <li>
                     <Link to="/blog" onClick={scrollToTop}>Our Blog</Link>
@@ -95,6 +95,9 @@ const Footer = () => {
               </div>
             </div>
           </div>
+          <div className="text-center copyright">
+        Copyright © 2024 Modular Kitchen Jaipur
+        </div>
         </div>
       </footer>
     </>
