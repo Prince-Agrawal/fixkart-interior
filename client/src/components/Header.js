@@ -124,7 +124,7 @@ export const Header = () => {
                             </ul>
                         </div>
                         <div className="header_call_btn">
-                            <img src="/images/call.svg" alt="Call Icon"/> +91 78782 41849
+                            <img src="/images/call.svg" alt="Call Icon"/> +91 7737966778
                         </div>
                     </div>
                 </nav>

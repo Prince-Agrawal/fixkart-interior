@@ -35,7 +35,7 @@ const Footer = () => {
                     <img src="images/youtube.svg" alt="Twetter" />
                   </a>
                 </div>
-                <div className="header_call_btn d-inline-flex"><img src="/images/call.svg" alt="Call Icon" /> +91 78782 41849</div>
+                <div className="header_call_btn d-inline-flex"><img src="/images/call.svg" alt="Call Icon" /> +91 7737966778</div>
               </div>
             </div>
             <div className="col-md-3">
@@ -96,7 +96,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="text-center copyright">
-        Copyright © 2024 Modular Kitchen Jaipur
+        Copyright © 2024 Fixkart interio
         </div>
         </div>
       </footer>
