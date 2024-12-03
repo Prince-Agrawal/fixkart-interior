@@ -84,7 +84,7 @@ export const Header = () => {
                 <section className='header_top_info'>
                     <div className='container'>
                         <p className='h-info-top'>
-                            Enjoy Flat 20% Off On Complete Fixkart Interio. Valid Till July 31st, 2024. <span className='badge badge-outline'>Get Offer</span>
+                        FLAT 5% off Online design consultancy <span className='badge badge-outline'>Get Offer</span>
                         </p>
                     </div>
                 </section>
