@@ -27,7 +27,8 @@ import { CreateCategory } from '../pages/admin/category/CreateCategory';
 import { EditCategory } from '../pages/admin/category/EditCategory';
 import { ViewCategory } from '../pages/admin/category/ViewCategory';
 import CategoryDetail from '../pages/CategoryDetail';
-
+import TermsAndConditions from '../pages/TermsAndConditions';
+import PrivacyPolicy from '../pages/PrivacyPolicy';
 
 const AppRoutes = () => {
   return (
@@ -105,6 +106,8 @@ const RouteWrapper = () => {
         {/* <Route path="/design-gallery" element={<DesignGallery />} /> */}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
         {/* Dynamic Category Routes */}
         {Array.isArray(categories) && categories.map((category) => {
@@ -131,6 +134,7 @@ const RouteWrapper = () => {
           path="/admin/contacts"
           element={isAuthenticated ? <ContactList /> : <Navigate to="/admin/login" />}
         />
+        
         <Route
           path="/admin/blogs"
           element={isAuthenticated ? <BlogList /> : <Navigate to="/admin/login" />}

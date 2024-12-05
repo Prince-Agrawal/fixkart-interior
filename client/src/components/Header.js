@@ -66,6 +66,17 @@ export const Header = () => {
         }
     };
 
+    // Close the menu and hide overlay when a nav link is clicked on mobile
+    const handleLinkClick = (menu) => {
+        setActiveMenu(menu);
+        setShowOverlay(false);
+        const navbarCollapse = document.getElementById('navbarSupportedContent');
+        if (navbarCollapse) {
+            navbarCollapse.classList.remove('show');
+        }
+        scrollToTop();
+    };
+
     return (
         <>
             <header className={extraClass}>
@@ -73,13 +84,13 @@ export const Header = () => {
                 <section className='header_top_info'>
                     <div className='container'>
                         <p className='h-info-top'>
-                            Enjoy Flat 20% Off On Complete Fixkart Interio. Valid Till July 31st, 2024. <span className='badge badge-outline'>Get Offer</span>
+                        FLAT 5% off Online design consultancy <span className='badge badge-outline'>Get Offer</span>
                         </p>
                     </div>
                 </section>
                 <nav className="navbar navbar-expand-lg">
                     <div className="container">
-                        <Link className="navbar-brand" to="/" onClick={scrollToTop}>
+                        <Link className="navbar-brand" to="/" onClick={() => handleLinkClick('home')}>
                             <img src="/images/logo.svg" alt="logo"/>
                         </Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={toggleOverlay}>
@@ -87,34 +98,33 @@ export const Header = () => {
                         </button>
 
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <a href="#" className="d-block d-lg-none mb-2"></a>
                             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                                 <li className={`nav-item ${activeMenu === 'home' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/" onClick={() => { setActiveMenu('home'); scrollToTop(); }}>
+                                    <Link className="nav-link" to="/" onClick={() => handleLinkClick('home')}>
                                         Home
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${activeMenu === 'about' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/about" onClick={() => { setActiveMenu('about'); scrollToTop(); }}>
+                                    <Link className="nav-link" to="/about" onClick={() => handleLinkClick('about')}>
                                         About
                                     </Link>
                                 </li>
                                 {categories.slice(0, 2).map(category => (
                                     <li key={category._id} className={`nav-item ${activeMenu === category.categorySlug ? 'active' : ''}`}>
-                                        <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => { setActiveMenu(category.categorySlug); scrollToTop(); }}>
+                                        <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => handleLinkClick(category.categorySlug)}>
                                             {category.categoryName}
                                         </Link>
                                     </li>
                                 ))}
                                 <li className={`nav-item ${activeMenu === 'blog' ? 'active' : ''}`}>
-                                    <Link className="nav-link" to="/blog" onClick={() => { setActiveMenu('blog'); scrollToTop(); }}>
+                                    <Link className="nav-link" to="/blog" onClick={() => handleLinkClick('blog')}>
                                         Blog
                                     </Link>
                                 </li>
                             </ul>
                         </div>
                         <div className="header_call_btn">
-                            <img src="/images/call.svg" alt="Call Icon"/> +91 78782 41849
+                            <img src="/images/call.svg" alt="Call Icon"/> +91 7737966778
                         </div>
                     </div>
                 </nav>

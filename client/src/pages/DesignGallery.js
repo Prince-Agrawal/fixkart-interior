@@ -32,6 +32,7 @@ const DesignGallery = () => {
       <section className="content-area py-4">
         <div className="container">
           <h2>Fixkart Interio Design Gallery</h2>
+          <h3>Explore Stunning Interiors by Fixkart Interio</h3>
           <p>
             Welcome to the Fixkart Interio Design Gallery, where inspiration
             meets innovation. Explore our curated collection of exquisite

@@ -1030,4 +1030,24 @@ footer {
   font-weight: 700;
   margin-bottom: 20px;
 }
+
+.seoText {
+  background-color: #efefef;
+  padding: 50px 0;
+}
+
+.seoText ul {
+  margin-bottom: 30px;
+}
+
+.seoText ul li {
+  margin-bottom: 5px;
+}
+
+.copyright {
+  padding: 10px 0;
+  color: #fff;
+  font-size: 14px;
+  border-top: 1px solid #606060;
+}
 /*# sourceMappingURL=style.css.map */

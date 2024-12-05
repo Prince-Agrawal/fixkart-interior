@@ -634,4 +634,8 @@
 body.inner {
   padding-left: 280px;
 }
+
+.mr-2 {
+  margin-right: 10px !important;
+}
 /*# sourceMappingURL=style-admin.css.map */
