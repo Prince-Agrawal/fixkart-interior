@@ -33,6 +33,10 @@ export const Header = () => {
             setActiveMenu('about');
         } else if (path === '/blog') {
             setActiveMenu('blog');
+        } else if (path === '/design-gallery') {
+            setActiveMenu('design-gallery');
+        } else if (path === '/modular-kitchen') {
+            setActiveMenu('modular-kitchen');
         } else {
             const category = categories.find(cat => path === `/${cat.categorySlug}`);
             setActiveMenu(category ? category.categorySlug : '');
@@ -109,13 +113,23 @@ export const Header = () => {
                                         About
                                     </Link>
                                 </li>
-                                {categories.slice(0, 2).map(category => (
+                                <li className={`nav-item ${activeMenu === 'design-gallery' ? 'active' : ''}`}>
+                                    <Link className="nav-link" to="/design-gallery" onClick={() => handleLinkClick('design-gallery')}>
+                                    Design Gallery
+                                    </Link>
+                                </li>
+                                <li className={`nav-item ${activeMenu === 'modular-kitchen' ? 'active' : ''}`}>
+                                    <Link className="nav-link" to="/modular-kitchen" onClick={() => handleLinkClick('modular-kitchen')}>
+                                    Modular Kitchen
+                                    </Link>
+                                </li>
+                                {/* {categories.slice(0, 2).map(category => (
                                     <li key={category._id} className={`nav-item ${activeMenu === category.categorySlug ? 'active' : ''}`}>
                                         <Link className="nav-link" to={`/${category.categorySlug}`} onClick={() => handleLinkClick(category.categorySlug)}>
                                             {category.categoryName}
                                         </Link>
                                     </li>
-                                ))}
+                                ))} */}
                                 <li className={`nav-item ${activeMenu === 'blog' ? 'active' : ''}`}>
                                     <Link className="nav-link" to="/blog" onClick={() => handleLinkClick('blog')}>
                                         Blog

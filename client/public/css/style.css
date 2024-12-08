@@ -935,8 +935,12 @@ footer {
 }
 
 .content-area h2 {
-  font-size: 24px;
+  font-size: 26px;
   margin-top: 30px;
+}
+
+.content-area h3 {
+  font-size: 20px;
 }
 
 .ourTeams {

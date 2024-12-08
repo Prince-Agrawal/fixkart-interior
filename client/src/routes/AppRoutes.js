@@ -29,6 +29,8 @@ import { ViewCategory } from '../pages/admin/category/ViewCategory';
 import CategoryDetail from '../pages/CategoryDetail';
 import TermsAndConditions from '../pages/TermsAndConditions';
 import PrivacyPolicy from '../pages/PrivacyPolicy';
+import ModularKitchen from '../pages/ModularKitchen';
+
 
 const AppRoutes = () => {
   return (
@@ -103,7 +105,8 @@ const RouteWrapper = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/design-gallery" element={<DesignGallery />} /> */}
+        <Route path="/design-gallery" element={<DesignGallery />} /> 
+        <Route path="/modular-kitchen" element={<ModularKitchen />} /> 
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

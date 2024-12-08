@@ -3,9 +3,7 @@ import { ContactForm } from "../components/ContactForm";
 import BookNow from "../components/BookNow";
 
 const DesignGallery = () => {
-  useEffect(() => {
-   
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -34,62 +32,108 @@ const DesignGallery = () => {
           <h2>Fixkart Interio Design Gallery</h2>
           <h3>Explore Stunning Interiors by Fixkart Interio</h3>
           <p>
-            Welcome to the Fixkart Interio Design Gallery, where inspiration
-            meets innovation. Explore our curated collection of exquisite
-            designs and projects that showcase our passion for creativity and
-            attention to detail. Each project in our gallery reflects our
-            commitment to delivering exceptional interior design solutions
-            tailored to our clients' unique preferences and lifestyles.
+            Welcome to the Fixkart Interio Design Gallery! Here, we showcase a
+            wide range of our projects, from modern minimalistic spaces to
+            luxurious, classic interiors. Each project represents our commitment
+            to high-quality craftsmanship, innovative design, and client
+            satisfaction.
           </p>
 
-          <h2>Residential Projects</h2>
+          <h3>Why Choose Fixkart Interio?</h3>
           <p>
-            Discover our stunning residential projects, ranging from cozy
-            apartment makeovers to luxurious home renovations. Immerse yourself
-            in the elegance of our contemporary designs, the warmth of our
-            traditional styles, and the functionality of our modern living
-            spaces. Our residential designs blend aesthetics with functionality,
-            creating homes that are both visually appealing and comfortable.
+            At Fixkart Interio, we believe that every space deserves a unique
+            touch. Our team of experienced designers and skilled craftsmen work
+            together to create functional, beautiful interiors that match your
+            lifestyle and taste. From residential homes to commercial spaces, we
+            have the expertise to transform any environment into a masterpiece.
           </p>
 
-          <h2>Commercial Spaces</h2>
+          <h2>Residential Interiors</h2>
           <p>
-            Experience the transformation of commercial spaces through our
-            portfolio of office designs, retail makeovers, and hospitality
-            projects. From sleek and professional office environments to
-            inviting and customer-friendly retail spaces, our commercial designs
-            are tailored to enhance productivity, brand identity, and customer
-            engagement.
+            Explore our residential interior projects, including cozy
+            apartments, spacious villas, and elegant family homes. Whether
+            you're looking for a contemporary open-concept layout or a cozy,
+            rustic feel, Fixkart Interio has a design for every preference.
           </p>
+          <ul>
+            <li>
+              ● Modern Living Rooms – Elegant furniture, contemporary lighting,
+              and open spaces.{" "}
+            </li>
+            <li>
+              {" "}
+              ● Luxury Bedrooms – Tailored furniture, warm lighting, and a
+              peaceful ambiance.{" "}
+            </li>
+            <li>
+              {" "}
+              ● Customized Kitchens – Functional, stylish, and equipped with the
+              latest trends in kitchen design.
+            </li>
+          </ul>
 
-          <h2>Custom Creations</h2>
+          <h2>Commercial Interiors</h2>
           <p>
-            In our Design Gallery, you'll also find a showcase of our custom
-            creations, including bespoke furniture, unique fixtures, and
-            personalized design elements. Our team of skilled craftsmen and
-            designers collaborate to bring your vision to life, creating
-            one-of-a-kind pieces that add character and charm to your space.
+            Our portfolio also features stunning commercial interiors for
+            offices, cafes, showrooms, and more. We understand the unique
+            requirements of each business and tailor our designs to enhance
+            productivity and customer experience.
           </p>
+          <ul>
+            <li>
+              ● Office Spaces – Ergonomic furniture, collaborative workspaces,
+              and efficient layouts.
+            </li>
+            <li>
+              {" "}
+              ● Retail Showrooms – Unique displays, customer-friendly layouts,
+              and impactful designs.
+            </li>
+            <li>
+              {" "}
+              ● Cafes and Restaurants – Inviting atmospheres, custom lighting,
+              and furniture to create memorable dining experiences.
+            </li>
+          </ul>
 
-          <h2>Expert Curation</h2>
+          <h2>Modular Furniture and Custom Design</h2>
           <p>
-            Our design gallery is constantly updated with the latest trends,
-            innovative concepts, and timeless classics. We take pride in our
-            meticulous curation process, ensuring that every design featured
-            represents the pinnacle of style, functionality, and craftsmanship.
+            Fixkart Interio specializes in modular furniture that is as stylish
+            as it is functional. Each piece is customized to fit seamlessly into
+            your space, making it ideal for both small and large areas.
           </p>
-
-          <h2>Get Inspired</h2>
+          <ul>
+            <li>
+              ● Custom Wardrobes – Maximizing storage with elegant designs.{" "}
+            </li>
+            <li>
+              {" "}
+              ● Modular Kitchens – Personalized layouts, cabinets, and fittings.{" "}
+            </li>
+            <li>
+              {" "}
+              ● Customized Shelving and Storage Solutions – Designed to optimize
+              space.
+            </li>
+          </ul>
+          <h2>Our Approach</h2>
           <p>
-            Browse through our gallery for inspiration and ideas to fuel your
-            imagination. Let our designs ignite your creativity and guide you in
-            envisioning your ideal living or working space. If you're ready to
-            embark on your design journey, our team is here to help you turn
-            your vision into reality.
+            Our design process begins with understanding your vision, space, and
+            functional requirements. We use a combination of advanced 3D
+            renderings and detailed floor plans to help you visualize your dream
+            space. With Fixkart Interio, you’re involved every step of the way,
+            ensuring a result that aligns perfectly with your needs.
           </p>
           <p>
             Experience the art of transformation with Fixkart Interio. Let us
             create a space that reflects your style and enhances your lifestyle.
+          </p>
+          <h3>Get Inspired!</h3>
+          <p>
+            Scroll through our gallery to find inspiration for your next
+            project. Each image tells a story of design creativity, attention to
+            detail, and a commitment to excellence. Let Fixkart Interio bring
+            your vision to life
           </p>
         </div>
       </section>
@@ -100,7 +144,9 @@ const DesignGallery = () => {
         <div className="container">
           <div className="row justify-content-between align-items-start">
             <div className="col-lg-5 heading-main">
-              <span className="badge rounded-pill text-bg-warning">Process</span>
+              <span className="badge rounded-pill text-bg-warning">
+                Process
+              </span>
               <h2>Contact Us. It’s Easy.</h2>
               <p>
                 You don’t get trapped in such an annoyance thus we have been
