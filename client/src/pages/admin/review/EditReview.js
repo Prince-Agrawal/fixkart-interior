@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 export const EditReview = () => {
     const { id } = useParams(); // Extract the review ID from the URL parameters
@@ -12,15 +13,16 @@ export const EditReview = () => {
         file: null,
     });
     const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); // Loading state for data fetching
+    const [submitting, setSubmitting] = useState(false); // Loading state for form submission
     const [error, setError] = useState(null);
     const [imagePreview, setImagePreview] = useState(''); // State for image preview
     const fileInputRef = useRef();
 
     useEffect(() => {
         const fetchReview = async () => {
+            setLoading(true);
             try {
-                // Get the token from localStorage
                 const token = localStorage.getItem('authToken');
 
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/reviews/${id}`, {
@@ -34,11 +36,12 @@ export const EditReview = () => {
                     reviewerLocation: response.data.reviewerLocation,
                     file: null,
                 });
-                setImagePreview(response.data.imagePath ? `${process.env.REACT_APP_API_BASE_URL}/${response.data.imagePath}` : ''); // Set image preview URL
-                setLoading(false);
+                setImagePreview(response.data.imagePath ? `${process.env.REACT_APP_API_BASE_URL}/${response.data.imagePath}` : '');
+                setError(null);
             } catch (error) {
                 console.error('Error fetching review details:', error);
                 setError('Failed to load review details.');
+            } finally {
                 setLoading(false);
             }
         };
@@ -66,7 +69,6 @@ export const EditReview = () => {
             file,
         });
 
-        // Update image preview if file selected
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -74,7 +76,7 @@ export const EditReview = () => {
             };
             reader.readAsDataURL(file);
         } else {
-            setImagePreview(''); // Clear preview if no file selected
+            setImagePreview('');
         }
 
         setErrors({
@@ -108,25 +110,26 @@ export const EditReview = () => {
             data.append('file', formData.file);
         }
 
+        setSubmitting(true);
         try {
-            // Get the token from localStorage
             const token = localStorage.getItem('authToken');
-
             await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/reviews/${id}`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}` // Include the token in the headers
+                    'Authorization': `Bearer ${token}`
                 },
             });
 
             console.log('Review updated successfully');
-            navigate('/admin/reviews'); // Redirect to the review list after successful update
+            navigate('/admin/reviews');
         } catch (error) {
             console.error('Error updating review:', error);
+        } finally {
+            setSubmitting(false);
         }
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />;
     if (error) return <p>{error}</p>;
 
     return (
@@ -206,7 +209,9 @@ export const EditReview = () => {
                                     {errors.file && <div className="text-danger">{errors.file}</div>}
                                 </div>
                                 <div className="card-footer">
-                                    <button type="submit" className="btn btn-primary">Update</button>
+                                    <button type="submit" className="btn btn-primary" disabled={submitting}>
+                                        {submitting ? 'Updating...' : 'Update'}
+                                    </button>
                                     <button
                                         type="button"
                                         className="btn btn-secondary ml-2"

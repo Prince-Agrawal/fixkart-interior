@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 export const CategoryList = () => {
     const navigate = useNavigate();
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(false); // Loader state
+    const [deleteLoading, setDeleteLoading] = useState(false); // Loader state for delete action
 
     useEffect(() => {
         const fetchCategories = async () => {
+            setLoading(true); // Start loader
             try {
                 const token = localStorage.getItem('authToken');
 
@@ -20,6 +24,8 @@ export const CategoryList = () => {
                 setCategories(response.data);
             } catch (error) {
                 console.error('Error fetching categories:', error);
+            } finally {
+                setLoading(false); // Stop loader
             }
         };
 
@@ -41,6 +47,7 @@ export const CategoryList = () => {
             return;
         }
 
+        setDeleteLoading(true); // Start loader for delete action
         try {
             const token = localStorage.getItem('authToken');
 
@@ -55,6 +62,8 @@ export const CategoryList = () => {
             console.log('Category deleted successfully');
         } catch (error) {
             console.error('Error deleting category:', error);
+        } finally {
+            setDeleteLoading(false); // Stop loader for delete action
         }
     };
 
@@ -74,48 +83,52 @@ export const CategoryList = () => {
                             </button>
                         </div>
                         <div className="card-body">
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Category Name</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {categories.map((category, index) => (
-                                        <tr key={category._id}>
-                                            <td>{index + 1}</td>
-                                            <td>{category.categoryName}</td>
-                                            <td>
-                                                <button
-                                                    className="btn btn-primary btn-sm mr-2"
-                                                    onClick={() => handleView(category._id)}
-                                                >
-                                                    View
-                                                </button>
-                                                <button
-                                                    className="btn btn-warning btn-sm mr-2"
-                                                    onClick={() => handleEdit(category._id)}
-                                                >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    className="btn btn-danger btn-sm"
-                                                    onClick={() => handleDelete(category._id)}
-                                                >
-                                                    Delete
-                                                </button>
-                                            </td>
+                            {loading ? (
+                                <Loader/>
+                            ) : (
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Category Name</th>
+                                            <th>Action</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {categories.map((category, index) => (
+                                            <tr key={category._id}>
+                                                <td>{index + 1}</td>
+                                                <td>{category.categoryName}</td>
+                                                <td>
+                                                    <button
+                                                        className="btn btn-primary btn-sm mr-2"
+                                                        onClick={() => handleView(category._id)}
+                                                    >
+                                                        View
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-warning btn-sm mr-2"
+                                                        onClick={() => handleEdit(category._id)}
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-danger btn-sm"
+                                                        onClick={() => handleDelete(category._id)}
+                                                        disabled={deleteLoading}
+                                                    >
+                                                        {deleteLoading ? 'Deleting...' : 'Delete'}
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
         </body>
-
     );
 };
