@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import Loader from '../../../components/Loader';
 
 export const ViewCategory = () => {
     const { id } = useParams(); // Extract the category ID from the URL parameters
@@ -12,9 +13,7 @@ export const ViewCategory = () => {
     useEffect(() => {
         const fetchCategory = async () => {
             try {
-                // Get the token from localStorage
                 const token = localStorage.getItem('authToken');
-
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}` // Include the token in the headers
@@ -32,7 +31,7 @@ export const ViewCategory = () => {
         fetchCategory();
     }, [id]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />; // Display the loader while loading
     if (error) return <p>{error}</p>;
 
     return (

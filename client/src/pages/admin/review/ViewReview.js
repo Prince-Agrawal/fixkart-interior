@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 export const ViewReview = () => {
     const { id } = useParams(); // Extract the review ID from the URL parameters
@@ -11,6 +12,7 @@ export const ViewReview = () => {
 
     useEffect(() => {
         const fetchReview = async () => {
+            setLoading(true); // Start loader
             try {
                 // Get the token from localStorage
                 const token = localStorage.getItem('authToken');
@@ -21,19 +23,19 @@ export const ViewReview = () => {
                     },
                 });
                 setReview(response.data);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching review:', error);
                 setError('Failed to load review details.');
-                setLoading(false);
+            } finally {
+                setLoading(false); // Stop loader
             }
         };
 
         fetchReview();
     }, [id]);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) return <Loader />; // Show loader while fetching
+    if (error) return <p className="text-danger">{error}</p>; // Show error if fetching fails
 
     return (
         <body class="inner">

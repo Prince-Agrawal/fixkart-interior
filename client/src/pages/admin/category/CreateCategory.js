@@ -10,6 +10,7 @@ export const CreateCategory = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false); // Loader state
     const fileInputRef = useRef();
 
     const handleInputChange = (e) => {
@@ -56,7 +57,6 @@ export const CreateCategory = () => {
             if (!data.description) newErrors[`description_${index}`] = 'Description is required.';
         });
 
-        // Remove image file validation to make it optional
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -68,6 +68,8 @@ export const CreateCategory = () => {
             return;
         }
 
+        setLoading(true); // Start loader
+
         const data = new FormData();
         data.append('categoryName', formData.categoryName);
         data.append('categoryDescription', formData.categoryDescription);
@@ -76,7 +78,6 @@ export const CreateCategory = () => {
             data.append(`categoryAdditionalData[${index}][description]`, item.description);
         });
 
-        // Append images only if they are selected
         formData.imageFiles.forEach((file) => {
             data.append('imageFiles', file);
         });
@@ -87,7 +88,7 @@ export const CreateCategory = () => {
             const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/category`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
                 },
             });
 
@@ -106,6 +107,8 @@ export const CreateCategory = () => {
             }
         } catch (error) {
             console.error('Error creating category:', error);
+        } finally {
+            setLoading(false); // Stop loader
         }
     };
 
@@ -163,7 +166,7 @@ export const CreateCategory = () => {
                                             onChange={(e) => handleAdditionalDataChange(index, 'title', e.target.value)}
                                         />
                                         {errors[`title_${index}`] && <div className="text-danger">{errors[`title_${index}`]}</div>}
-                                        
+
                                         <label htmlFor={`description_${index}`}>Additional Data Description</label>
                                         <textarea
                                             className="form-control"
@@ -186,11 +189,12 @@ export const CreateCategory = () => {
                                         onChange={handleFileChange}
                                         ref={fileInputRef}
                                     />
-                                    {/* No error message for optional image field */}
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" className="btn btn-primary" disabled={loading}>
+                                    {loading ? 'Submitting...' : 'Submit'}
+                                </button>
                             </div>
                         </form>
                     </div>

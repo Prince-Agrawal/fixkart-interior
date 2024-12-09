@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 export const ContactForm = () => {
@@ -32,39 +33,70 @@ export const ContactForm = () => {
 
     setErrors(errors);
 
+    // if (Object.keys(errors).length === 0) {
+    //   setLoading(true);
+    //   try {
+    //     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/contact`, { // Replace with your backend URL
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({
+    //         fullName,
+    //         email,
+    //         phone,
+    //         company,
+    //         message,
+    //       }),
+    //     });
+
+    //     const result = await response.json();
+    //     if (response.ok) {
+    //       setSuccessMessage('Message sent successfully!');
+    //       // Clear form fields after a successful submission
+    //       setFullName('');
+    //       setEmail('');
+    //       setPhone('');
+    //       setCompany('');
+    //       setMessage('');
+    //     } else {
+    //       // Handle server errors
+    //       setErrors({ form: result.error || 'Something went wrong' });
+    //     }
+    //   } catch (error) {
+    //     console.error('Error submitting form:', error);
+    //     setErrors({ form: 'Failed to send message. Please try again.' });
+    //   } finally {
+    //     setLoading(false);
+    //     // Clear success message after 5 seconds
+    //     setTimeout(() => {
+    //       setSuccessMessage('');
+    //     }, 5000);
+    //   }
+    // }
+
     if (Object.keys(errors).length === 0) {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:3254/api/contact', { // Replace with your backend URL
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            fullName,
-            email,
-            phone,
-            company,
-            message,
-          }),
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/contact`, {
+          fullName,
+          email,
+          phone,
+          company,
+          message,
         });
 
-        const result = await response.json();
-        if (response.ok) {
-          setSuccessMessage('Message sent successfully!');
-          // Clear form fields after a successful submission
-          setFullName('');
-          setEmail('');
-          setPhone('');
-          setCompany('');
-          setMessage('');
-        } else {
-          // Handle server errors
-          setErrors({ form: result.error || 'Something went wrong' });
-        }
+        setSuccessMessage('Message sent successfully!');
+        // Clear form fields after a successful submission
+        setFullName('');
+        setEmail('');
+        setPhone('');
+        setCompany('');
+        setMessage('');
       } catch (error) {
         console.error('Error submitting form:', error);
-        setErrors({ form: 'Failed to send message. Please try again.' });
+        const errorMessage = error.response?.data?.error || 'Failed to send message. Please try again.';
+        setErrors({ form: errorMessage });
       } finally {
         setLoading(false);
         // Clear success message after 5 seconds
@@ -72,6 +104,9 @@ export const ContactForm = () => {
           setSuccessMessage('');
         }, 5000);
       }
+
+      console.log("errorserrorserrorserrors", errors)
+      console.log("setSuccessMessagesetSuccessMessagesetSuccessMessage", successMessage)
     }
   };
 
@@ -157,7 +192,7 @@ export const ContactForm = () => {
               {errors.form && <div className='error-message'>{errors.form}</div>}
             </div>
           </div>
-        </div> 
+        </div>
       </form>
     </>
   );

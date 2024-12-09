@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 export const ReviewList = () => {
     const navigate = useNavigate();
     const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(true); // State to track loading
+    const [error, setError] = useState(null); // State to track errors
 
     useEffect(() => {
         const fetchReviews = async () => {
+            setLoading(true); // Start loading
             try {
-                // Get the token from localStorage
                 const token = localStorage.getItem('authToken');
-
-                // Include the token in the headers
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/reviews`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -21,6 +22,9 @@ export const ReviewList = () => {
                 setReviews(response.data);
             } catch (error) {
                 console.error('Error fetching reviews:', error);
+                setError('Failed to load reviews.');
+            } finally {
+                setLoading(false); // Stop loading
             }
         };
 
@@ -44,24 +48,25 @@ export const ReviewList = () => {
 
         try {
             const token = localStorage.getItem('authToken');
-
-            // Include the token in the headers
             await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/reviews/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-
             setReviews(reviews.filter((review) => review._id !== id));
             console.log('Review deleted successfully');
         } catch (error) {
             console.error('Error deleting review:', error);
+            setError('Failed to delete review.');
         }
     };
 
     const handleCreate = () => {
         navigate('/admin/reviews/create');
     };
+
+    if (loading) return <Loader />; // Loader message
+    if (error) return <p className="text-danger">{error}</p>; // Error message
 
     return (
         <body class="inner">
