@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Loader from '../../../components/Loader';
+import RichTextEditor from 'react-rte';
 
 export const EditCategory = () => {
     const { id } = useParams();
@@ -9,7 +10,13 @@ export const EditCategory = () => {
     const [formData, setFormData] = useState({
         categoryName: '',
         categoryDescription: '',
-        categoryAdditionalData: [{ title: '', description: '' }],
+        categoryAdditionalData: [
+            {
+                title: '',
+                editorData: RichTextEditor.createEmptyValue(), // Initialize editor data
+                description: '', // Store HTML output
+            },
+        ],
         files: [],
     });
     const [errors, setErrors] = useState({});
@@ -28,11 +35,20 @@ export const EditCategory = () => {
                         'Authorization': `Bearer ${token}`
                     },
                 });
-
+                // setFormData({
+                //     categoryName: response.data.categoryName,
+                //     categoryDescription: response.data.categoryDescription,
+                //     categoryAdditionalData: response.data.categoryAdditionalData || [{ title: '', description: '' }],
+                //     files: [],
+                // });
                 setFormData({
                     categoryName: response.data.categoryName,
                     categoryDescription: response.data.categoryDescription,
-                    categoryAdditionalData: response.data.categoryAdditionalData || [{ title: '', description: '' }],
+                    categoryAdditionalData: response.data.categoryAdditionalData.map((item) => ({
+                        title: item.title,
+                        editorData: RichTextEditor.createValueFromString(item.description, 'html'), // Convert HTML to editor state
+                        description: item.description,
+                    })),
                     files: [],
                 });
 
@@ -61,14 +77,25 @@ export const EditCategory = () => {
         });
     };
 
-    const handleAdditionalDataChange = (index, e) => {
-        const { name, value } = e.target;
+    // const handleAdditionalDataChange = (index, e) => {
+    //     const { name, value } = e.target;
+    //     const updatedAdditionalData = [...formData.categoryAdditionalData];
+    //     updatedAdditionalData[index][name] = value;
+    //     setFormData({
+    //         ...formData,
+    //         categoryAdditionalData: updatedAdditionalData,
+    //     });
+    // };
+
+    const handleAdditionalDataChange = (index, field, value) => {
         const updatedAdditionalData = [...formData.categoryAdditionalData];
-        updatedAdditionalData[index][name] = value;
-        setFormData({
-            ...formData,
-            categoryAdditionalData: updatedAdditionalData,
-        });
+        if (field === 'editorData') {
+            updatedAdditionalData[index].editorData = value; // Update editor state
+            updatedAdditionalData[index].description = value.toString('html'); // Extract HTML content
+        } else {
+            updatedAdditionalData[index][field] = value; // Update other fields like title
+        }
+        setFormData({ ...formData, categoryAdditionalData: updatedAdditionalData });
     };
 
     const handleFileChange = (e) => {
@@ -180,7 +207,7 @@ export const EditCategory = () => {
                                     />
                                     {errors.categoryDescription && <div className="text-danger">{errors.categoryDescription}</div>}
                                 </div>
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <label>Additional Data</label>
                                     {formData.categoryAdditionalData.map((item, index) => (
                                         <div key={index} className="mb-2">
@@ -199,6 +226,29 @@ export const EditCategory = () => {
                                                 placeholder="Description"
                                                 value={item.description}
                                                 onChange={(e) => handleAdditionalDataChange(index, e)}
+                                            />
+                                        </div>
+                                    ))}
+                                    <button type="button" className="btn btn-secondary mt-2" onClick={addAdditionalDataField}>
+                                        Add Additional Data
+                                    </button>
+                                </div> */}
+
+                                <div className="form-group">
+                                    <label>Additional Data</label>
+                                    {formData.categoryAdditionalData.map((item, index) => (
+                                        <div key={index} className="mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control mb-2"
+                                                name="title"
+                                                placeholder="Title"
+                                                value={item.title}
+                                                onChange={(e) => handleAdditionalDataChange(index, 'title', e.target.value)}
+                                            />
+                                            <RichTextEditor
+                                                value={item.editorData}
+                                                onChange={(value) => handleAdditionalDataChange(index, 'editorData', value)}
                                             />
                                         </div>
                                     ))}

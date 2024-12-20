@@ -52,7 +52,9 @@ export const ViewCategory = () => {
                                         <h5>Additional Data</h5>
                                         {category.categoryAdditionalData.map((item, index) => (
                                             <div key={index}>
-                                                <p><strong>{item.title}:</strong> {item.description}</p>
+                                                <p><strong>{item.title}</strong></p>
+                                                {/* <p> {item.description}</p> */}
+                                                <p dangerouslySetInnerHTML={{ __html: item.description }} />
                                             </div>
                                         ))}
                                     </div>

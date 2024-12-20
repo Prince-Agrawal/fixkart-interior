@@ -38,9 +38,11 @@ const CategoryDetail = (props) => {
                     {category?.categoryAdditionalData?.map((categoryAdditionalDetail) => (
                         <>
                             <h2>{categoryAdditionalDetail?.title}</h2>
-                            <p>
+                            {/* <p>
                                 {categoryAdditionalDetail?.description}
-                            </p></>
+                            </p> */}
+                            <p dangerouslySetInnerHTML={{ __html: categoryAdditionalDetail?.description }} />
+                            </>
                     ))}
 
                     <p>
