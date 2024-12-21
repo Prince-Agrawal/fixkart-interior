@@ -1,16 +1,23 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import RichTextEditor from 'react-rte';
 
 export const CreateCategory = () => {
     const [formData, setFormData] = useState({
         categoryName: '',
         categoryDescription: '',
-        categoryAdditionalData: [{ title: '', description: '' }],
+        categoryAdditionalData: [
+            {
+                title: '',
+                editorData: RichTextEditor.createEmptyValue(), // Initialize editor data
+                description: '',
+            },
+        ],
         imageFiles: [],
     });
 
     const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false); // Loader state
+    const [loading, setLoading] = useState(false);
     const fileInputRef = useRef();
 
     const handleInputChange = (e) => {
@@ -19,7 +26,6 @@ export const CreateCategory = () => {
             ...formData,
             [name]: value,
         });
-
         setErrors({
             ...errors,
             [name]: '',
@@ -28,7 +34,14 @@ export const CreateCategory = () => {
 
     const handleAdditionalDataChange = (index, field, value) => {
         const updatedAdditionalData = [...formData.categoryAdditionalData];
-        updatedAdditionalData[index][field] = value;
+
+        if (field === 'editorData') {
+            updatedAdditionalData[index][field] = value;
+            updatedAdditionalData[index].description = value.toString('html'); // Update HTML content
+        } else {
+            updatedAdditionalData[index][field] = value;
+        }
+
         setFormData({
             ...formData,
             categoryAdditionalData: updatedAdditionalData,
@@ -54,7 +67,6 @@ export const CreateCategory = () => {
 
         formData.categoryAdditionalData.forEach((data, index) => {
             if (!data.title) newErrors[`title_${index}`] = 'Title is required.';
-            if (!data.description) newErrors[`description_${index}`] = 'Description is required.';
         });
 
         setErrors(newErrors);
@@ -68,14 +80,14 @@ export const CreateCategory = () => {
             return;
         }
 
-        setLoading(true); // Start loader
+        setLoading(true);
 
         const data = new FormData();
         data.append('categoryName', formData.categoryName);
         data.append('categoryDescription', formData.categoryDescription);
         formData.categoryAdditionalData.forEach((item, index) => {
             data.append(`categoryAdditionalData[${index}][title]`, item.title);
-            data.append(`categoryAdditionalData[${index}][description]`, item.description);
+            data.append(`categoryAdditionalData[${index}][description]`, item.description); // Include HTML content
         });
 
         formData.imageFiles.forEach((file) => {
@@ -84,7 +96,6 @@ export const CreateCategory = () => {
 
         try {
             const token = localStorage.getItem('authToken');
-
             const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/category`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -97,27 +108,41 @@ export const CreateCategory = () => {
             setFormData({
                 categoryName: '',
                 categoryDescription: '',
-                categoryAdditionalData: [{ title: '', description: '' }],
+                categoryAdditionalData: [
+                    {
+                        title: '',
+                        editorData: RichTextEditor.createEmptyValue(),
+                        description: '',
+                    },
+                ],
                 imageFiles: [],
             });
             setErrors({});
-
             if (fileInputRef.current) {
                 fileInputRef.current.value = '';
             }
         } catch (error) {
             console.error('Error creating category:', error);
         } finally {
-            setLoading(false); // Stop loader
+            setLoading(false);
         }
     };
 
     const addAdditionalData = () => {
         setFormData({
             ...formData,
-            categoryAdditionalData: [...formData.categoryAdditionalData, { title: '', description: '' }],
+            categoryAdditionalData: [
+                ...formData.categoryAdditionalData,
+                {
+                    title: '',
+                    editorData: RichTextEditor.createEmptyValue(),
+                    description: '',
+                },
+            ],
         });
     };
+
+    
 
     return (
         <body className="inner">
@@ -167,18 +192,17 @@ export const CreateCategory = () => {
                                         />
                                         {errors[`title_${index}`] && <div className="text-danger">{errors[`title_${index}`]}</div>}
 
-                                        <label htmlFor={`description_${index}`}>Additional Data Description</label>
-                                        <textarea
-                                            className="form-control"
-                                            id={`description_${index}`}
-                                            placeholder="Enter description"
-                                            value={data.description}
-                                            onChange={(e) => handleAdditionalDataChange(index, 'description', e.target.value)}
+                                        <label htmlFor={`editor_${index}`}>Additional Data Description</label>
+                                        <RichTextEditor
+                                            value={data.editorData}
+                                            onChange={(value) => handleAdditionalDataChange(index, 'editorData', value)}
+                                            placeholder="Start typing here..."
                                         />
-                                        {errors[`description_${index}`] && <div className="text-danger">{errors[`description_${index}`]}</div>}
                                     </div>
                                 ))}
-                                <button type="button" className="btn btn-secondary mb-2" onClick={addAdditionalData}>Add Additional Data</button>
+                                <button type="button" className="btn btn-secondary mb-2" onClick={addAdditionalData}>
+                                    Add Additional Data
+                                </button>
                                 <div className="form-group">
                                     <label htmlFor="imageFiles">Image Files</label>
                                     <input
