@@ -61,7 +61,7 @@ const Footer = () => {
                   </li>
                 </ul>
                 <h3 className="mb-3 mt-3">Social Media</h3>
-                <div className="social-icons d-flex gap-3">
+                <div className="social-icons d-flex gap-2">
                   <a
                     href="https://www.instagram.com/fixkart_interio/"
                     target="blank"
