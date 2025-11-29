@@ -38,7 +38,7 @@ export const ViewBlog = () => {
     return (
         <body class="inner">
             <div className="admin-dashboard">
-                <div className="container mt-4">
+                <div className="container-fluid mt-4">
                     <div className="card">
                         <div className="card-header d-flex justify-content-between align-items-center">
                             <h2>View Blog</h2>

@@ -129,7 +129,7 @@ export const CreateBlog = () => {
     return (
         <body className="inner">
             <div className="admin-dashboard">
-                <div className="container mt-4">
+                <div className="container-fluid mt-4">
                     <div className="card">
                         <div className="card-header">
                             <h2>Create New Blog</h2>

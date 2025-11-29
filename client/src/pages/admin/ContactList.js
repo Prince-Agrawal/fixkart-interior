@@ -28,7 +28,7 @@ const ContactList = () => {
     return (
         <body className="inner">
             <div className="admin-dashboard">
-                <div>
+                <div className='container-fluid mt-4'>
                     <div className="col-12">
                         <h1>Contact List</h1>
                     </div>

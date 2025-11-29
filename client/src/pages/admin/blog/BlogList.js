@@ -63,7 +63,7 @@ export const BlogList = () => {
     return (
         <body class="inner">
             <div className="admin-dashboard">
-                <div className="container mt-4">
+                <div className="container-fluid mt-4">
                     <div className="card">
                         <div className="card-header d-flex justify-content-between align-items-center">
                             <h3 className="card-title">Blog List</h3>
