@@ -15,6 +15,9 @@ import Awards from "../components/Awards";
 import Loader from "../components/Loader";
 const Home = () => {
   const [loading, setLoading] = useState(true); // Add loading state
+  useEffect(() => {
+    document.title = "Top Interior Designers in Jaipur | Fixkart Interio";
+  }, []); // Empty dependency array ensures this runs once when the component mounts.
 
   useEffect(() => {
     AOS.init({ duration: 1000 });

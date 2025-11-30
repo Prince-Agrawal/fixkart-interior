@@ -70,71 +70,71 @@ export default function DesignIdeas() {
 
   return (
     <div className="design-idea-slider slider-dots">
-      {/* <Slider {...settings}>
-        <div>
-          <a href="#">
-            <img
-              src="images/kids-room.png"
-              alt="kids room image"
-              className="img-fluid"
-            />
-            <span>Kids Room</span>
-          </a>
-        </div>
-        <div>
-          <a href="#">
-            <img
-              src="images/home-office.png"
-              alt="kids room image"
-              className="img-fluid"
-            />
-            <span>Home office</span>
-          </a>
-        </div>
-        <div>
-          <a href="#">
-            <img
-              src="images/living-room.png"
-              alt="living room"
-              className="img-fluid"
-            />
-            <span>Living room design</span>
-          </a>
-        </div>
-        <div>
-          <a href="#">
-            <img
-              src="images/kids-room.png"
-              alt="kids room image"
-              className="img-fluid"
-            />
-            <span>Kids Room</span>
-          </a>
-        </div>
-        <div>
-          <a href="#">
-            <img
-              src="images/home-office.png"
-              alt="kids room image"
-              className="img-fluid"
-            />
-            <span>Home office</span>
-          </a>
-        </div>
-        <div>
-          <a href="#">
-            <img
-              src="images/living-room.png"
-              alt="living room"
-              className="img-fluid"
-            />
-            <span>Living room design</span>
-          </a>
-        </div>
-      </Slider> */}
-
-
       <Slider {...settings}>
+        <div>
+          <a>
+            <img
+              src="images/kids-room.png"
+              alt="kids room image"
+              className="img-fluid"
+            />
+            {/* <span>Kids Room</span> */}
+          </a>
+        </div>
+        <div>
+          <a>
+            <img
+              src="images/home-office.png"
+              alt="kids room image"
+              className="img-fluid"
+            />
+            {/* <span>Home office</span> */}
+          </a>
+        </div>
+        <div>
+          <a>
+            <img
+              src="images/living-room.png"
+              alt="living room"
+              className="img-fluid"
+            />
+            {/* <span>Living room design</span> */}
+          </a>
+        </div>
+        <div>
+          <a>
+            <img
+              src="images/kids-room.png"
+              alt="kids room image"
+              className="img-fluid"
+            />
+            {/* <span>Kids Room</span> */}
+          </a>
+        </div>
+        <div>
+          <a>
+            <img
+              src="images/home-office.png"
+              alt="kids room image"
+              className="img-fluid"
+            />
+            {/* <span>Home office</span> */}
+          </a>
+        </div>
+        <div>
+          <a>
+            <img
+              src="images/living-room.png"
+              alt="living room"
+              className="img-fluid"
+            />
+            {/* <span>Living room design</span> */}
+          </a>
+        </div>
+      </Slider>
+
+
+      {/* <Slider {...settings}>
         {categories.map((category, index) => (
           <div key={category._id}>
             <Link to={category.categorySlug}>
@@ -147,7 +147,7 @@ export default function DesignIdeas() {
             </Link>
           </div>
         ))}
-      </Slider>
+      </Slider> */}
     </div>
   );
 }
